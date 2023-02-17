@@ -58,7 +58,7 @@ def get_phrase_with_link(df, PMID):
 def get_repo_info(link):
     
     owner = str(link).split('/')[3]
-    access_token='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' 
+    access_token='' 
     headers = {'Authorization':"Token "+access_token}
     repo = str(link).split('/')[4]
     url = f"https://api.github.com/repos/{owner}/{repo}"

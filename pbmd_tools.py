@@ -11,31 +11,61 @@ retmode = 'xml'
 
 def read_tokens():
     """Read tokens from .env file.
+    
     Returns
     -------
-    tuple
+    pub, git : str
         Tokens.
+        
     """
     dotenv.load_dotenv(".env")
     if "GITHUB_KEY" in os.environ:
-        print("Found GitHub token.")
+        #print("Found GitHub token.")
         git = os.environ.get("GITHUB_KEY")
     else:
         print("Token is missing.")
     if "PUBMED_KEY" in os.environ:
-        print("Found PubMed token.")
+        #print("Found PubMed token.")
         pub = os.environ.get("PUBMED_KEY")
     else:
         print("Token is missing.")
     return pub, git
 
-def get_summary(PMID, log_error_sum):
+def get_summary(PMID):
     """Obtaining information about an article published in PubMed using the PubMed API.
 
     Parameters
     ----------
     PMID : str
         The PubMed id of the article.
+    log_error_sum: list
+        The list to stock the errors provided by this code.
+
+    Returns
+    -------
+    dic : dictionary
+        A dictionary obtained from xml format provided by pubmed api entrez.
+        
+    Example of query
+    -------
+    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36540970&retmode=xml&rettype=abstract
+    
+    """
+    
+    API_KEY = read_tokens()[0]
+    queryLinkSearch = f'{domain}/efetch.fcgi?db={db}&id={PMID}&retmax={nresults}&retmode={retmode}&rettype=abstract&api_key={API_KEY}'  
+    response = requests.get(queryLinkSearch)
+    dic = xmltodict.parse(response.content)
+    
+    return dic
+
+def get_info(PMID, log_error_sum):
+    """Obtaining information about an article published in PubMed using the PubMed API.
+
+    Parameters
+    ----------
+    dic : dictionary
+        A dictionary obtained from xml format provided by pubmed api entrez.
     log_error_sum: list
         The list to stock the errors provided by this code.
 
@@ -56,54 +86,69 @@ def get_summary(PMID, log_error_sum):
         
     """
     
-    API_KEY = read_tokens()[0]
+    res = get_summary(PMID)
     
-    queryLinkSearch = f'{domain}/efetch.fcgi?db={db}&id={PMID}&retmax={nresults}&retmode={retmode}&rettype=abstract&api_key={API_KEY}'
-    response = requests.get(queryLinkSearch)
-    dic = xmltodict.parse(response.content)
     # Abstract
     try:
-        abstract_raw = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Abstract']['AbstractText']
-        if not isinstance(abstract_raw, list):
-            Abstract = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Abstract']['AbstractText']
-        else:
+        article = res['PubmedArticleSet']['PubmedArticle']
+        abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
+        if isinstance(abstract_raw, list):
             Abstract = ''
             for d in abstract_raw:
-                Abstract += d['#text']
+                Abstract += d['#text'] + ' '    
+        elif isinstance(abstract_raw, dict):
+            Abstract = ''
+            Abstract += abstract_raw['#text'] + ' '
+        else:
+            Abstract = article['MedlineCitation']['Article']['Abstract']['AbstractText']
+            
     except:
         Abstract = None
         log_error_sum.append('No Abstract found :' + str(PMID) + '\n')
+        
     # PubDate
     try:
-        try:
-            PubDate = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleDate']['Year'] + '-' + dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleDate']['Month'] + '-' + dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleDate']['Day']
-        except:
-            log_error_sum.append('No Noramal Article Date found :' + str(PMID) + '\n')
-            try:
-                PubDate = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']['Year'] + '-' + dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']['Month']
-            except:
-                PubDate = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']['Year']
+        article = res['PubmedArticleSet']['PubmedArticle']
+        date = article['MedlineCitation']['DateCompleted']
+        PubDate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
     except:
-        PubDate = None
-        log_error_sum.append('No Article Date found at all :' + str(PMID) + '\n')
+        try:
+            article = res['PubmedArticleSet']['PubmedArticle']
+            date = article['MedlineCitation']['Article']['ArticleDate']
+            PubDate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
+        except:
+            PubDate = None
+            log_error_sum.append('No Article Date found at all :' + str(PMID) + '\n')
+        
     # Title and Journal 
     try:
-        Title = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleTitle']
+        article = res['PubmedArticleSet']['PubmedArticle']
+        Tit = article['MedlineCitation']['Article']['ArticleTitle']
+        if isinstance(Tit, dict) or type(Tit) == "<class 'dict'>":
+            Title = ''
+            for d in Tit.keys():
+                Title += Tit[d] + ' '
+        else:
+            Title = Tit
     except:
         Title = None
         log_error_sum.append('No Title found :' + str(PMID) + '\n')
     try:
-        Journal = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['Title']
+        article = res['PubmedArticleSet']['PubmedArticle']
+        Journal = article['MedlineCitation']['Article']['Journal']['Title']
     except:
         Journal = None
         log_error_sum.append('No Journal Name found :' + str(PMID) + '\n')
+        
     # DOI
     DOI = None
     try:
         try:
-            ELocationID_list = dic['PubmedArticleSet']['PubmedArticle']['PubmedData']['ArticleIdList']['ArticleId']
+            article = res['PubmedArticleSet']['PubmedArticle']
+            ELocationID_list = article['PubmedData']['ArticleIdList']['ArticleId']
         except:
-            ELocationID_list = dic['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ELocationID']
+            article = res['PubmedArticleSet']['PubmedArticle']
+            ELocationID_list = article['MedlineCitation']['Article']['ELocationID']
         if isinstance(ELocationID_list, dict) or type(ELocationID_list) == "<class 'dict'>":
             if "doi" in ELocationID_list.values():
                 DOI = ELocationID_list["#text"]
@@ -119,60 +164,38 @@ def get_summary(PMID, log_error_sum):
         
     return PubDate, DOI, Journal, Title, Abstract, log_error_sum
 
-def get_link(df, PMID):
+def get_link(text):
     
-    regex = ["github.com[^\n ,)]*"]
+    regex = ["github.com[^\n ,):;'+}>]*"]
     links_with_point = ''
     
     for rgx in regex:
-        if (links_with_point == '') and re.search(rgx, str(df.loc[df["PMID"] == PMID, "Abstract"].values[0]), re.IGNORECASE):
-                links_with_point = re.findall(rgx, str(df.loc[df["PMID"] == PMID, "Abstract"].values[0]), re.IGNORECASE)
-    links = []
+        if (links_with_point == '') and re.search(rgx, text, re.IGNORECASE):
+                links_with_point = re.findall(rgx, text, re.IGNORECASE)
+    links = ''
     for link in links_with_point :
-        
-        links.append(link) 
+        links += link + ' '
         
     return links
 
-def clean_link(df, PMID):
-    regex = ["github.com[^\n ,)]*"]
-    links_with_point = ''
-    
-    for rgx in regex:
-        if (links_with_point == '') and re.search(rgx, str(df.loc[df["PMID"] == PMID, "Abstract"].values[0]), re.IGNORECASE):
-                links_with_point = re.findall(rgx, str(df.loc[df["PMID"] == PMID, "Abstract"].values[0]), re.IGNORECASE)
-    links = []
-    for link in links_with_point :
-        links.append(link)
-    links_fin = []
-    for link in links:
+def clean_link(links):
+    links_fin = ''
+    for link in links.split(' '):
         if link != "":
             if not link.startswith("https://"):
                 link = "https://" + link
             if link[-2] == ")":
                 link = link[:-2]
-            if link[-1] == ")" or link[-1] == "." or link[-1] == "," or link[-1] == ":":
+            if link[-1] == ".":
                 link = link[:-1]
+            if link[-4:] == '.git':
+                link = link[:-4]
             if link[-1] != "/":
-                links_fin.append(link+"/")
+                links_fin += link+"/" + ' '
             else:
-                links_fin.append(link)
+                links_fin += link + ' '
+                
     return links_fin
-
-def get_phrase_with_link(df, PMID):
-    
-    regex = ["\.[^.]*[./]github[^ ]* [^.]*[^ ]*\.", "\.[^.]*[./]github[^ ]*", "[^.]*github[^ ]*", "[a-zA-Z0-9 .,/:\'\"!?]{101}github[^ ]*[a-zA-Z0-9 .,/:\'\"!?()]{100}"]
-    phrase_with_point = ''
-    
-    for rgx in regex:
-        if (phrase_with_point == "") and re.search(rgx, str(df.loc[df["PMID"] == PMID, "Abstract"].values[0]), re.IGNORECASE):
-            phrase_with_point = re.findall(rgx, str(df.loc[df["PMID"] == PMID, "Abstract"].values[0]), re.IGNORECASE)
-    phrases = []
-    for phrase in phrase_with_point :
-        phrase = phrase[2:]
-        phrases.append(phrase)
-        
-    return ' '.join(phrases)
 
 def get_repo_info(link, log_error):
     
@@ -188,6 +211,6 @@ def get_repo_info(link, log_error):
         created_at = repository_info["created_at"]
         updated_at = repository_info["updated_at"]
     else:
-        log_error.append(f"Error with URL: {url} Status code: {response.status_code}\n")
+        log_error.append(f"Error with URL: {url} Status code: {response.status_code} ")
         return None, None
     return created_at.split('T')[0], updated_at.split('T')[0], log_error

@@ -1,0 +1,271 @@
+﻿PMID,URL,Error Code,Reason of error,Comment
+31577193,https://api.github.com/repos/bioinformaticsML/,404,wrong link,space in the link
+26710886,https://api.github.com/repos/bvnlabSCATTome/,404,wrong link,/bvnlab/SCATTome/
+30689725,https://api.github.com/repos/Computational/,404,wrong link,space in the link
+35854736,https://api.github.com/repos/Zhizhen-/,404,wrong link,space in the link
+31885041,https://api.github.com/repos//a96123155,404,wrong link,// in the link
+29718113,https://api.github.com/repos//bioinfomaticsCSU,404,wrong link,// in the link
+31904815,https://api.github.com/repos//nyiuab,404,wrong link,// in the link
+31510665,https://api.github.com/repos/cbg-ethz/predictability\_of\_cancer\_evolution,404,wrong link,"\ in the link, without them it's correct"
+29292031,https://api.github.com/repos/ih-_lab/CNN_Smoothie,404,wrong link,/ih-lab/CNN_Smoothie
+36260564,https://api.github.com/repos/JigneshChowdary/CXR_Classificationhttps,404,wrong link,The source code is available at https://github.com/JigneshChowdary/CXR_Classificationhttps: //github.com / JigneshChowdary /CXR_Classification.
+35896914,https://api.github.com/repos/Jorebs/Deep-learning-based-instrument-detection-for-intra,404,wrong link,space in the link
+29352257,https://api.github.com/repos/kouroshz/creNethttps,404,wrong link,The package can be downloaded at https://github.com/kouroshz/creNethttps://github.com/kouroshz/creNet and is accompanied by
+26500705,https://api.github.com/repos/lhm30/PIDGIN.Graphical,404,wrong link,no space after the link
+28092529,https://api.github.com/repos/ManiShiyam/Sub-category-classifiersfor-,404,wrong link,space in the link
+36535036,https://api.github.com/repos/osmanberke/Ensemble-of-DNNs.Our,404,wrong link,no space after the link
+31764961,https://api.github.com/repos/pinellolab/CRISPRitzhttps,404,wrong link,The software is freely available at: https://github.com/pinellolab/CRISPRitzhttps://github.com/InfOmics/CRISPRitz.
+32525207,https://api.github.com/repos/qi29/main_,404,wrong link,space in the link
+32750923,,,wrong link,space in the link
+23661694,,,wrong link,available as a github repository at git@github.com:BEETL/BEETL.git.
+28200105,,,wrong link,space in the link
+30590415,,,wrong link,space in the link
+35706060,,,wrong link,The source code of the AMADAR tool is available on GitHub [ CMCDD/AMADAR(github.com) ] and 
+32879935,,,wrong link,space in the link
+36374896,,,wrong link,space in the link
+33367525,,,wrong link,space in the link
+29515094,,,wrong link,space in the link
+34637113,,,wrong link,space in the link
+34745231,,,wrong link,space in the link
+23734710,,,wrong link,available as a github repository at git@github.com:BEETL/BEETL.git.
+32012014,,,wrong link,space in the link
+26124555,,,wrong link,space in the link
+30235130,https://api.github.com/repos/lingxiao-he/dfm,404,wrong link,/dfm_new
+31937236,https://api.github.com/repos/LokmaneChebouba/key-pipeand,404,wrong link,no space after the link
+33714997,https://api.github.com/repos/lunching/HCMM_CNVs.and,404,wrong link,no space after the link
+34892526,https://api.github.com/repos/MultimodalNeuroimagingLab/mnl_seegviewClinical,404,wrong link,no space after the link
+32123556,https://api.github.com/repos/Peppags/C_RNNCrispr,404,wrong link,/C-RNNCrispr
+22689644,https://api.github.com/repos/quwubin/MFEprimer,404,wrong link,
+28269829,https://api.github.com/repos/SBU-BMI/imageboxs,404,wrong link,Web App is included with the project codebase at https://github.com/SBU-BMI/imageboxs://github.com/SBU-BMI/imagebox.
+32183707,https://api.github.com/repos/SCUT-CCNL/LCQSand,404,wrong link,no space after the link
+33594415,https://api.github.com/repos/Shantanu48114860/DPN-SAz,404,wrong link,/DPN-SA
+27087308,https://api.github.com/repos/SuLab/crowd_cid_relexDatabase,404,wrong link,no space after the link
+32252628,https://api.github.com/repos/uio-bmi/two_step_graph_mapperalong,404,wrong link,no space after the link
+29293920,https://api.github.com/repos/vishrawas/Medline-Code_v2,404,wrong link,/Medline--code_v2
+33636485,https://api.github.com/repos/xiezheng-cs/AFAhttps,404,wrong link,pre-trained models are available at https://github.com/xiezheng-cs/AFAhttps://github.com/xiezheng-cs/AFA.
+34780468,,,weird link,
+26112291,https://api.github.com/repos/bene51/,404,repo name is unclearly provided,"Source code and binaries are available on github (https://github.com/bene51/), native code under the repository 'gpu_deconvolution', Java wrappers implementing Fiji plugins under 'SPIM_Reconstruction_Cuda'."
+26556385,https://api.github.com/repos/dieterich-lab/[DCC,404,repo name is unclearly provided,version 3 and available from https://github.com/dieterich-lab/[DCC or CircTest].
+27153689,https://api.github.com/repos/aalto-ics-kepaco/,404,repo name is not provided,
+33325479,https://api.github.com/repos/aCLImatise/,404,repo name is not provided,
+27153722,https://api.github.com/repos/algorun/,404,repo name is not provided,
+25252881,https://api.github.com/repos/aryana-aligner/,404,repo name is not provided,but it is the account created just for this app
+29649301,https://api.github.com/repos/badlands-model/,404,repo name is not provided,
+29870353,https://api.github.com/repos/bczhangbczhang/,404,repo name is not provided,
+31535994,https://api.github.com/repos/bczhangbczhang/,404,repo name is not provided,
+28407033,https://api.github.com/repos/BioCIDER/,404,repo name is not provided,but it is the account created just for this app
+30596645,https://api.github.com/repos/biocompute-objects/,404,repo name is not provided,
+36042399,https://api.github.com/repos/biostatpzeng/,404,repo name is not provided,
+31878664,https://api.github.com/repos/bishun945/,404,repo name is not provided,
+26315907,https://api.github.com/repos/BitSeq/,404,repo name is not provided,but it is the account created just for this app
+27930809,https://api.github.com/repos/cancerit/,404,repo name is not provided,
+33361004,https://api.github.com/repos/cdebodt/,404,repo name is not provided,
+30918943,https://api.github.com/repos/christopherblum/,404,repo name is not provided,
+31504165,https://api.github.com/repos/COMBAT-TB/,404,repo name is not provided,
+30564458,https://api.github.com/repos/ComPath/,404,repo name is not provided,but it is the account created just for this app
+32976572,https://api.github.com/repos/covid19kg/,404,repo name is not provided,but it is the account created just for this app
+35612186,https://api.github.com/repos/covidgraph/,404,repo name is not provided,but it is the account created just for this app
+36040169,https://api.github.com/repos/covidgraph/,404,repo name is not provided,but it is the account created just for this app
+30649181,https://api.github.com/repos/crisflash/,404,repo name is not provided,but it is the account created just for this app
+36747925,https://api.github.com/repos/CTC5/,404,repo name is not provided,
+26755625,https://api.github.com/repos/cytomine/,404,repo name is not provided,
+35782269,https://api.github.com/repos/danielnflam/,404,repo name is not provided,
+27588423,https://api.github.com/repos/dkaschek/,404,repo name is not provided,
+28700989,https://api.github.com/repos/doritool/,404,repo name is not provided,
+28968637,https://api.github.com/repos/DugongBioinformatics/,404,repo name is not provided,
+31691833,https://api.github.com/repos/EBI-Metabolights/,404,repo name is not provided,
+26687719,https://api.github.com/repos/Ensembl/,404,repo name is not provided,
+25908791,https://api.github.com/repos/ESPRESSO-research/,404,repo name is not provided,
+30407590,https://api.github.com/repos/evidenceontology/,404,repo name is not provided,
+31841420,https://api.github.com/repos/fewshot-camelyon/,404,repo name is not provided,
+23904198,https://api.github.com/repos/findis-db/,404,repo name is not provided,
+33106483,https://api.github.com/repos/Fluorescence-Tools/,404,repo name is not provided,
+27378302,https://api.github.com/repos/gdevailly/,404,repo name is not provided,
+30615054,https://api.github.com/repos/GeorgetteTanner/,404,repo name is not provided,
+35984800,https://api.github.com/repos/GhiXu/,404,repo name is not provided,
+32396098,https://api.github.com/repos/hanif-y/,404,repo name is not provided,
+29994619,https://api.github.com/repos/Haoran2014/,404,repo name is not provided,
+31292179,https://api.github.com/repos/hollytibble/,404,repo name is not provided,
+28103241,https://api.github.com/repos/icTAIR/,404,repo name is not provided,
+28407035,https://api.github.com/repos/icytree/,404,repo name is not provided,
+27863955,https://api.github.com/repos/inab/,404,repo name is not provided,
+30045760,https://api.github.com/repos/JiyuanHu/,404,repo name is not provided,
+27498275,https://api.github.com/repos/KNIME-OMICS/,404,repo name is not provided,
+31797607,https://api.github.com/repos/kramerlab/,404,repo name is not provided,
+30799618,https://api.github.com/repos/kusterlab/,404,repo name is not provided,
+36516971,https://api.github.com/repos/kylejuetten/,404,repo name is not provided,
+36279326,https://api.github.com/repos/Lab-ANT/,404,repo name is not provided,
+34726834,https://api.github.com/repos/Laboratoire-de-Chemoinformatique/,404,repo name is not provided,
+34290733,https://api.github.com/repos/lemonwang2020/,404,repo name is not provided,
+29994096,https://api.github.com/repos/LorisNanni/,404,repo name is not provided,
+34846893,https://api.github.com/repos/masashitsubaki/,404,repo name is not provided,
+28608703,https://api.github.com/repos/MathBioCU/,404,repo name is not provided,
+35180094,https://api.github.com/repos/Mayingjun20179/,404,repo name is not provided,
+33720834,https://api.github.com/repos/memory-attention-networks/,404,repo name is not provided,
+36786404,https://api.github.com/repos/mofradlab/,404,repo name is not provided,
+30165396,https://api.github.com/repos/molgenis/,404,repo name is not provided,
+34929739,https://api.github.com/repos/MoonLord0525/,404,repo name is not provided,
+36112566,https://api.github.com/repos/mtanveer1/,404,repo name is not provided,
+28282119,https://api.github.com/repos/MTiPatchSearch/,404,repo name is not provided,
+33367476,https://api.github.com/repos/multipaths/,404,repo name is not provided,
+27134733,https://api.github.com/repos/NCBI-Hackathons/,404,repo name is not provided,
+32522662,https://api.github.com/repos/neuropycon/,404,repo name is not provided,
+29790939,https://api.github.com/repos/nextstrain/,404,repo name is not provided,
+34539193,https://api.github.com/repos/OligoPrime/,404,repo name is not provided,
+34473240,https://api.github.com/repos/opencobra/,404,repo name is not provided,
+36047841,https://api.github.com/repos/opencobra/,404,repo name is not provided,
+36776914,https://api.github.com/repos/peterman65/,404,repo name is not provided,
+33385701,https://api.github.com/repos/pimed/,404,repo name is not provided,
+30741529,https://api.github.com/repos/pnnl/,404,repo name is not provided,
+29048466,https://api.github.com/repos/pybel/,404,repo name is not provided,
+29971313,https://api.github.com/repos/q2mm/,404,repo name is not provided,
+36440972,https://api.github.com/repos/qi29/,404,repo name is not provided,
+25765346,https://api.github.com/repos/Rbbt-Workflows/,404,repo name is not provided,
+27551105,https://api.github.com/repos/rcsb/,404,repo name is not provided,
+33051642,https://api.github.com/repos/recleelab/,404,repo name is not provided,
+31930375,https://api.github.com/repos/ribosomeprofiling/,404,repo name is not provided,
+35191489,https://api.github.com/repos/RNAseqTSA/,404,repo name is not provided,
+33500892,https://api.github.com/repos/robotology/,404,repo name is not provided,
+21169373,https://api.github.com/repos/sail/,404,repo name is not provided,
+35475253,https://api.github.com/repos/SASTRA-iGEM2019/,404,repo name is not provided,
+32196115,https://api.github.com/repos/SCA-IRCM/,404,repo name is not provided,
+31392324,https://api.github.com/repos/SemanticProgramming/,404,repo name is not provided,
+23736529,https://api.github.com/repos/sequencing/,404,repo name is not provided,
+35139202,https://api.github.com/repos/Shamir-Lab/,404,repo name is not provided,
+31622216,https://api.github.com/repos/shamsaraj/,404,repo name is not provided,
+34718413,https://api.github.com/repos/shohre73/,404,repo name is not provided,
+30953530,https://api.github.com/repos/sqsun/,404,repo name is not provided,
+36099220,https://api.github.com/repos/SuperBruceJia/,404,repo name is not provided,
+29746618,https://api.github.com/repos/terraphast/,404,repo name is not provided,
+36322519,https://api.github.com/repos/theglobaljukebox/,404,repo name is not provided,
+27153646,https://api.github.com/repos/tntvis/,404,repo name is not provided,
+30624651,https://api.github.com/repos/togogenome/,404,repo name is not provided,
+22235263,https://api.github.com/repos/to-mi/,404,repo name is not provided,
+33729795,https://api.github.com/repos/torchmd/,404,repo name is not provided,
+29791068,https://api.github.com/repos/undwive/,404,repo name is not provided,
+28031034,https://api.github.com/repos/uQlust/,404,repo name is not provided,
+30962522,https://api.github.com/repos/uSpikeHunter/,404,repo name is not provided,
+32938494,https://api.github.com/repos/Valdes-Tresanco-MS/,404,repo name is not provided,
+28449031,https://api.github.com/repos/ViennaRNA/,404,repo name is not provided,
+33483862,https://api.github.com/repos/xiaojinmao-code/,404,repo name is not provided,
+35657840,https://api.github.com/repos/XLearning-SCU/,404,repo name is not provided,
+36379059,https://api.github.com/repos/YuRui8879/,404,repo name is not provided,
+32031934,https://api.github.com/repos/ai-med/squeezeandexcitation,404,repo name is changed,/squeeze_and_excitation
+33703998,https://api.github.com/repos/bengeof/Target2DeNovoDrugCommunicated,404,repo name is changed,/Target2DeNovoDrug
+32003785,https://api.github.com/repos/binfalse/GEMtractor-a,404,repo name is changed,/GEMtractor
+32293263,https://api.github.com/repos/bokhariy/QuaDMutNetExunder,404,repo name is changed,/QuaDMutNetEx
+35496629,https://api.github.com/repos/cj-DaSE/SNFHGILMI,404,repo name is changed,/SNFHGILMI-master
+27153590,https://api.github.com/repos/DecodeGenetics/chopBAIContact,404,repo name is changed,/chopBAI
+28077564,https://api.github.com/repos/galaxyproject/blend4phpDatabase,404,repo name is changed,/blend4php
+29752479,https://api.github.com/repos/hakyimlab/S-PrediXcan,404,repo name is changed,/PrediXcan
+27587659,https://api.github.com/repos/IlyaLab/CombiningDependentPvalues,404,repo name is changed,/CombiningDependentPvaluesUsingEBM
+29860504,https://api.github.com/repos/jbelyeu/SV-plauditDemonstration,404,repo name is changed,/SV-plaudit
+27884106,https://api.github.com/repos/mills-lab/spectreok,404,repo name is changed,/spectre
+30192920,https://api.github.com/repos/qiaseq/qiaseq-dna,404,repo name is changed,/qiaseq-16S
+35035264,https://api.github.com/repos/subro608/thermogram_breast_cancer,404,repo name is changed,/breast-cancer
+30440487,https://api.github.com/repos/chenyzstju/ctc_screening_cnn,404,repo doesn't exist (neither does the user),
+33691015,https://api.github.com/repos/Huan-glab/AeQTL,404,repo doesn't exist (neither does the user),
+29994455,https://api.github.com/repos/Jane110111107/IsoTree,404,repo doesn't exist (neither does the user),
+`35964322,https://api.github.com/repos/LimoninaDaria/Sub-family-Specific-Sidechain-Orientations,404,repo doesn't exist (neither does the user),
+25093067,https://api.github.com/repos/ninjin/simsem,404,repo doesn't exist (neither does the user),
+36086223,https://api.github.com/repos/Ouantimb-Lab/DeiTCovid,404,repo doesn't exist (neither does the user),
+28267312,https://api.github.com/repos/rappsilberlab/xiFDR,404,repo doesn't exist (neither does the user),
+30601936,https://api.github.com/repos/USTCHIlab/DeepPhos,404,repo doesn't exist (neither does the user),
+28854978,https://api.github.com/repos/zhanglabstjude/neoepitope,404,repo doesn't exist (neither does the user),
+31946144,https://api.github.com/repos/aametwally/MC,404,repo doesn't exist (but the user does),
+35446776,https://api.github.com/repos/alongsong/3D_CAS,404,repo doesn't exist (but the user does),he deleted all the repos
+32857695,https://api.github.com/repos/avalonstrel/DSN,404,repo doesn't exist (but the user does),
+33245108,https://api.github.com/repos/Baxelyne/SpanBioER,404,repo doesn't exist (but the user does),
+34650190,https://api.github.com/repos/beringresearch/bravecx-covid,404,repo doesn't exist (but the user does),
+26248314,https://api.github.com/repos/chunbaozhou/gPGA,404,repo doesn't exist (but the user does),he deleted all the repos
+28038834,https://api.github.com/repos/CINA/zorro,404,repo doesn't exist (but the user does),
+36709557,https://api.github.com/repos/cistib/vessel-aneurysm-segmentation,404,repo doesn't exist (but the user does),
+36071071,https://api.github.com/repos/csbioinfopk/enpred,404,repo doesn't exist (but the user does),
+36134032,https://api.github.com/repos/cuntjx/bioInfo,404,repo doesn't exist (but the user does),he deleted all the repos
+32649284,https://api.github.com/repos/Dawnstar8411/SMAR-Net,404,repo doesn't exist (but the user does),
+34481183,https://api.github.com/repos/Farman335/iAtbP-Hyb-EnC,404,repo doesn't exist (but the user does),
+35850048,https://api.github.com/repos/Geehome/minimapR,404,repo doesn't exist (but the user does),
+30873528,https://api.github.com/repos/HongjianLi/MLSF,404,repo doesn't exist (but the user does),
+36217239,https://api.github.com/repos/HongzhouTang/BayeStab,404,repo doesn't exist (but the user does),
+34178986,https://api.github.com/repos/huawang123/VC-Net,404,repo doesn't exist (but the user does),
+35645759,https://api.github.com/repos/InceptioResearch/IITS,404,repo doesn't exist (but the user does),
+28714590,https://api.github.com/repos/jasonzyx/aSPC,404,repo doesn't exist (but the user does),
+32572768,https://api.github.com/repos/JinmiaoS/AC-Caps,404,repo doesn't exist (but the user does),
+35713588,https://api.github.com/repos/JLiangLab/Parts2Whole,404,repo doesn't exist (but the user does),
+34330122,https://api.github.com/repos/lc82111/crossModalNet,404,repo doesn't exist (but the user does),
+36623451,https://api.github.com/repos/lijixing0425/SCCNet,404,repo doesn't exist (but the user does),
+34048986,https://api.github.com/repos/Sharon1989Sunny/_FPDock_,404,repo doesn't exist (but the user does),
+36249560,https://api.github.com/repos/zlq-imu/Identification-of-potential-LUND-driver-genes,404,repo doesn't exist (but the user does),
+30821318,https://api.github.com/repos/Logic09/SW-Tandem,404,repo doesn't exist (but the user does),
+31793982,https://api.github.com/repos/look0012/circRNA-Disease-association,404,repo doesn't exist (but the user does),he deleted all the repos
+35731773,https://api.github.com/repos/mahaichuan/ReWaGAN,404,repo doesn't exist (but the user does),
+35143604,https://api.github.com/repos/meimeiling/DS-SCCA,404,repo doesn't exist (but the user does),
+26995218,https://api.github.com/repos/mperezenciso/ms2gs,404,repo doesn't exist (but the user does),he deleted all the repos
+35452387,https://api.github.com/repos/navchetanawasthi/Left_Ventricle_Segmentation,404,repo doesn't exist (but the user does),he deleted all the repos
+33416851,https://api.github.com/repos/ncbi-nlp/bert_gt,404,repo doesn't exist (but the user does),
+24470571,https://api.github.com/repos/NicolasOury/KaSimJS,404,repo doesn't exist (but the user does),
+32883297,https://api.github.com/repos/NIHFAB/NMES,404,repo doesn't exist (but the user does),
+35224614,https://api.github.com/repos/ningq669/DTIHNC,404,repo doesn't exist (but the user does),
+33395989,https://api.github.com/repos/omarallouz/JCnet,404,repo doesn't exist (but the user does),
+33707935,https://api.github.com/repos/oxfordbioelectronics/brain-stim-game,404,repo doesn't exist (but the user does),
+23272111,https://api.github.com/repos/PiotrZakrzewski/MetEval,404,repo doesn't exist (but the user does),
+35323892,https://api.github.com/repos/ShengPengYu/KDFGMDA,404,repo doesn't exist (but the user does),
+31796388,https://api.github.com/repos/shenjianbing/dqltracking,404,repo doesn't exist (but the user does),
+29994416,https://api.github.com/repos/shenjianbing/StereoSeg,404,repo doesn't exist (but the user does),
+29994594,https://api.github.com/repos/shenjianbing/submodulartrack,404,repo doesn't exist (but the user does),
+30403647,https://api.github.com/repos/shenjianbing/text-image-deblur,404,repo doesn't exist (but the user does),
+35085334,https://api.github.com/repos/sivaramakrishnan-rajaraman/Model_calibration,404,repo doesn't exist (but the user does),
+29758091,https://api.github.com/repos/spawaskar-cora/z-transform-method,404,repo doesn't exist (but the user does),
+35050855,https://api.github.com/repos/sunwj/refsr,404,repo doesn't exist (but the user does),
+27504009,https://api.github.com/repos/TCRNBioinformatics/DiseaseExtract,404,repo doesn't exist (but the user does),
+36433795,https://api.github.com/repos/Tian-lab/IGMedSeg,404,repo doesn't exist (but the user does),
+35239482,https://api.github.com/repos/tocaiqing/TDPN,404,repo doesn't exist (but the user does),
+33831109,https://api.github.com/repos/usc-sail/mica-music-in-media,404,repo doesn't exist (but the user does),
+36531573,https://api.github.com/repos/uw-biomedical-ml/AMD_environmental_dataset,404,repo doesn't exist (but the user does),
+28369195,https://api.github.com/repos/WeijiaZhang24/SurvivalCausalTree,404,repo doesn't exist (but the user does),
+31141124,https://api.github.com/repos/Wrede/mio,404,repo doesn't exist (but the user does),
+34310328,https://api.github.com/repos/wzhangwhu/NMFLRR_code,404,repo doesn't exist (but the user does),
+32356764,https://api.github.com/repos/wzhangwhu/SCCLRR,404,repo doesn't exist (but the user does),
+28968779,https://api.github.com/repos/XIAO-HN/GRNMF,404,repo doesn't exist (but the user does),he deleted all the repos
+29037244,https://api.github.com/repos/yahuang1991/NGRHMDA,404,repo doesn't exist (but the user does),
+32725163,https://api.github.com/repos/yahuilong/GATMDA,404,repo doesn't exist (but the user does),
+30544729,https://api.github.com/repos/YosvanyLopez/SumSec,404,repo doesn't exist (but the user does),
+35030497,https://api.github.com/repos/zhaoxj-tech/DFpin,404,repo doesn't exist (but the user does),but something similar is there
+35994482,https://api.github.com/repos/Portiloop]/,404,regex mistake,] in the end
+35035263,https://api.github.com/repos/95sayanta/COVID-19-and-Cyberbullying],404,regex mistake,] in the end
+30452641,https://api.github.com/repos/anddis/med4way],404,regex mistake,] in the end
+28089956,https://api.github.com/repos/jtextor/dagitty],404,regex mistake,] in the end
+29722882,https://api.github.com/repos/ogotoh/fitild.git,404,regex mistake,.git in the end
+35664040,https://api.github.com/repos/sgbaird-5dof/interp.•Barycentric,404,regex mistake,unclear
+33200119,"https://api.github.com/repos/sirimullalab/ncats_covid""",404,regex mistake,""" in the end"
+34754797,https://api.github.com/repos/yuerongz/SRR-method.•The,404,regex mistake,unclear
+35580514,https://api.github.com/repos/zhuangcheng31/MLG_Face.git,404,regex mistake,.git in the end
+25372389,,,no link,
+36315552,,,no link,
+28658056,,,no link,
+34606462,,,no link,
+30618697,,,no link,
+25165093,,,no link,
+34139910,,,no link,
+30804760,,,no link,
+32566389,,,no link,
+20935049,,,no link,
+23668630,,,no link,but should be !
+27227352,,,no link,
+26428912,,,no link,
+25940563,https://api.github.com/repos/,404,many links,
+36284225,https://api.github.com/repos/li-lab-mcgill/GAT-ETM,404,it works !,
+36804374,https://api.github.com/repos/wy2266336/BioNER,404,????,pmid doesn't correspond to the link but the repo provided by pmid is empty (it is not bioner)
+30380092,,,?,
+34355556,,,?,
+33705321,,,?,probably ()
+33446014,,,?,probably <i>
+34617031,,,?,probably <i>
+35258375,,,?,probably <i>
+20798169,,,?,
+33135730,,,?,
+32489650,,,?,
+29989077,,,?,probably ()
+32280947,,,?,probably <i>
+31883554,,,?,
+35997564,,,?,

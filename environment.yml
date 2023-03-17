@@ -18,6 +18,7 @@ dependencies:
     - python-dotenv
     - lxml
     - biopython
+    - xmltodict
     # download data files
     - tqdm
     # linters and more

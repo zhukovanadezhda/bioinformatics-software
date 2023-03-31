@@ -203,7 +203,6 @@ def get_journal_from_summary(summary,  log_file):
         The article abctact.
         
     """
-    error = []
     
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
@@ -275,21 +274,20 @@ def get_link_from_abstract(text):
 
     Returns
     -------
-    link : str
+    link_with_point : str
         Link to a github repository extracted from an abstract.
     """
     
-    regex = ["github.com[^\n ,):;'+}>]*"]
-    links_with_point = ''
+    rgx = "github.com[^\n ,):;'+}>]*"
     
-    for rgx in regex:
-        if (links_with_point == '') and re.search(rgx, text, re.IGNORECASE):
-                links_with_point = re.findall(rgx, text, re.IGNORECASE)
-    links = ''
-    for link in links_with_point :
-        links += link + ' '
+    
+    if len(re.findall(rgx, text, re.IGNORECASE)) > 1:
+        link_with_point  = re.findall(rgx, text, re.IGNORECASE)[0]
+    else:
+        link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
+
         
-    return links[0]       
+    return link_with_point       
 
 
 
@@ -324,7 +322,7 @@ def clean_link(link):
 
 
 
-def split_link(link):
+def get_owner_from_link(link):
     """
     Get Github repository owner name and the name of the repository.
     
@@ -337,14 +335,33 @@ def split_link(link):
     -------
     owner : str
         Owner name.
+    """
+    if link != "" and len(str(link).split('/')) > 5:
+        owner = str(link).split('/')[3]
+        return owner
+    else:
+        return None
+
+    
+def get_repo_from_link(link):
+    """
+    Get Github repository owner name and the name of the repository.
+    
+    Parameters
+    ----------
+    link : str
+        Link to a github repository.
+
+    Returns
+    -------
     repo : str
         Repository name.
     """
-    owner = str(link).split('/')[3]
-    repo = str(link).split('/')[4]
-    
-    return owner, repo
-
+    if link != "" and len(str(link).split('/')) > 5:
+        repo = str(link).split('/')[4]
+        return repo
+    else:
+        return None
 
 
 def get_repo_info(owner, repo, access_token,  log_file):

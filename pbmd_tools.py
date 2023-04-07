@@ -338,7 +338,7 @@ def get_owner_from_link(link):
     """
     if link != "" and len(str(link).split('/')) > 5:
         owner = str(link).split('/')[3]
-        return owner
+        return owner.strip()
     else:
         return None
 
@@ -359,7 +359,7 @@ def get_repo_from_link(link):
     """
     if link != "" and len(str(link).split('/')) > 5:
         repo = str(link).split('/')[4]
-        return repo
+        return repo.strip()
     else:
         return None
 
@@ -391,10 +391,48 @@ def get_repo_info(owner, repo, access_token,  log_file):
     info = {"date_created": None, "date_updated": None}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
+        print(success)
         repository_info = response.json()
         info["date_created"] = repository_info["created_at"].split("T")[0]
         info["date_updated"] = updated_at = repository_info["updated_at"].split("T")[0]
     else:
         with open(log_file, "a") as f:
-            f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}")
+            f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
     return info
+
+
+def get_repo_date_created(info):
+    """
+    Get GitHub repository info.
+    
+    Example: https://api.github.com/repos/LMSE/FYRMENT
+    
+    Parameters
+    ----------
+    info : list
+        A list with the date of creation, the date of update and errors of api.
+
+    Returns
+    -------
+    date_created : str
+        A date of creation of the repository
+    """
+    return info["date_created"]
+    
+def get_repo_date_updated(info):
+    """
+    Get GitHub repository info.
+    
+    Example: https://api.github.com/repos/LMSE/FYRMENT
+    
+    Parameters
+    ----------
+    info : list
+        A list with the date of creation, the date of update and errors of api.
+
+    Returns
+    -------
+    date_updated : str
+        A date of update of the repository
+    """
+    return info["date_updated"]

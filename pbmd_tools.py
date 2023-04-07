@@ -391,7 +391,6 @@ def get_repo_info(owner, repo, access_token,  log_file):
     info = {"date_created": None, "date_updated": None}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
-        print(success)
         repository_info = response.json()
         info["date_created"] = repository_info["created_at"].split("T")[0]
         info["date_updated"] = updated_at = repository_info["updated_at"].split("T")[0]

@@ -18,8 +18,8 @@ def read_tokens():
     dotenv.load_dotenv(".env")
     if "GITHUB_KEY" not in os.environ:
         sys.exit("Cannot find Github token")
-#    if "PUBMED_KEY" not in os.environ:
-#        sys.exit("Cannot find PubMed token")      
+    if "PUBMED_KEY" not in os.environ:
+        sys.exit("Cannot find PubMed token")      
         
 
 

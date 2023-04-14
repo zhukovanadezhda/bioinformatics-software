@@ -18,8 +18,8 @@ def read_tokens():
     dotenv.load_dotenv(".env")
     if "GITHUB_KEY" not in os.environ:
         sys.exit("Cannot find Github token")
-    if "PUBMED_KEY" not in os.environ:
-        sys.exit("Cannot find PubMed token")      
+#    if "PUBMED_KEY" not in os.environ:
+#        sys.exit("Cannot find PubMed token")      
         
 
 
@@ -392,8 +392,13 @@ def get_repo_info(owner, repo, access_token,  log_file):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         repository_info = response.json()
-        info["date_created"] = repository_info["created_at"].split("T")[0]
-        info["date_updated"] = updated_at = repository_info["updated_at"].split("T")[0]
+        if not repository_info["fork"]:
+            info["date_created"] = repository_info["created_at"].split("T")[0]
+            info["date_updated"] = repository_info["updated_at"].split("T")[0]
+        else:
+            with open(log_file, "a") as f:
+                f.write(f"URL: {url} is a fork\n")
+            return info       
     else:
         with open(log_file, "a") as f:
             f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")

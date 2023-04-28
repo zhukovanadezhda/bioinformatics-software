@@ -16,8 +16,8 @@ def read_tokens():
         
     """
     dotenv.load_dotenv(".env")
-    #if "GITHUB_KEY" not in os.environ:
-        #sys.exit("Cannot find Github token")
+    if "GITHUB_TOKEN" not in os.environ:
+        sys.exit("Cannot find Github token")
     #if "PUBMED_KEY" not in os.environ:
         #sys.exit("Cannot find PubMed token")      
         
@@ -309,6 +309,8 @@ def clean_link(link):
     if link != "":
         if not link.startswith("https://"):
             link = "https://" + link
+        if '//' in link[8:]:
+            link = link[:8] + link[8:].replace('//', '/')
         if link[-2] == ")":
             link = link[:-2]
         if link[-1] == "." or link[-1] == ']' or link[-1] == '"':
@@ -404,7 +406,7 @@ def get_repo_info(owner, repo, access_token,  log_file):
             f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
     return info
 
-
+    
 def get_repo_date_created(info):
     """
     Get GitHub repository info.

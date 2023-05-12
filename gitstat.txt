@@ -618,7 +618,7 @@ Error with URL: https://api.github.com/repos/shenjianbing/dqltracking Status cod
 Error with URL: https://api.github.com/repos/SuLab/crowd_cid_relexDatabase Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/LimoninaDaria/Sub-family-Specific-Sidechain-Orientations Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/zhuangcheng31/MLG_Face.git Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
-Error with URL: https://api.github.com/repos/sgbaird-5dof/interp.•Barycentric Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+Error with URL: https://api.github.com/repos/sgbaird-5dof/interp Barycentric Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/chenyzstju/ctc_screening_cnn Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/kouroshz/creNethttps Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/MASILab/SLANTbrainSeg_skullstripped Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest'}
@@ -888,7 +888,7 @@ Error with URL: https://api.github.com/repos/nan/nyiuab Status code: 404 Answer:
 Error with URL: https://api.github.com/repos/vishrawas/Medline-Code_v2 Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/uw-biomedical-ml/AMD_environmental_dataset Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/csbioinfopk/enpred Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
-Error with URL: https://api.github.com/repos/yuerongz/SRR-method.•The Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+Error with URL: https://api.github.com/repos/yuerongz/SRR-method The Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/Tian-lab/IGMedSeg Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/lhm30/PIDGIN.Graphical Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/lzh19961031/PDCR_UAFR-MIShttps Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
@@ -983,7 +983,7 @@ Error with URL: https://api.github.com/repos/shenjianbing/dqltracking Status cod
 Error with URL: https://api.github.com/repos/SuLab/crowd_cid_relexDatabase Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/LimoninaDaria/Sub-family-Specific-Sidechain-Orientations Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/zhuangcheng31/MLG_Face.git Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
-Error with URL: https://api.github.com/repos/sgbaird-5dof/interp.•Barycentric Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+Error with URL: https://api.github.com/repos/sgbaird-5dof/interp Barycentric Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/chenyzstju/ctc_screening_cnn Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/kouroshz/creNethttps Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
 Error with URL: https://api.github.com/repos/MASILab/SLANTbrainSeg_skullstripped Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest'}

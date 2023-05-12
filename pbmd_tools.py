@@ -18,8 +18,8 @@ def read_tokens():
     dotenv.load_dotenv(".env")
     if "GITHUB_TOKEN" not in os.environ:
         sys.exit("Cannot find Github token")
-    #if "PUBMED_KEY" not in os.environ:
-        #sys.exit("Cannot find PubMed token")      
+    if "PUBMED_TOKEN" not in os.environ:
+        sys.exit("Cannot find PubMed token")      
         
 
 
@@ -115,6 +115,7 @@ def get_pubdate_from_summary(summary, log_file):
     Example of (weird) query
     -------
     https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36579134&retmode=xml&rettype=abstract
+    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36930770&retmode=xml&rettype=abstract
  
     """
     
@@ -132,9 +133,16 @@ def get_pubdate_from_summary(summary, log_file):
 
             return pubdate
         except:
-            with open(log_file, "a") as f:
-                f.write(f"no publication date found, ")
-            return None
+            try:
+                article = summary['PubmedArticleSet']['PubmedArticle']
+                date = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']
+                pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
+                
+                return pubdate
+            except:  
+                with open(log_file, "a") as f:
+                    f.write(f"no publication date found, ")
+                return None
              
 
 

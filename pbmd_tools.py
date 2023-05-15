@@ -5,6 +5,9 @@ import dotenv
 import os
 import sys
 
+############################################################################################
+#################################----TECHNICAL----##########################################
+############################################################################################
 
 def read_tokens():
     """Read tokens from .env file.
@@ -21,7 +24,9 @@ def read_tokens():
     if "PUBMED_TOKEN" not in os.environ:
         sys.exit("Cannot find PubMed token")      
         
-
+############################################################################################
+####################################----PUBMED----##########################################
+############################################################################################
 
 def get_summary(PMID, access_token, log_file):
     """Obtaining information about an article published in PubMed using the PubMed API.
@@ -53,7 +58,7 @@ def get_summary(PMID, access_token, log_file):
     summary = xmltodict.parse(response.content)
     
     with open(log_file, "a") as f:
-        f.write(f"{PMID} : ")
+        f.write(f"\n{PMID} : ")
     
     return summary
         
@@ -75,15 +80,14 @@ def get_abstract_from_summary(summary,  log_file):
         The article abctact.
         
     """
-    
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
         if isinstance(abstract_raw, list):
             abstract = ""
             for d in abstract_raw:
-                abstract += d['#text'] + " "    
-        elif isinstance(abstract_raw, dict):
+                abstract += d['#text'] + " " 
+        if isinstance(abstract_raw, dict):
             abstract = ""
             abstract += abstract_raw['#text'] + " "
         else:
@@ -118,33 +122,58 @@ def get_pubdate_from_summary(summary, log_file):
     https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36930770&retmode=xml&rettype=abstract
  
     """
-    
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         date = article['MedlineCitation']['DateCompleted']
         pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
 
-        return pubdate
+        return convert_date(pubdate)
     except:
         try:
             article = summary['PubmedArticleSet']['PubmedArticle']
             date = article['MedlineCitation']['Article']['ArticleDate']
             pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
 
-            return pubdate
+            return convert_date(pubdate)
         except:
             try:
                 article = summary['PubmedArticleSet']['PubmedArticle']
                 date = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']
                 pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
                 
-                return pubdate
+                return convert_date(pubdate)
             except:  
                 with open(log_file, "a") as f:
                     f.write(f"no publication date found, ")
                 return None
              
 
+def convert_date(date_str):
+ 
+    if not any(char.isalpha() for char in date_str):
+        return date_str
+    else:
+        months = {
+            'Jan': '01',
+            'Feb': '02',
+            'Mar': '03',
+            'Apr': '04',
+            'May': '05',
+            'Jun': '06',
+            'Jul': '07',
+            'Aug': '08',
+            'Sep': '09',
+            'Oct': '10',
+            'Nov': '11',
+            'Dec': '12'
+        }
+        parts = date_str.split('-')
+        year = parts[0]
+        month = months.get(parts[1], parts[1])
+        day = parts[2]
+        converted_date = f"{year}-{month}-{day}"
+        
+        return converted_date
 
 
 def get_title_from_summary(summary,  log_file):
@@ -162,7 +191,7 @@ def get_title_from_summary(summary,  log_file):
     title : str
         The article abctact.
     
-    Example of (weird) query
+    Example of a (weird) query
     -------
     https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32983048&retmode=xml&rettype=abstract
  
@@ -191,9 +220,7 @@ def get_title_from_summary(summary,  log_file):
         with open(log_file, "a") as f:
             f.write(f"no title found, ")
         return None
-             
-
-
+        
 
 def get_journal_from_summary(summary,  log_file):
     """Obtaining journal name from the dictionary with summary returned by PubMed API.
@@ -210,8 +237,7 @@ def get_journal_from_summary(summary,  log_file):
     journal : str
         The article abctact.
         
-    """
-    
+    """ 
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         journal = article['MedlineCitation']['Article']['Journal']['Title']
@@ -220,8 +246,6 @@ def get_journal_from_summary(summary,  log_file):
         with open(log_file, "a") as f:
             f.write(f"no jouranl found, ")
         return None
-      
-
 
 
 def get_doi_from_summary(summary,  log_file):
@@ -243,8 +267,7 @@ def get_doi_from_summary(summary,  log_file):
     -------
     https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36579134&retmode=xml&rettype=abstract
   
-    """
-    
+    """  
     try:
         try:
             article = summary['PubmedArticleSet']['PubmedArticle']
@@ -261,14 +284,11 @@ def get_doi_from_summary(summary,  log_file):
             for dictionary in ELocationID_list:
                 if "doi" in dictionary.values():
                     doi = dictionary["#text"]
-        with open(log_file, "a") as f:
-            f.write(f"\n")
         return doi
     except:
         with open(log_file, "a") as f:
             f.write(f"no doi found \n")
         return None            
-
 
 
 def get_link_from_abstract(text):
@@ -285,10 +305,11 @@ def get_link_from_abstract(text):
     link_with_point : str
         Link to a github repository extracted from an abstract.
     """
+    if text == None:
+        return None
     
     rgx = "github.com[^\n ,):;'+}>]*"
-    
-    
+       
     if len(re.findall(rgx, text, re.IGNORECASE)) > 1:
         link_with_point  = re.findall(rgx, text, re.IGNORECASE)[0]
     else:
@@ -296,7 +317,6 @@ def get_link_from_abstract(text):
 
         
     return link_with_point       
-
 
 
 def clean_link(link):
@@ -330,7 +350,9 @@ def clean_link(link):
                 
     return link 
 
-
+############################################################################################
+####################################----GITHUB----##########################################
+############################################################################################
 
 def get_owner_from_link(link):
     """
@@ -346,7 +368,7 @@ def get_owner_from_link(link):
     owner : str
         Owner name.
     """
-    if link != "" and len(str(link).split('/')) > 5:
+    if link != "":
         owner = str(link).split('/')[3]
         return owner.strip()
     else:
@@ -392,13 +414,13 @@ def get_repo_info(owner, repo, access_token,  log_file):
     Returns
     -------
     info : list
-        A list with the date of creation, the date of update and errors of api.
+        A list with the date of creation, the date of update and if the repository is a fork.
     """
     
     headers = {'Authorization': f"Token {access_token}"}
     url = f"https://api.github.com/repos/{owner}/{repo}"
     
-    info = {"date_created": None, "date_updated": None}
+    info = {"date_created": None, "date_updated": None, "fork": 0}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         repository_info = response.json()
@@ -406,9 +428,7 @@ def get_repo_info(owner, repo, access_token,  log_file):
             info["date_created"] = repository_info["created_at"].split("T")[0]
             info["date_updated"] = repository_info["updated_at"].split("T")[0]
         else:
-            with open(log_file, "a") as f:
-                f.write(f"URL: {url} is a fork\n")
-            return info       
+            info["fork"] = 1   
     else:
         with open(log_file, "a") as f:
             f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
@@ -417,14 +437,12 @@ def get_repo_info(owner, repo, access_token,  log_file):
     
 def get_repo_date_created(info):
     """
-    Get GitHub repository info.
-    
-    Example: https://api.github.com/repos/LMSE/FYRMENT
+    Get the date of creation of the GitHub repository.
     
     Parameters
     ----------
     info : list
-        A list with the date of creation, the date of update and errors of api.
+        A list with the date of creation, the date of update and if the repository is a fork.
 
     Returns
     -------
@@ -435,18 +453,96 @@ def get_repo_date_created(info):
     
 def get_repo_date_updated(info):
     """
-    Get GitHub repository info.
-    
-    Example: https://api.github.com/repos/LMSE/FYRMENT
+    Get the date of the last update of the GitHub repository.
     
     Parameters
     ----------
     info : list
-        A list with the date of creation, the date of update and errors of api.
+        A list with the date of creation, the date of update and if the repository is a fork.
 
     Returns
     -------
     date_updated : str
-        A date of update of the repository
+        A date of last update of the repository
     """
     return info["date_updated"]
+
+def is_fork(info):
+    """
+    Get 1 if the GitHub repository is a fork and 0 otherwise.
+    
+    Parameters
+    ----------
+    info : list
+        A list with the date of creation, the date of update and if the repository is a fork.
+
+    Returns
+    -------
+    fork : int
+        1 if the GitHub repository is a fork and 0 otherwise
+    """
+    return info["fork"]
+
+############################################################################################
+####################################----SOFTWH----##########################################
+############################################################################################
+
+def check_is_in_softwh(url):
+    """
+    Get Software Heritage repository info.
+    
+    Example: https://archive.softwareheritage.org/api/1/origin/https://github.com/jupyterlite/jupyterlite/visit/latest/
+    
+    Parameters
+    ----------
+    url : str
+        Repository GitHub link.
+
+    Returns
+    -------
+    info : list
+        A list with if the repositary is archived in SWH and if so the date of archiving.
+    """
+    info = {"is_in": None, "date_archived": None}
+    queryLinkSearch = f'https://archive.softwareheritage.org/api/1/origin/{url}visit/latest/'  
+    response = requests.get(queryLinkSearch)
+    if 'exception' not in response.json():
+        info["is_in"] = 1
+        info["date_archived"] = response.json()['date'].split('T')[0]
+    else:
+        info["is_in"] = 0
+    return info
+
+
+def is_in_softwh(info):
+    """
+    Get 1 if the GitHub repository is in SWH and 0 otherwise.
+    
+    Parameters
+    ----------
+    info : list
+        A list with if the repositary is archived in SWH and if so the date of archiving.
+
+    Returns
+    -------
+    is_in : int
+        1 if the GitHub repository is in SWH and 0 otherwise
+    """
+    return info["is_in"]
+
+
+def get_date_archived(info):
+    """
+    Get the date of archiving of the GitHub repository.
+    
+    Parameters
+    ----------
+    info : list
+        A list with if the repositary is archived in SWH and if so the date of archiving.
+
+    Returns
+    -------
+    date_archived : str
+        The date of archiving of the GitHub repository
+    """
+    return info["date_archived"]

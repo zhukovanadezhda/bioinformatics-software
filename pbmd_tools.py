@@ -339,9 +339,13 @@ def clean_link(link):
             link = "https://" + link
         if '//' in link[8:]:
             link = link[:8] + link[8:].replace('//', '/')
-        if link[-2] == ")":
+        if "\\" in link:
+            link = link.replace("\\", '')      
+        if "\\\\" in link:
+            link = link.replace("\\\\", '')          
+        if link[-2] == ")" or link[-2] == "/" or link[-2] == "." or link[-2] == "]" or link[-2] == '"':
             link = link[:-2]
-        if link[-1] == "." or link[-1] == ']' or link[-1] == '"':
+        if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
             link = link[:-1]
         if link[-4:] == '.git':
             link = link[:-4]

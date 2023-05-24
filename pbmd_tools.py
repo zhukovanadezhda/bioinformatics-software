@@ -424,9 +424,10 @@ def get_repo_info(owner, repo, access_token,  log_file):
     headers = {'Authorization': f"Token {access_token}"}
     url = f"https://api.github.com/repos/{owner}/{repo}"
     
-    info = {"date_created": None, "date_updated": None, "fork": 0}
+    info = {"date_created": None, "date_updated": None, "fork": 0, "status": None}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
+        info["status"] = True
         repository_info = response.json()
         if not repository_info["fork"]:
             info["date_created"] = repository_info["created_at"].split("T")[0]
@@ -434,6 +435,10 @@ def get_repo_info(owner, repo, access_token,  log_file):
         else:
             info["fork"] = 1   
     else:
+        if response.status_code == 403:
+            info["status"] = False
+        else:
+            info["status"] = True
         with open(log_file, "a") as f:
             f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
     return info

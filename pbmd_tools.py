@@ -99,7 +99,32 @@ def get_abstract_from_summary(summary,  log_file):
             f.write(f"no abstract found, ")
         return None
 
+def get_pubmedpubdate_from_summary(summary, log_file):
+    """Obtaining pubrecorddate from the dictionary with summary returned by PubMed API.
 
+    Parameters
+    ----------
+    summary : dictionary
+        A dictionary obtained from xml format provided by pubmed api entrez.
+    log_file : str
+        A file to store information about the errors provided by this function.
+
+    Returns
+    -------
+    pubdate : str
+        Pubmed publication date.
+    """
+    try:
+        date = summary['PubmedArticleSet']['PubmedArticle']['PubmedData']['History']['PubMedPubDate']
+        for rec in date:
+            if rec['@PubStatus'] == 'pubmed':
+                pubdate = rec['Year'] + '-' + rec['Month'] + '-' + rec['Day']
+
+        return convert_date(pubdate)
+    except: 
+        with open(log_file, "a") as f:
+            f.write(f"no pubmed date found, ")
+        return None
 
 def get_pubdate_from_summary(summary, log_file):
     """Obtaining pubdate from the dictionary with summary returned by PubMed API.
@@ -114,7 +139,7 @@ def get_pubdate_from_summary(summary, log_file):
     Returns
     -------
     pubdate : str
-        The article abctact.
+        Pubdate.
 
     Example of (weird) query
     -------
@@ -124,56 +149,48 @@ def get_pubdate_from_summary(summary, log_file):
     """
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
-        date = article['MedlineCitation']['DateCompleted']
+        date = article['MedlineCitation']['Article']['ArticleDate']
         pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
 
         return convert_date(pubdate)
     except:
         try:
             article = summary['PubmedArticleSet']['PubmedArticle']
-            date = article['MedlineCitation']['Article']['ArticleDate']
+            date = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']
             pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
-
-            return convert_date(pubdate)
-        except:
-            try:
-                article = summary['PubmedArticleSet']['PubmedArticle']
-                date = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']
-                pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
                 
-                return convert_date(pubdate)
-            except:  
-                with open(log_file, "a") as f:
-                    f.write(f"no publication date found, ")
-                return None
+            return convert_date(pubdate)
+        except:  
+            with open(log_file, "a") as f:
+                f.write(f"no publication date found, ")
+            return None
              
 
 def convert_date(date_str):
+    """Converting date to a standart format.
+
+    Parameters
+    ----------
+    date_str : str
+        Date in YYYY-MM-DD format (example: 2023-Jan-01 or 2022-5-17)
+
+    Returns
+    -------
+    converted_date : str
+        Date in a standart YYYY-MM-DD format (example: 2023-01-01 or 2022-05-17).
  
-    if not any(char.isalpha() for char in date_str):
-        return date_str
-    else:
-        months = {
-            'Jan': '01',
-            'Feb': '02',
-            'Mar': '03',
-            'Apr': '04',
-            'May': '05',
-            'Jun': '06',
-            'Jul': '07',
-            'Aug': '08',
-            'Sep': '09',
-            'Oct': '10',
-            'Nov': '11',
-            'Dec': '12'
-        }
-        parts = date_str.split('-')
-        year = parts[0]
-        month = months.get(parts[1], parts[1])
-        day = parts[2]
-        converted_date = f"{year}-{month}-{day}"
+    """
+    months = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 
+              'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12',
+              '1': '01', '2': '02', '3': '03', '4': '04', '5': '05', '6': '06', 
+              '7': '07', '8': '08', '9': '09', '10': '10', '11': '11', '12': '12'}
+    parts = date_str.split('-')
+    year = parts[0]
+    month = months.get(parts[1], parts[1])
+    day = parts[2]
+    converted_date = f"{year}-{month}-{day}"
         
-        return converted_date
+    return converted_date
 
 
 def get_title_from_summary(summary,  log_file):

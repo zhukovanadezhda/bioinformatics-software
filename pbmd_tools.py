@@ -99,33 +99,6 @@ def get_abstract_from_summary(summary,  log_file):
             f.write(f"no abstract found, ")
         return None
 
-def get_pubmedpubdate_from_summary(summary, log_file):
-    """Obtaining pubrecorddate from the dictionary with summary returned by PubMed API.
-
-    Parameters
-    ----------
-    summary : dictionary
-        A dictionary obtained from xml format provided by pubmed api entrez.
-    log_file : str
-        A file to store information about the errors provided by this function.
-
-    Returns
-    -------
-    pubdate : str
-        Pubmed publication date.
-    """
-    try:
-        date = summary['PubmedArticleSet']['PubmedArticle']['PubmedData']['History']['PubMedPubDate']
-        for rec in date:
-            if rec['@PubStatus'] == 'pubmed':
-                pubdate = rec['Year'] + '-' + rec['Month'] + '-' + rec['Day']
-
-        return convert_date(pubdate)
-    except: 
-        with open(log_file, "a") as f:
-            f.write(f"no pubmed date found, ")
-        return None
-
 def get_pubdate_from_summary(summary, log_file):
     """Obtaining pubdate from the dictionary with summary returned by PubMed API.
 
@@ -325,14 +298,13 @@ def get_link_from_abstract(text):
     if text == None:
         return None
     
-    rgx = "github.com[^\n ,):;'+}>]*"
+    rgx = "github.com[^\n ,):;'+}>•]*"
        
     if len(re.findall(rgx, text, re.IGNORECASE)) > 1:
         link_with_point  = re.findall(rgx, text, re.IGNORECASE)[0]
     else:
         link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
 
-        
     return link_with_point       
 
 
@@ -352,6 +324,18 @@ def clean_link(link):
     """
     
     if link != "":
+        if link.count('.') > 1:
+            link = re.sub(r"\.[a-z][^.]*$", "", link)    
+        if link[-5:] == 'https':
+            link = link[:-5]
+        if link[-13:] == 'Supplementary':
+            link = link[:-13]
+        if link[-12:] == 'Communicated':
+            link = link[:-12]
+        if link[-7:] == 'Contact':
+            link = link[:-7]
+        #if link[-8:] == 'Database':
+        #    link = link[:-8]
         if not link.startswith("https://"):
             link = "https://" + link
         if '//' in link[8:]:
@@ -360,8 +344,10 @@ def clean_link(link):
             link = link.replace("\\", '')      
         if "\\\\" in link:
             link = link.replace("\\\\", '')          
-        if link[-2] == ")" or link[-2] == "/" or link[-2] == "." or link[-2] == "]" or link[-2] == '"':
+        if link[-2] == ")" or link[-2] == "/" or link[-2] == "]" or link[-2] == '"':
             link = link[:-2]
+        if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
+            link = link[:-1]
         if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
             link = link[:-1]
         if link[-4:] == '.git':

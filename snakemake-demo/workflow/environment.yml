@@ -1,0 +1,32 @@
+name: bioinfosoft
+# channels priority
+# see https://bioconda.github.io/
+# conda-forge has highest priority
+channels:
+    - defaults
+    - bioconda
+    - conda-forge
+dependencies:
+    - python=3.9
+    - pip
+    - jupyterlab=3
+    - numpy
+    - scipy
+    - pandas
+    - matplotlib
+    - requests
+    - python-dotenv
+    - lxml
+    - biopython
+    - xmltodict
+    # download data files
+    - tqdm
+    # linters and more
+    - pylint
+    - pycodestyle
+    - pydocstyle
+    - black
+    - ruff
+    - pip:
+        - watermark
+

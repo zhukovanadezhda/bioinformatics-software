@@ -23,21 +23,6 @@ def read_tokens():
         sys.exit("Cannot find Github token")
     if "PUBMED_TOKEN" not in os.environ:
         sys.exit("Cannot find PubMed token")      
-
-        
-def call_pubmed_api(url, log_file, max_attempt=3):
-    current_attempt = 1
-    while current_attempt <= max_attempt:
-        response = requests.get(url)
-        if response.status_code in [200]:
-            return response
-        else:
-            with open(log_file, 'a') as f:
-                f.write(f"Error with API, attempt {current_attempt}/{max_attempt}. Status code: {respons.status_code}")
-        current_attempt += 1
-        time.sleep(2)
-    return {}
-        
         
 ############################################################################################
 ####################################----PUBMED----##########################################
@@ -65,15 +50,15 @@ def get_summary(PMID, access_token, log_file):
     https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36540970&retmode=xml&rettype=abstract
     
     """
-    with open(log_file, "a") as f:
-        f.write(f"\n{PMID} : ")
-        
     db = 'pubmed'
     domain = 'https://www.ncbi.nlm.nih.gov/entrez/eutils'
     retmode = 'xml'
     queryLinkSearch = f'{domain}/efetch.fcgi?db={db}&id={PMID}&retmode={retmode}&rettype=abstract&api_key={access_token}'  
-    response = call_pubmed_api(queryLinkSearch, log_file)
+    response = requests.get(queryLinkSearch)
     summary = xmltodict.parse(response.content)
+    
+    with open(log_file, "a") as f:
+        f.write(f"\n{PMID} : ")
     
     return summary
         
@@ -447,11 +432,10 @@ def get_repo_info(owner, repo, access_token,  log_file):
     if response.status_code == 200:
         info["status"] = True
         repository_info = response.json()
-        if not repository_info["fork"]:
-            info["date_created"] = repository_info["created_at"].split("T")[0]
-            info["date_updated"] = repository_info["updated_at"].split("T")[0]
-        else:
-            info["fork"] = 1   
+        if repository_info["fork"]:
+            info["fork"] = 1 
+        info["date_created"] = repository_info["created_at"].split("T")[0]
+        info["date_updated"] = repository_info["updated_at"].split("T")[0]
     else:
         if response.status_code == 403:
             info["status"] = False

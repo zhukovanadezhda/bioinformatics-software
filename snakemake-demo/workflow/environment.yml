@@ -19,6 +19,8 @@ dependencies:
     - lxml
     - biopython
     - xmltodict
+    - dash
+    - plotly
     # download data files
     - tqdm
     # linters and more

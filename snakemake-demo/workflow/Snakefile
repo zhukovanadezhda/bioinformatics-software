@@ -1,3 +1,10 @@
+rule all:
+    input:
+        "forges_stat.png",
+        "swh.png",
+        "last_update.png"
+
+
 rule create_forges_stat:
     input:
         script="scripts/create_forges_stat.py",
@@ -70,13 +77,13 @@ rule get_info_swh:
 
 rule make_figures:
     input:
-        notebook="scripts/analyse.ipynb",
-        data="articles_swhinfo.tsv",
+        "articles_swhinfo.tsv",
         "stats_github.json",
         "stats_gitlab.json",
         "stats_sourceforge.json",
         "stats_googlecode.json",
         "stats_bitbucket.json",
+        notebook="scripts/analysis.ipynb",
     output:
         "data_stat.txt",
         "forges_stat.png",
@@ -89,4 +96,4 @@ rule make_figures:
     log:
         "fig_info.log"
     shell:
-        "jupyter nbconvert --to notebook --execute {notebook} | tee {log}"
+        "jupyter nbconvert --to notebook --execute {input.notebook} | tee {log}"

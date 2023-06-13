@@ -40946,3 +40946,1866 @@
  PMID: 29528370, GitHub link: https://github.com/jianhao2016/METHCOMP/
 
  PMID: 31225582, GitHub link: https://github.com/bel-enrichment/bel-enrichment/Error with URL: https://api.github.com/repos/bel-enrichment/bel-enrichment Status code: 403 Answer: {'message': 'API rate limit exceeded for user ID 102734471.', 'documentation_url': 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting'}
+
+
+ PMID: 33024441, GitHub link: https://github.com/sangreashim/EAT-UpTF/
+
+ PMID: 31616589, GitHub link: https://github.com/lefeverde/Mr_Demuxy/
+
+ PMID: 34783553, GitHub link: https://github.com/DnlRKorn/CoKE/
+
+ PMID: 31029251, GitHub link: https://github.com/guomugong/BTS-DSN/
+
+ PMID: 34021745, GitHub link: https://github.com/Splicebox/Jutils/
+
+ PMID: 33367525, GitHub link: https://github.com/CS-BIO/IDDkin/
+
+ PMID: 36179379, GitHub link: https://github.com/YonghengSun1997/ODADA/
+
+ PMID: 30521012, GitHub link: https://github.com/inab/BIOLITMAP/
+
+ PMID: 37015527, GitHub link: https://github.com/Bobholamovic/CDLab/
+
+ PMID: 32894708, GitHub link: https://github.com/yajun-zhou/linguae-naturalis-principia-mathematica/
+
+ PMID: 27706155, GitHub link: https://github.com/Grice-Lab/AlignerBoost/
+
+ PMID: 36413017, GitHub link: https://github.com/boweny920/AcaFinder/
+
+ PMID: 32247284, GitHub link: https://github.com/YanxunXu/BaySemiCompeting/
+
+ PMID: 35015838, GitHub link: https://github.com/moranshar/TiPA/
+
+ PMID: 28122779, GitHub link: https://github.com/butkiem/COCOS/
+
+ PMID: 30304335, GitHub link: https://github.com/lichen-lab/TIVAN/
+
+ PMID: 36159985, GitHub link: https://github.com/databio2022/GraphBio/
+
+ PMID: 32096821, GitHub link: https://github.com/Myuan2019/EBE_APML0/
+
+ PMID: 33416869, GitHub link: https://github.com/parklab/bamsnap/
+
+ PMID: 34864908, GitHub link: https://github.com/molstar/molstar/
+
+ PMID: 37015418, GitHub link: https://github.com/DIAL-RPI/Frame-to-Volume-Registration/
+
+ PMID: 26653874, GitHub link: https://github.com/statisticalbiotechnology/maracluster/
+
+ PMID: 34671814, GitHub link: https://github.com/ShenggengLin/MDF-SA-DDI/
+
+ PMID: 30816920, GitHub link: https://github.com/ferlicjl/diffpop/
+
+ PMID: 35065401, GitHub link: https://github.com/msisakht/pyprotmodel/
+
+ PMID: 34653719, GitHub link: https://github.com/QingbeiGuo/WSP/
+
+ PMID: 32954531, GitHub link: https://github.com/rmarceauwest/fiveSTAR/
+
+ PMID: 36116298, GitHub link: https://github.com/NICALab/rlpnet/
+
+ PMID: 30649252, GitHub link: https://github.com/FeifeiXiaoUSC/modSaRa2/
+
+ PMID: 32986553, GitHub link: https://github.com/dongbo-BUAA-VR/Pointfilter/
+
+ PMID: 34990643, GitHub link: https://github.com/ncbi/deeplensnet/
+
+ PMID: 30020411, GitHub link: https://github.com/alberto-valdeolivas/RWR-MH/
+
+ PMID: 32176244, GitHub link: https://github.com/emanuelealiverti/BC_tSNE/
+
+ PMID: 34182919, GitHub link: https://github.com/ShihChingYu/TransAT/
+
+ PMID: 30450194, GitHub link: https://github.com/GauravPandeyLab/LargeGOPred/
+
+ PMID: 29931098, GitHub link: https://github.com/bvalot/panISa/
+
+ PMID: 33798086, GitHub link: https://github.com/yuliu316316/MetaLearning-Fusion/
+
+ PMID: 26743507, GitHub link: https://github.com/lengning/OEFinder/
+
+ PMID: 24939150, GitHub link: https://github.com/outbig/DAFGA/
+
+ PMID: 32213349, GitHub link: https://github.com/ParkerLab/ataqv/
+
+ PMID: 29533817, GitHub link: https://github.com/inpacdb/POAP/
+
+ PMID: 32871010, GitHub link: https://github.com/Marleen1/OGRE/
+
+ PMID: 35767479, GitHub link: https://github.com/PRIS-CV/Pair-wise-Similarity-module/
+
+ PMID: 36246655, GitHub link: https://github.com/flyinsky6/Deep_KsuccSite/
+
+ PMID: 30845922, GitHub link: https://github.com/hagax8/ancestry_viz/
+
+ PMID: 32232425, GitHub link: https://github.com/federicogiorgi/corto/
+
+ PMID: 27548645, GitHub link: https://github.com/rycoley/prediction-prostate-surveillance/
+
+ PMID: 31070704, GitHub link: https://github.com/owatson/QuantileBootstrap/
+
+ PMID: 31199455, GitHub link: https://github.com/DeepRank/iScore/
+
+ PMID: 34252926, GitHub link: https://github.com/yourh/DeepGraphGO/
+
+ PMID: 32859148, GitHub link: https://github.com/stop-pre16/mcmseq/
+
+ PMID: 34549521, GitHub link: https://github.com/HiroyaHashimoto/SAS-Programs/
+
+ PMID: 35870297, GitHub link: https://github.com/MinaJf/LMISA/
+
+ PMID: 28369246, GitHub link: https://github.com/linsalrob/partie/
+
+ PMID: 35015633, GitHub link: https://github.com/ChenyangLEI/deep-video-prior/
+
+ PMID: 33416852, GitHub link: https://github.com/cellsmb/em-stellar/
+
+ PMID: 35266528, GitHub link: https://github.com/AldisiRana/GenRisk/
+
+ PMID: 34966415, GitHub link: https://github.com/bioinformatical-code/NNP/
+
+ PMID: 34788994, GitHub link: https://github.com/FangLabNTU/Reactive-Compound-Transformation-Profiler-RTP-/
+
+ PMID: 26231427, GitHub link: https://github.com/mutalyzer/description-extractor/
+
+ PMID: 34586380, GitHub link: https://github.com/lab319/XGBLC/
+
+ PMID: 29617932, GitHub link: https://github.com/jarny/biopyramid/
+
+ PMID: 36591535, GitHub link: https://github.com/Tarik4Rashid4/covid19models/
+
+ PMID: 34435773, GitHub link: https://github.com/InfluenceFunctional/E2EDNA/
+
+ PMID: 34488013, GitHub link: https://github.com/92xianshen/refined-unet-v3/
+
+ PMID: 30923821, GitHub link: https://github.com/biocore-ntnu/epic2/
+
+ PMID: 36120069, GitHub link: https://github.com/ritu225/NN-QSAR_model/
+
+ PMID: 33704363, GitHub link: https://github.com/jaswindersingh2/SPOT-RNA2/
+
+ PMID: 30388431, GitHub link: https://github.com/htzhaoecust/npnn/
+
+ PMID: 27845669, GitHub link: https://github.com/ekffar/LSUE/
+
+ PMID: 36093336, GitHub link: https://github.com/CDCgov/datasets-sars-cov-2/
+
+ PMID: 34991454, GitHub link: https://github.com/dongxuemin666/RNA-combine/
+
+ PMID: 36456283, GitHub link: https://github.com/Tountain/SoundiationAcoustophoresis/
+
+ PMID: 34096994, GitHub link: https://github.com/usegalaxy-eu/ena-upload-cli/
+
+ PMID: 32717050, GitHub link: https://github.com/hallamlab/HivePanelExplorer/
+
+ PMID: 33240741, GitHub link: https://github.com/kotakasahara/omegagene/
+
+ PMID: 34297803, GitHub link: https://github.com/hehew321/iDeepC/
+
+ PMID: 28369524, GitHub link: https://github.com/parklab/NGSCheckMate/
+
+ PMID: 35130178, GitHub link: https://github.com/NanYoMy/cmmas/
+
+ PMID: 29155928, GitHub link: https://github.com/gagneurlab/concise/
+
+ PMID: 35136070, GitHub link: https://github.com/UND-Wanglab/SMAP/
+
+ PMID: 33180737, GitHub link: https://github.com/IoBT-VISTEC/MetaSleepLearner/
+
+ PMID: 31350555, GitHub link: https://github.com/koelling/amplimap/
+
+ PMID: 26409191, GitHub link: https://github.com/CzirjakGabor/PrinCCes/
+
+ PMID: 31553186, GitHub link: https://github.com/AstexUK/ESP_DNN/
+
+ PMID: 31438847, GitHub link: https://github.com/GrosseLab/BGSC/
+
+ PMID: 29726845, GitHub link: https://github.com/quantitativeimaging/ELM/
+
+ PMID: 32847502, GitHub link: https://github.com/zhuyuchen95/ADnet/
+
+ PMID: 33508087, GitHub link: https://github.com/qwu1221/ICN/
+
+ PMID: 35317727, GitHub link: https://github.com/lvclark/polyRAD/
+
+ PMID: 34000002, GitHub link: https://github.com/CSB5/TUGDA/
+
+ PMID: 29394323, GitHub link: https://github.com/pymzML/pymzML/
+
+ PMID: 33037212, GitHub link: https://github.com/ChenWWWeixiang/diagnosis_covid19/
+
+ PMID: 34302378, GitHub link: https://github.com/JINhuaqing/UIP/
+
+ PMID: 31764967, GitHub link: https://github.com/romanhaa/Cerebro/
+
+ PMID: 35417356, GitHub link: https://github.com/andriash001/AutonomousDCN/
+
+ PMID: 25792554, GitHub link: https://github.com/luispedro/Coelho2015_NetsDetermination/
+
+ PMID: 32912170, GitHub link: https://github.com/guidmt/GMIEC-shiny/
+
+ PMID: 30307536, GitHub link: https://github.com/yuzhimanhua/lm-lstm-crf/
+
+ PMID: 33436599, GitHub link: https://github.com/hyochoi/SCISSOR/
+
+ PMID: 30561551, GitHub link: https://github.com/andreamrau/EDGE-in-TCGA/
+
+ PMID: 34694378, GitHub link: https://github.com/JW-Yan/MONET/
+
+ PMID: 30850830, GitHub link: https://github.com/jpvanhat/GPQTLmapping/
+
+ PMID: 30698642, GitHub link: https://github.com/atyryshkina/algorithm-performance-analysis/
+
+ PMID: 35640971, GitHub link: https://github.com/macintyrelab/CNpare/
+
+ PMID: 31922550, GitHub link: https://github.com/amelbek/pamgeneAnalyzeR/
+
+ PMID: 26715670, GitHub link: https://github.com/dellaporta-laboratory/LB-Impute/
+
+ PMID: 31487288, GitHub link: https://github.com/ishidalab-titech/3DCNN_MQA/
+
+ PMID: 30561549, GitHub link: https://github.com/gzhmat/ShinyCNV/
+
+ PMID: 25428347, GitHub link: https://github.com/diazlab/HiTSelect/
+
+ PMID: 34818196, GitHub link: https://github.com/lesonly/GFINet/
+
+ PMID: 35720715, GitHub link: https://github.com/ortonwang/O-Net/
+
+ PMID: 29994594, GitHub link: https://github.com/shenjianbing/submodulartrack/Error with URL: https://api.github.com/repos/shenjianbing/submodulartrack Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 28185565, GitHub link: https://github.com/ma-compbio/MultiRes/
+
+ PMID: 32687862, GitHub link: https://github.com/andrea-silverj/SiDcal/
+
+ PMID: 29049343, GitHub link: https://github.com/moyanre/smcgenedeconv/
+
+ PMID: 29425308, GitHub link: https://github.com/Greco-Lab/INfORM/
+
+ PMID: 33408321, GitHub link: https://github.com/pengfeeei/cci/
+
+ PMID: 36282980, GitHub link: https://github.com/RayRuizhiLiao/mutual_info_img_txt/
+
+ PMID: 30271584, GitHub link: https://github.com/markrobinsonuzh/scRNAseq_clustering_comparison/
+
+ PMID: 36712859, GitHub link: https://github.com/malikyousef/miRdisNET/
+
+ PMID: 34928392, GitHub link: https://github.com/KejiZhaoLab/cLoops2/
+
+ PMID: 28066816, GitHub link: https://github.com/hzi-bifo/traitar/
+
+ PMID: 30904379, GitHub link: https://github.com/germannp/yalla/
+
+ PMID: 32657355, GitHub link: https://github.com/ablab/TandemTools/
+
+ PMID: 30911754, GitHub link: https://github.com/lsncibb/SummaryAUC/
+
+ PMID: 23303508, GitHub link: https://github.com/uclinfectionimmunity/Decombinator/
+
+ PMID: 31040227, GitHub link: https://github.com/Biobix/proteoformer/
+
+ PMID: 27754599, GitHub link: https://github.com/Yuma248/Swinger/
+
+ PMID: 34352070, GitHub link: https://github.com/Vilksar/NetControl4BioMed/
+
+ PMID: 30669964, GitHub link: https://github.com/lab9arriam/depop/
+
+ PMID: 32112578, GitHub link: https://github.com/Claualvarez/fires/
+
+ PMID: 32222230, GitHub link: https://github.com/uef-bbc/nippy/
+
+ PMID: 35789376, GitHub link: https://github.com/virus-evolution/gofasta/
+
+ PMID: 35274687, GitHub link: https://github.com/variomes/sibtm-variomes/
+
+ PMID: 30032263, GitHub link: https://github.com/uva-peirce-cottler-lab/ARCAS/
+
+ PMID: 34270903, GitHub link: https://github.com/cosconatilab/PyRMD/
+
+ PMID: 31683145, GitHub link: https://github.com/billzyx/LCA-CNN/
+
+ PMID: 32745209, GitHub link: https://github.com/kuixu/VRmol/
+
+ PMID: 30407482, GitHub link: https://github.com/yuansliu/minicom/
+
+ PMID: 35495139, GitHub link: https://github.com/malikyousef/miRModuleNet/
+
+ PMID: 34252964, GitHub link: https://github.com/mskspi/PathCNN/
+
+ PMID: 28379292, GitHub link: https://github.com/hsinnan75/Kart/
+
+ PMID: 30816927, GitHub link: https://github.com/DAIZHENWEI/BDMMA/BDMMA/
+
+ PMID: 33821950, GitHub link: https://github.com/AMICI-dev/AMICI/
+
+ PMID: 34623390, GitHub link: https://github.com/ddb-qiwang/scMRA-torch/
+
+ PMID: 33423051, GitHub link: https://github.com/hanjunwei-lab/CNA2Subpathway/
+
+ PMID: 30993040, GitHub link: https://github.com/soyoungryu/MetaMSD/
+
+ PMID: 36824339, GitHub link: https://github.com/dmnfarrell/epitopepredict/
+
+ PMID: 24930140, GitHub link: https://github.com/hangelwen/miR-PREFeR/
+
+ PMID: 29132292, GitHub link: https://github.com/pmharrison/flps/
+
+ PMID: 32432232, GitHub link: https://github.com/mabulnaga/placenta-flattening/
+
+ PMID: 28225587, GitHub link: https://github.com/WMBEdmands/compMS2Miner/
+
+ PMID: 31613774, GitHub link: https://github.com/sap01/TGS-Lite-supplem/tree/master/sourcecode/
+
+ PMID: 35150255, GitHub link: https://github.com/27167199/PDMDA/
+
+ PMID: 32917036, GitHub link: https://github.com/simonorozcoarias/TIP_finder/
+
+ PMID: 30101356, GitHub link: https://github.com/darlenelu72/EPEM-GMM/
+
+ PMID: 29267848, GitHub link: https://github.com/PriceLab/probannopy/
+
+ PMID: 33381835, GitHub link: https://github.com/SayakaMiura/PathFinder/
+
+ PMID: 28158328, GitHub link: https://github.com/olarerin/metaPlotR/
+
+ PMID: 35704010, GitHub link: https://github.com/GE-123-cpu/CGnet-for-vessel-segmentation/
+
+ PMID: 31504159, GitHub link: https://github.com/mcanouil/NACHO/
+
+ PMID: 34255826, GitHub link: https://github.com/studla/RYUTO/
+
+ PMID: 35671504, GitHub link: https://github.com/YuLab-SMU/ggmsa/
+
+ PMID: 30418906, GitHub link: https://github.com/TaiXiangJiang/FastDeRain/
+
+ PMID: 30428975, GitHub link: https://github.com/FrancescaFalcetta/Imaging_of_drugs_distribution_and_quantifications/
+
+ PMID: 30541050, GitHub link: https://github.com/wqshi/TF2Exp/
+
+ PMID: 31099391, GitHub link: https://github.com/Cobanoglu-Lab/EPEE/
+
+ PMID: 27357839, GitHub link: https://github.com/Rbbt-Workflows/KinMut2/
+
+ PMID: 34022787, GitHub link: https://github.com/RENCI/Segmentor/
+
+ PMID: 30114367, GitHub link: https://github.com/reymond-group/virtual-reality-chemical-space/
+
+ PMID: 35039821, GitHub link: https://github.com/biomed-AI/GraphSite/
+
+ PMID: 34871451, GitHub link: https://github.com/KIT-MBS/coconet/
+
+ PMID: 33677499, GitHub link: https://github.com/getzlab/rnaseqc/
+
+ PMID: 35604356, GitHub link: https://github.com/ngs00/emrl/tree/master/EMRL/
+
+ PMID: 29040406, GitHub link: https://github.com/bonsai-team/matam/
+
+ PMID: 35771625, GitHub link: https://github.com/AlicjaNowakowska/ETNA/
+
+ PMID: 32849762, GitHub link: https://github.com/luojunwei/LROD/
+
+ PMID: 35948990, GitHub link: https://github.com/illumina/REViewer/
+
+ PMID: 33789137, GitHub link: https://github.com/HumanBrainED/NHP-BrainExtraction/
+
+ PMID: 26854601, GitHub link: https://github.com/vkostiou/GprotPRED/
+
+ PMID: 33717033, GitHub link: https://github.com/marbl/binnacle/
+
+ PMID: 30060142, GitHub link: https://github.com/wbieniec/copmem/
+
+ PMID: 30906311, GitHub link: https://github.com/huangzhii/SALMON/
+
+ PMID: 30770850, GitHub link: https://github.com/skouchaki/MrGBP/
+
+ PMID: 33758852, GitHub link: https://github.com/NicolaDM/phastSim/
+
+ PMID: 28379302, GitHub link: https://github.com/mknoll/cnAnalysis450k/
+
+ PMID: 36084156, GitHub link: https://github.com/ywhsiao/ceRNAR/
+
+ PMID: 28481086, GitHub link: https://github.com/mgleeming/Xenophile/
+
+ PMID: 30811448, GitHub link: https://github.com/clips/SimulatingCochlearImplants/
+
+ PMID: 30423072, GitHub link: https://github.com/MichaelLinn/off_target_prediction/
+
+ PMID: 36179077, GitHub link: https://github.com/gavinmdouglas/POMS/
+
+ PMID: 34030625, GitHub link: https://github.com/gbenor/TPVOD/
+
+ PMID: 31877126, GitHub link: https://github.com/wangyc82/ALACD-v1/
+
+ PMID: 25931804, GitHub link: https://github.com/jiantao/Tangram/
+
+ PMID: 30649215, GitHub link: https://github.com/joewuca/imputation/
+
+ PMID: 32657412, GitHub link: https://github.com/Graylab/deepH3-distances-orientations/
+
+ PMID: 30908262, GitHub link: https://github.com/leesael/SNeCT/
+
+ PMID: 32186690, GitHub link: https://github.com/lichen-lab/powmic/
+
+ PMID: 29370750, GitHub link: https://github.com/multicom-toolbox/CONFOLD2/
+
+ PMID: 32666466, GitHub link: https://github.com/VCCRI/hactive/
+
+ PMID: 31467326, GitHub link: https://github.com/lishen/end2end-all-conv/
+
+ PMID: 33662531, GitHub link: https://github.com/sam-uofl/SwarnSeq/
+
+ PMID: 29087435, GitHub link: https://github.com/bdpiccolo/ACNC-DAME/
+
+ PMID: 35035264, GitHub link: https://github.com/subro608/thermogram_breast_cancer/Error with URL: https://api.github.com/repos/subro608/thermogram_breast_cancer Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 30863868, GitHub link: https://github.com/aplantin/pldist/
+
+ PMID: 24828207, GitHub link: https://github.com/aschlosberg/CompressGV/
+
+ PMID: 32051612, GitHub link: https://github.com/GryderArt/AQuA-HiChIP/
+
+ PMID: 34270679, GitHub link: https://github.com/KyoungYeulLee/3Cnet/
+
+ PMID: 36326078, GitHub link: https://github.com/BiomedicalMachineLearning/VGP/
+
+ PMID: 35997827, GitHub link: https://github.com/jisnava/ResNet_for_Structure_Assignments/
+
+ PMID: 35989601, GitHub link: https://github.com/johnlees/mandrake/
+
+ PMID: 26989607, GitHub link: https://github.com/zubekj/broad_peaks/
+
+ PMID: 32152349, GitHub link: https://github.com/LiuLab-CSRC/NePre/
+
+ PMID: 28503747, GitHub link: https://github.com/DeondeJager/Friends-and-Family/
+
+ PMID: 33446828, GitHub link: https://github.com/genostats/Ravages/
+
+ PMID: 34197087, GitHub link: https://github.com/MetaSys-LISBP/IsoSolve/
+
+ PMID: 35607649, GitHub link: https://github.com/xiaoan-maker/MFSCNet/
+
+ PMID: 36700099, GitHub link: https://github.com/fukunagatsu/Mirage/
+
+ PMID: 32169585, GitHub link: https://github.com/USArmyResearchLab/ARL-Display-Metrics-and-Average-Display-Luminance/
+
+ PMID: 33682878, GitHub link: https://github.com/manisa/ClassifyTE/
+
+ PMID: 34125685, GitHub link: https://github.com/lmbxmu/FilterSketch/
+
+ PMID: 33651690, GitHub link: https://github.com/xiaofeng94/RefineDNet-for-dehazing/
+
+ PMID: 35758807, GitHub link: https://github.com/CostaLab/MOJITOO/
+
+ PMID: 35561205, GitHub link: https://github.com/haotian-zhuang/findPC/
+
+ PMID: 27307638, GitHub link: https://github.com/clotelab/RNAiFold/
+
+ PMID: 28077564, GitHub link: https://github.com/galaxyproject/blend4phpDatabase/Error with URL: https://api.github.com/repos/galaxyproject/blend4phpDatabase Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 36369226, GitHub link: https://github.com/ay-lab/dcHiC/
+
+ PMID: 35030206, GitHub link: https://github.com/abhineetgupta/covid-workplace-risk/
+
+ PMID: 22556367, GitHub link: https://github.com/ISA-tools/graph2tab/
+
+ PMID: 32523327, GitHub link: https://github.com/uncbiag/registration/
+
+ PMID: 34122498, GitHub link: https://github.com/BiodataAnalysisGroup/kmerAnalyzer/
+
+ PMID: 33367491, GitHub link: https://github.com/Soulnature/TCA/
+
+ PMID: 35022993, GitHub link: https://github.com/jayarajpbalakrishnan/2_SOM_SCREEN/
+
+ PMID: 35939482, GitHub link: https://github.com/stevenhan1991/CoordNet/
+
+ PMID: 32069281, GitHub link: https://github.com/oxpig/saab_plus/
+
+ PMID: 30915052, GitHub link: https://github.com/NWPU-903PR/DMSC/
+
+ PMID: 36213104, GitHub link: https://github.com/PragLab/SAMPLE/
+
+ PMID: 35030988, GitHub link: https://github.com/hitaandrea/MGcount/
+
+ PMID: 32470106, GitHub link: https://github.com/n-mounier/bGWAS/
+
+ PMID: 34235130, GitHub link: https://github.com/CDCgov/TB_molecular_epidemiology/tree/1.0/
+
+ PMID: 35426900, GitHub link: https://github.com/DepledgeLab/DRUMMER/
+
+ PMID: 31617571, GitHub link: https://github.com/icthrm/CRM/
+
+ PMID: 36029242, GitHub link: https://github.com/seansolari/expam/
+
+ PMID: 28325279, GitHub link: https://github.com/G100DKFZ/gene-is/
+
+ PMID: 27045228, GitHub link: https://github.com/Roulattice/Roulattice/
+
+ PMID: 34252946, GitHub link: https://github.com/larngroup/De-Novo-Drug-Design/
+
+ PMID: 28437440, GitHub link: https://github.com/lisagandy/synthesizer/
+
+ PMID: 29982337, GitHub link: https://github.com/QuKunLab/ATAC-pipe/
+
+ PMID: 29939475, GitHub link: https://github.com/fanhuan/phyloRAD/
+
+ PMID: 35380605, GitHub link: https://github.com/elixir-europe/biovalidator/
+
+ PMID: 29949981, GitHub link: https://github.com/siamakz/dNBFA/
+
+ PMID: 26647377, GitHub link: https://github.com/Illumina/manta/
+
+ PMID: 29484742, GitHub link: https://github.com/MareesAT/GWA_tutorial/
+
+ PMID: 30903138, GitHub link: https://github.com/tchitchek-lab/CytoBackBone/
+
+ PMID: 36282863, GitHub link: https://github.com/neel-lab/GlycoEnzOnto/
+
+ PMID: 34009953, GitHub link: https://github.com/wincowgerDEV/OpenSpecy/
+
+ PMID: 34889728, GitHub link: https://github.com/LanLab/ShigEiFinder/
+
+ PMID: 26558903, GitHub link: https://github.com/MEEIBioinformaticsCenter/grepsearch/
+
+ PMID: 34589187, GitHub link: https://github.com/DennisSchlossarek/PROMISed/
+
+ PMID: 29253079, GitHub link: https://github.com/alexandrovteam/curatr/
+
+ PMID: 36699364, GitHub link: https://github.com/dozmorovlab/CTCF.dev/
+
+ PMID: 29300846, GitHub link: https://github.com/bcgsc/ChopStitch/
+
+ PMID: 33509077, GitHub link: https://github.com/henriettemiko/TimelessFlex/
+
+ PMID: 36178955, GitHub link: https://github.com/antonisdim/HAYSTAC/
+
+ PMID: 31510667, GitHub link: https://github.com/Kingsford-Group/omhismb2019/
+
+ PMID: 35876789, GitHub link: https://github.com/BioComputingUP/mocafe/
+
+ PMID: 31451449, GitHub link: https://github.com/YosefLab/BRAPeS/
+
+ PMID: 33438731, GitHub link: https://github.com/medema-group/bigslice/
+
+ PMID: 26443613, GitHub link: https://github.com/JoniColeman/gwas_scripts/
+
+ PMID: 34142828, GitHub link: https://github.com/lmmpf/PyAutoFEP/
+
+ PMID: 31890138, GitHub link: https://github.com/sysbiomics/-GEM/Error with URL: https://api.github.com/repos/sysbiomics/-GEM Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 34398181, GitHub link: https://github.com/YuAirLab/Alpha-XIC/
+
+ PMID: 32805275, GitHub link: https://github.com/NWAFU-LiuLab/m7Gpredictor/
+
+ PMID: 35511108, GitHub link: https://github.com/YanghanWu/GraphTGI/
+
+ PMID: 25514851, GitHub link: https://github.com/LUMC/kPAL/
+
+ PMID: 29878056, GitHub link: https://github.com/OSS-Lab/MetQy/
+
+ PMID: 29363427, GitHub link: https://github.com/Genetalks/wgs_analysis_demo/Error with URL: https://api.github.com/repos/Genetalks/wgs_analysis_demo Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 31059559, GitHub link: https://github.com/YuningHao/FARDEEP/
+
+ PMID: 32135093, GitHub link: https://github.com/aristoteleo/Scribe-py/
+
+ PMID: 31584973, GitHub link: https://github.com/jgcri/fldgen/
+
+ PMID: 30407584, GitHub link: https://github.com/JiangTian/adaptive-geometric-search-for-protein-design/
+
+ PMID: 35561183, GitHub link: https://github.com/lennylv/TransPPMP/
+
+ PMID: 26637292, GitHub link: https://github.com/LeeMendelowitz/maligner/
+
+ PMID: 27158457, GitHub link: https://github.com/NCBI-Hackathons/Network_SNPs/
+
+ PMID: 26350211, GitHub link: https://github.com/zji90/GSCA/
+
+ PMID: 29426887, GitHub link: https://github.com/YiyiLiu1/bdChemo/
+
+ PMID: 26529772, GitHub link: https://github.com/BinXia/PETs/
+
+ PMID: 29028899, GitHub link: https://github.com/jameshadfield/phandango/
+
+ PMID: 36308461, GitHub link: https://github.com/AbeelLab/hat/
+
+ PMID: 27161244, GitHub link: https://github.com/imgag/ngs-bits/
+
+ PMID: 30407484, GitHub link: https://github.com/barashe/bacpacs/
+
+ PMID: 36100346, GitHub link: https://github.com/shahidakbarcs/cACP-DeepGram/
+
+ PMID: 33533614, GitHub link: https://github.com/ncats/ld50-multitask/
+
+ PMID: 32547592, GitHub link: https://github.com/lihuamei/DeconPeaker/
+
+ PMID: 33416831, GitHub link: https://github.com/SaraOmranian/PC2P/
+
+ PMID: 31603766, GitHub link: https://github.com/AlgoLab/gppf/
+
+ PMID: 30418481, GitHub link: https://github.com/WatsonLab/MAGpy/
+
+ PMID: 35212706, GitHub link: https://github.com/jcyhong/rarefaction/
+
+ PMID: 30535314, GitHub link: https://github.com/jschellh/ProtSpaM/
+
+ PMID: 34324563, GitHub link: https://github.com/MahnazHabibi/Drug-repurposing/
+
+ PMID: 27711123, GitHub link: https://github.com/borisvassilev/lir/
+
+ PMID: 29343727, GitHub link: https://github.com/NctuICLab/PredCRP/
+
+ PMID: 28961716, GitHub link: https://github.com/RamanLab/ReactionMiner/
+
+ PMID: 34411265, GitHub link: https://github.com/wangbi1988/Lifelong-learning-in-Open-World-Classification/
+
+ PMID: 35099535, GitHub link: https://github.com/oxpig/ABlooper/
+
+ PMID: 26936254, GitHub link: https://github.com/institut-de-genomique/MaGuS/
+
+ PMID: 32506590, GitHub link: https://github.com/CHUSRadOncPhys/FluoMV/
+
+ PMID: 34297055, GitHub link: https://github.com/warelab/TRaCE/
+
+ PMID: 26249815, GitHub link: https://github.com/cgmisc-team/cgmisc/
+
+ PMID: 28541377, GitHub link: https://github.com/DeplanckeLab/ASAP/
+
+ PMID: 30668829, GitHub link: https://github.com/eldariont/svim/
+
+ PMID: 33978747, GitHub link: https://github.com/AstraZeneca/detectIS/
+
+ PMID: 24281695, GitHub link: https://github.com/eturro/mmseq/
+
+ PMID: 28505226, GitHub link: https://github.com/aldenleung/OMTools/
+
+ PMID: 24931983, GitHub link: https://github.com/yaarasegre/EPIQ/
+
+ PMID: 33835916, GitHub link: https://github.com/fatemehtd/Echo-SyncNet/
+
+ PMID: 33584612, GitHub link: https://github.com/elies-ramon/kernInt/
+
+ PMID: 27225325, GitHub link: https://github.com/masedki/MHTrajectoryR/
+
+ PMID: 34595403, GitHub link: https://github.com/TheMillerLab/genetex/
+
+ PMID: 25884504, GitHub link: https://github.com/jkawulok/cometa/
+
+ PMID: 32660416, GitHub link: https://github.com/jlab-code/MethylStar/
+
+ PMID: 33987016, GitHub link: https://github.com/LabBandSB/re-Searcher/
+
+ PMID: 36091495, GitHub link: https://github.com/junyangq/multiSnpnet/
+
+ PMID: 32248133, GitHub link: https://github.com/NeuroSyd/Epileptic-Seizure-Classification/
+
+ PMID: 32845281, GitHub link: https://github.com/ZekunYin/RabbitMash/
+
+ PMID: 31161213, GitHub link: https://github.com/ccsb-scripps/ADCP/
+
+ PMID: 32657368, GitHub link: https://github.com/elkebir-group/ClonArch/
+
+ PMID: 28096083, GitHub link: https://github.com/LiangXujun/LRSSL/
+
+ PMID: 32756942, GitHub link: https://github.com/zhanxw/seqminer/
+
+ PMID: 22576174, GitHub link: https://github.com/mlangill/microbedb/
+
+ PMID: 28095193, GitHub link: https://github.com/hsoleimani/MLTM/
+
+ PMID: 34652149, GitHub link: https://github.com/tekpinar/correlationplus/
+
+ PMID: 29537391, GitHub link: https://github.com/batuff/Survival/
+
+ PMID: 29298679, GitHub link: https://github.com/jadermcg/mfmd/
+
+ PMID: 31494667, GitHub link: https://github.com/PGB-LIV/VAPPER/
+
+ PMID: 33793906, GitHub link: https://github.com/wickeLab/WARPP/
+
+ PMID: 31063501, GitHub link: https://github.com/SajadMo/SleepEEGNet/
+
+ PMID: 25123904, GitHub link: https://github.com/clcg/cordova/
+
+ PMID: 29907088, GitHub link: https://github.com/julienrichardalbert/MEA/
+
+ PMID: 30772464, GitHub link: https://github.com/RanSuLab/Deep-Resp-Forest/
+
+ PMID: 24647222, GitHub link: https://github.com/gedankenstuecke/snpr/
+
+ PMID: 33953661, GitHub link: https://github.com/matsas-software/MATSAS/
+
+ PMID: 33731963, GitHub link: https://github.com/shengqh/cpdseqer/
+
+ PMID: 34986226, GitHub link: https://github.com/lanl/pybnf/
+
+ PMID: 32991583, GitHub link: https://github.com/jdbrunner/surfin_fba/
+
+ PMID: 36641940, GitHub link: https://github.com/dyjfan/AutoRes/
+
+ PMID: 32415963, GitHub link: https://github.com/zmmzGitHub/MTL-BC-LBC-BioNER/
+
+ PMID: 33346817, GitHub link: https://github.com/eldariont/svim-asm/
+
+ PMID: 30483600, GitHub link: https://github.com/RahmanTeamDevelopment/ICR142_Benchmarker/releases/
+
+ PMID: 30423068, GitHub link: https://github.com/bio-ontology-research-group/phenogocon/
+
+ PMID: 30136936, GitHub link: https://github.com/adalca/papago/
+
+ PMID: 31917401, GitHub link: https://github.com/zhanghfd/contamDE/
+
+ PMID: 35561163, GitHub link: https://github.com/yijuanhu/LDM/
+
+ PMID: 29950021, GitHub link: https://github.com/biohpc/longo/
+
+ PMID: 32180789, GitHub link: https://github.com/dustincys/msphy-SCNAClonal/
+
+ PMID: 36129860, GitHub link: https://github.com/tanveer-hussain/DFAN/Error with URL: https://api.github.com/repos/tanveer-hussain/DFAN Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 30220114, GitHub link: https://github.com/xiehq/COSR/
+
+ PMID: 32780871, GitHub link: https://github.com/Medical-Imaging-Group/DCE-MRI-Compare/
+
+ PMID: 34169324, GitHub link: https://github.com/cusdulab/MLSF/
+
+ PMID: 30977780, GitHub link: https://github.com/Issingjessica/MDA-CNN/
+
+ PMID: 25971741, GitHub link: https://github.com/rwehrens/ptw/
+
+ PMID: 34108002, GitHub link: https://github.com/gnina/gnina/
+
+ PMID: 34517538, GitHub link: https://github.com/biocomputinglab/TYLER/
+
+ PMID: 25481009, GitHub link: https://github.com/ABI-Software-Laboratory/ICMA/
+
+ PMID: 33852396, GitHub link: https://github.com/3huo/ActionView/
+
+ PMID: 30849961, GitHub link: https://github.com/burcakotlu/JOA/
+
+ PMID: 30821315, GitHub link: https://github.com/zrq0123/SinNLRR/
+
+ PMID: 34166198, GitHub link: https://github.com/duttaprat/DeePROG/
+
+ PMID: 35489207, GitHub link: https://github.com/LAHCEN-EL-AMRI/Gamma-Spectra-Analysis/
+
+ PMID: 25650807, GitHub link: https://github.com/ruping/TRUP/
+
+ PMID: 30649258, GitHub link: https://github.com/hchyang/PSiTE/
+
+ PMID: 35253844, GitHub link: https://github.com/mohit1997/JIND/
+
+ PMID: 35339096, GitHub link: https://github.com/SohamChattopadhyayEE/DRDA-Net/
+
+ PMID: 34396097, GitHub link: https://github.com/evolbioinfo/gotree/
+
+ PMID: 31790389, GitHub link: https://github.com/kkang7/CDSeq/
+
+ PMID: 31626286, GitHub link: https://github.com/JeremyPike/RSMLM/
+
+ PMID: 27153605, GitHub link: https://github.com/hammerlab/pileup/Error with URL: https://api.github.com/repos/hammerlab/pileup Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 32976573, GitHub link: https://github.com/sunshanwen/BP4RNAseq/
+
+ PMID: 32873872, GitHub link: https://github.com/yxchspring/MIAS/
+
+ PMID: 30407490, GitHub link: https://github.com/bio-ontology-research-group/opa2vec/
+
+ PMID: 34754797, GitHub link: https://github.com/yuerongz/SRR-method/
+
+ PMID: 31790146, GitHub link: https://github.com/hael/SIMPLE3.0/
+
+ PMID: 32165788, GitHub link: https://github.com/usnistgov/jarvis/
+
+ PMID: 34478499, GitHub link: https://github.com/ProteinEngineering-PESB2/peptipedia/Error with URL: https://api.github.com/repos/ProteinEngineering-PESB2/peptipedia Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 33575648, GitHub link: https://github.com/gem-pasteur/PanACoTA/
+
+ PMID: 32730562, GitHub link: https://github.com/systemsmedicine/Antibody_cross-reaction_dynamics/
+
+ PMID: 29617944, GitHub link: https://github.com/HannahVMeyer/PhenotypeSimulator/
+
+ PMID: 36112561, GitHub link: https://github.com/OIPLab-DUT/ESCNet/
+
+ PMID: 34252937, GitHub link: https://github.com/dmis-lab/moable/
+
+ PMID: 30443582, GitHub link: https://github.com/biomedical-cybernetics/topological_measures_wide_analysis/
+
+ PMID: 35157577, GitHub link: https://github.com/gurkirt/road-dataset/
+
+ PMID: 33325494, GitHub link: https://github.com/labstructbioinf/samcc_turbo/
+
+ PMID: 35100114, GitHub link: https://github.com/sadbhawnathakur/3D-Image-Quality-Assessment/
+
+ PMID: 34734182, GitHub link: https://github.com/anitalu724/MutScape/
+
+ PMID: 27071656, GitHub link: https://github.com/njohner/ost_pymodules/
+
+ PMID: 32374818, GitHub link: https://github.com/rohan-shah/mpMap2/
+
+ PMID: 36315078, GitHub link: https://github.com/tlemane/kmdiff/
+
+ PMID: 26026169, GitHub link: https://github.com/haddocking/disvis/
+
+ PMID: 29713952, GitHub link: https://github.com/maglab-uconn/TISK1.0/
+
+ PMID: 33426151, GitHub link: https://github.com/NIH-MIP/Radiology_Image_Preprocessing_for_Deep_Learning/
+
+ PMID: 33165513, GitHub link: https://github.com/crazyhottommy/scclusteval/
+
+ PMID: 32991665, GitHub link: https://github.com/mortazavilab/swan_vis/
+
+ PMID: 34795237, GitHub link: https://github.com/prosolo/prosolo/
+
+ PMID: 33566819, GitHub link: https://github.com/YakhiniGroup/PyAQN/
+
+ PMID: 35183875, GitHub link: https://github.com/Cardio-AI/mfvi-dip-mia/
+
+ PMID: 34048546, GitHub link: https://github.com/SKLB-lab/BENviewer/
+
+ PMID: 34216888, GitHub link: https://github.com/VartikaBisht6197/NFnetFu/
+
+ PMID: 32003784, GitHub link: https://github.com/GabrielHoffman/decorate/
+
+ PMID: 34377977, GitHub link: https://github.com/ziyewang/ARG_SHINE/
+
+ PMID: 31285647, GitHub link: https://github.com/inpacdb/PocketPipe/
+
+ PMID: 28065903, GitHub link: https://github.com/bioasp/caspo/
+
+ PMID: 25178461, GitHub link: https://github.com/JulienLajugie/GenPlay/
+
+ PMID: 27267458, GitHub link: https://github.com/Tarskin/LaCyTools/
+
+ PMID: 31921040, GitHub link: https://github.com/jiqingxiaoxi/GLAPD/
+
+ PMID: 34230965, GitHub link: https://github.com/Zheng-Lab-Westlake/Osteo-Fine-Mapp-SNP2SE2miRNA/
+
+ PMID: 27499741, GitHub link: https://github.com/CoSMoMVPA/CoSMoMVPA/
+
+ PMID: 36315072, GitHub link: https://github.com/SFGLab/ConsensuSV-pipeline/
+
+ PMID: 31392327, GitHub link: https://github.com/tomkurowski/tersect/
+
+ PMID: 33476332, GitHub link: https://github.com/V4p1d/FPSP_Covid19/
+
+ PMID: 30485088, GitHub link: https://github.com/lje00006/DeepCas9/
+
+ PMID: 29346514, GitHub link: https://github.com/accsc/GAsol/
+
+ PMID: 30101335, GitHub link: https://github.com/zhero9/MIPUP/
+
+ PMID: 32805016, GitHub link: https://github.com/FeifeiXiaoUSC/LDcnv/
+
+ PMID: 26520855, GitHub link: https://github.com/siskac/discordant/
+
+ PMID: 33048673, GitHub link: https://github.com/ndrplz/semiparametric/
+
+ PMID: 27153581, GitHub link: https://github.com/ymatts/D3M/
+
+ PMID: 35179547, GitHub link: https://github.com/divelab/MoleculeX/
+
+ PMID: 29186321, GitHub link: https://github.com/paudano/kestrel/
+
+ PMID: 31099741, GitHub link: https://github.com/IEkAdN/BactSNP/
+
+ PMID: 34113801, GitHub link: https://github.com/shyamvis/ACT-COVID-Ontology/
+
+ PMID: 29036291, GitHub link: https://github.com/superphy/insilico-subtyping/
+
+ PMID: 31917388, GitHub link: https://github.com/WarrenDavidAnderson/genomicsRpackage/tree/master/primaryTranscriptAnnotation/
+
+ PMID: 37205013, GitHub link: https://github.com/alanderos91/ProximalDistanceAlgorithms.jl/
+
+ PMID: 34859246, GitHub link: https://github.com/VimsLab/CNN-Retarget/
+
+ PMID: 29044550, GitHub link: https://github.com/ignaciorlando/fundus-fractal-analysis/
+
+ PMID: 33147142, GitHub link: https://github.com/SJTUBME-QianLab/SpiralTransform/
+
+ PMID: 28269829, GitHub link: https://github.com/SBU-BMI/imageboxs/Error with URL: https://api.github.com/repos/SBU-BMI/imageboxs Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 34266387, GitHub link: https://github.com/vrmelo/SPLICE-q/
+
+ PMID: 31510706, GitHub link: https://github.com/byin-cwi/ALS-Deeplearning/
+
+ PMID: 34869373, GitHub link: https://github.com/IreneSaMi/Exoquant-Autophagoquant/
+
+ PMID: 36713195, GitHub link: https://github.com/mkubiophysics/B-LacFamPred/
+
+ PMID: 30508066, GitHub link: https://github.com/DessimozLab/iHam/
+
+ PMID: 29504903, GitHub link: https://github.com/taehoonlee/HiComet/
+
+ PMID: 35731990, GitHub link: https://github.com/ElenaRojano/angio_cluster/
+
+ PMID: 33101613, GitHub link: https://github.com/YTLogos/BnaSNPDB/
+
+ PMID: 31589307, GitHub link: https://github.com/davidebolo1993/VISOR/
+
+ PMID: 35753591, GitHub link: https://github.com/19990915fzy/PDSM-LGCN/Error with URL: https://api.github.com/repos/19990915fzy/PDSM-LGCN Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest'}
+
+
+ PMID: 29871933, GitHub link: https://github.com/pamelarussell/TCIApathfinder/
+
+ PMID: 29360933, GitHub link: https://github.com/DExSI/DExSI/
+
+ PMID: 34861602, GitHub link: https://github.com/pixixiaonaogou/MLSDR/
+
+ PMID: 33509079, GitHub link: https://github.com/emdadi/Auto-HMM-LMF/
+
+ PMID: 33391870, GitHub link: https://github.com/dbdimitrov/BingleSeq/
+
+ PMID: 28621925, GitHub link: https://github.com/hcji/KPIC2/
+
+ PMID: 34488031, GitHub link: https://github.com/aozh7/SmulTCan/
+
+ PMID: 33942058, GitHub link: https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Kong2022_ArealMSHBM/
+
+ PMID: 27307618, GitHub link: https://github.com/GATB/bcalm/
+
+ PMID: 32011265, GitHub link: https://github.com/tensorboy/PIDOptimizer/
+
+ PMID: 35363610, GitHub link: https://github.com/woxuankai/SpatialAlignmentNetwork/
+
+ PMID: 34410861, GitHub link: https://github.com/stamatak/standard-RAxML/
+
+ PMID: 32722772, GitHub link: https://github.com/dvav/clonosGP/
+
+ PMID: 35077359, GitHub link: https://github.com/Andrew-Qibin/VisionPermutator/
+
+ PMID: 35992221, GitHub link: https://github.com/MahnazHabibi/Pathway/
+
+ PMID: 34792549, GitHub link: https://github.com/molgenis/systemsgenetics/wiki/Idefix/
+
+ PMID: 33603203, GitHub link: https://github.com/dmcable/RCTD/
+
+ PMID: 30598083, GitHub link: https://github.com/VCCRI/SPAGI/
+
+ PMID: 24627786, GitHub link: https://github.com/sanchak/FragalCode/
+
+ PMID: 30967123, GitHub link: https://github.com/Strideradu/GroupK/
+
+ PMID: 33972018, GitHub link: https://github.com/DSIMB/medusa/
+
+ PMID: 31141211, GitHub link: https://github.com/sambitmishra0628/AR-PRED_source/
+
+ PMID: 30298069, GitHub link: https://github.com/arosenfeld/immunedb/
+
+ PMID: 36368499, GitHub link: https://github.com/MICLab-Unicamp/HypAST/
+
+ PMID: 35252351, GitHub link: https://github.com/ncbi/icn3d/tree/master/icn3dpython/
+
+ PMID: 31881831, GitHub link: https://github.com/HubertTang/DeepMir/
+
+ PMID: 34232882, GitHub link: https://github.com/iVis-at-Bilkent/cytoscape.js-fcose/
+
+ PMID: 35839203, GitHub link: https://github.com/liliangnudt/LSWMKC/
+
+ PMID: 29668831, GitHub link: https://github.com/NCI-biostats/microbiome-fixed-reference/
+
+ PMID: 32579213, GitHub link: https://github.com/boalang/nr/
+
+ PMID: 30414112, GitHub link: https://github.com/NAL-i5K/GFF3toolkit/
+
+ PMID: 30813377, GitHub link: https://github.com/muhammadshoaib/ipct/
+
+ PMID: 30526492, GitHub link: https://github.com/bhi-kimlab/BiSpark/
+
+ PMID: 34851838, GitHub link: https://github.com/fedl-repo/fedaux/
+
+ PMID: 33206611, GitHub link: https://github.com/msahasrabudhe/lymphoMIL/
+
+ PMID: 31245783, GitHub link: https://github.com/RihaLab/artMAP/
+
+ PMID: 30458005, GitHub link: https://github.com/rrwick/Deepbinner/
+
+ PMID: 31621827, GitHub link: https://github.com/LoaloaF/DPre/
+
+ PMID: 31167639, GitHub link: https://github.com/Reedwarbler/GAPPadder/
+
+ PMID: 32873325, GitHub link: https://github.com/plger/pipeComp/
+
+ PMID: 33830216, GitHub link: https://github.com/identifiers-org/cmd-iaso/
+
+ PMID: 25481007, GitHub link: https://github.com/jwintersinger/kablammo/
+
+ PMID: 30459825, GitHub link: https://github.com/MahajanLab/ProSave/
+
+ PMID: 34623738, GitHub link: https://github.com/jamtheim/DicomRTStructRenamerPublic/
+
+ PMID: 29771275, GitHub link: https://github.com/Bobay-Ochman/ConSpeciFix/
+
+ PMID: 26072481, GitHub link: https://github.com/dpark27/adapt_mix/
+
+ PMID: 32264950, GitHub link: https://github.com/rsait/ORdensity/
+
+ PMID: 30408727, GitHub link: https://github.com/aakechin/BRCA-analyzer/
+
+ PMID: 33752591, GitHub link: https://github.com/fumi-github/omicwas/
+
+ PMID: 33093842, GitHub link: https://github.com/Fatima-Khan12/iRspot_DNN/tree/master/iRspot_DNN/
+
+ PMID: 32986549, GitHub link: https://github.com/Damseh/VascularGraph/
+
+ PMID: 34765090, GitHub link: https://github.com/sysbio-polito/NWN_CElegans_VPC_model/
+
+ PMID: 35881697, GitHub link: https://github.com/lgole/DNAStranding/
+
+ PMID: 35758821, GitHub link: https://github.com/phineasng/DECODE/
+
+ PMID: 33241320, GitHub link: https://github.com/PhosphorylatedRabbits/cosifer/
+
+ PMID: 27130170, GitHub link: https://github.com/justasb/SwarmSight/
+
+ PMID: 35598329, GitHub link: https://github.com/chanwoo-park-official/DeepHisCoM/
+
+ PMID: 35657830, GitHub link: https://github.com/qinqinyang/MOST-DL/
+
+ PMID: 30974241, GitHub link: https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/preprocessing/Li2019_GSR/
+
+ PMID: 34800971, GitHub link: https://github.com/kacst-bioinfo-lab/TE_ideintification_pipeline/
+
+ PMID: 35394913, GitHub link: https://github.com/Siat-F9/EMG-Tools/
+
+ PMID: 31510699, GitHub link: https://github.com/haochenucr/DIFFUSE/
+
+ PMID: 35385080, GitHub link: https://github.com/ba-lab/Alignment-Score/
+
+ PMID: 27009209, GitHub link: https://github.com/cmayer/BaitFisher-package/
+
+ PMID: 34988437, GitHub link: https://github.com/dputhier/pygtftk/
+
+ PMID: 32791338, GitHub link: https://github.com/USTC-HIlab/DeepTL-Ubi/
+
+ PMID: 33196774, GitHub link: https://github.com/biocai/DeepHiC/
+
+ PMID: 24148309, GitHub link: https://github.com/slawekj/ennet/
+
+ PMID: 31760932, GitHub link: https://github.com/screamer/BiwalkLDA/
+
+ PMID: 34245242, GitHub link: https://github.com/iobio-zjut/SNfold/
+
+ PMID: 26851340, GitHub link: https://github.com/lzcyzm/DRME/
+
+ PMID: 30404611, GitHub link: https://github.com/kondim1983/Deblender/
+
+ PMID: 29508292, GitHub link: https://github.com/zhqingit/giremi/
+
+ PMID: 31757199, GitHub link: https://github.com/yhhshb/yalff/
+
+ PMID: 31778144, GitHub link: https://github.com/Nextomics/NextPolish/
+
+ PMID: 34991450, GitHub link: https://github.com/icanforce/lerna-genomics/Error with URL: https://api.github.com/repos/icanforce/lerna-genomics Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 35763881, GitHub link: https://github.com/WangJun2023/GRSC/
+
+ PMID: 29444205, GitHub link: https://github.com/SBRG/ssbio/
+
+ PMID: 30351397, GitHub link: https://github.com/adspit/PASCAL/
+
+ PMID: 32365169, GitHub link: https://github.com/anlingUA/scDoc/
+
+ PMID: 32657391, GitHub link: https://github.com/predragradivojac/oc/
+
+ PMID: 36126402, GitHub link: https://github.com/DIAL-RPI/Attention-Reg/
+
+ PMID: 35689888, GitHub link: https://github.com/UPV-EHU-IBeA/SETApp/
+
+ PMID: 35640369, GitHub link: https://github.com/tntek/SCLM/
+
+ PMID: 30793050, GitHub link: https://github.com/akiyamalab/NRLMFb/
+
+ PMID: 34332347, GitHub link: https://github.com/Mamunur-20/DeepCervix/
+
+ PMID: 36034050, GitHub link: https://github.com/ahmed-shameem/Feature_selection/
+
+ PMID: 28073755, GitHub link: https://github.com/SPIDDOR/SPIDDOR/
+
+ PMID: 32312232, GitHub link: https://github.com/wp3751/GPCR-Drug-Interaction/
+
+ PMID: 33476161, GitHub link: https://github.com/MYTLab/stoch-agg/
+
+ PMID: 33367584, GitHub link: https://github.com/univieCUBE/deepnog/
+
+ PMID: 35713588, GitHub link: https://github.com/JLiangLab/Parts2Whole/Error with URL: https://api.github.com/repos/JLiangLab/Parts2Whole Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 26873929, GitHub link: https://github.com/uci-cbcl/D-GEX/
+
+ PMID: 29940836, GitHub link: https://github.com/ningq669/PSuccE/
+
+ PMID: 30304494, GitHub link: https://github.com/LichtargeLab/multimodal-network-diffusion/
+
+ PMID: 30445993, GitHub link: https://github.com/fbreitwieser/krakenuniq/
+
+ PMID: 35749590, GitHub link: https://github.com/liliulab/magos/
+
+ PMID: 35432857, GitHub link: https://github.com/Goodman-lab/DP5/
+
+ PMID: 35758612, GitHub link: https://github.com/zgzjdx/BioNER-Cache/
+
+ PMID: 29780309, GitHub link: https://github.com/yuzhounh/GWC/
+
+ PMID: 26262258, GitHub link: https://github.com/fabkury/hedicim/
+
+ PMID: 28453680, GitHub link: https://github.com/holtzy/GenMap-Comparator/
+
+ PMID: 35652722, GitHub link: https://github.com/SGDDNB/CLIPreg/
+
+ PMID: 33959420, GitHub link: https://github.com/GGFHF/NGScloud2/
+
+ PMID: 29036513, GitHub link: https://github.com/StantonLabDartmouth/AppScanGEO/
+
+ PMID: 32941141, GitHub link: https://github.com/zju3dv/NIID-Net/
+
+ PMID: 36124793, GitHub link: https://github.com/pievos101/GNN-SubNet/
+
+ PMID: 31264420, GitHub link: https://github.com/JunPei000/random_forest_protein_ligand_decoy_detection/
+
+ PMID: 31608933, GitHub link: https://github.com/jcboyd/multi-cell-line/
+
+ PMID: 36214638, GitHub link: https://github.com/conradlab/SATINN/
+
+ PMID: 21685051, GitHub link: https://github.com/epigenomics/methylmaps/
+
+ PMID: 21478170, GitHub link: https://github.com/ppgardne/RNIE/
+
+ PMID: 27587667, GitHub link: https://github.com/samhykim/nsg/
+
+ PMID: 35982784, GitHub link: https://github.com/yangfangs/KPP/
+
+ PMID: 34196686, GitHub link: https://github.com/TongjiZhanglab/CStreet/
+
+ PMID: 31116384, GitHub link: https://github.com/dmis-lab/ReSimNet/
+
+ PMID: 32246821, GitHub link: https://github.com/xkmaxidian/DRjCC/
+
+ PMID: 36436356, GitHub link: https://github.com/jxw0810/MIB-Net/Error with URL: https://api.github.com/repos/jxw0810/MIB-Net Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 32844204, GitHub link: https://github.com/YingZhou001/IBDkin/
+
+ PMID: 32993482, GitHub link: https://github.com/marouenbg/VFFVA/
+
+ PMID: 23505292, GitHub link: https://github.com/loopasam/Brain/
+
+ PMID: 33691009, GitHub link: https://github.com/pdddinakar/SemanticChangepointDetection/
+
+ PMID: 32986544, GitHub link: https://github.com/VITA-Group/PA-HMDB51/
+
+ PMID: 29420693, GitHub link: https://github.com/SiminaB/MultiMed/
+
+ PMID: 27816675, GitHub link: https://github.com/cyinbox/DNADU/
+
+ PMID: 33974001, GitHub link: https://github.com/JonETJakobsson/scConnect/
+
+ PMID: 31917259, GitHub link: https://github.com/niu-lab/gclust/
+
+ PMID: 34138709, GitHub link: https://github.com/Deng-Y/DPCTF/
+
+ PMID: 29390109, GitHub link: https://github.com/minmarg/comer/
+
+ PMID: 31504211, GitHub link: https://github.com/yufengwudcs/ScisTree/
+
+ PMID: 33872149, GitHub link: https://github.com/ktr-hubrt/WSAL/
+
+ PMID: 33222222, GitHub link: https://github.com/Mrqins/pancreas-segmentation/
+
+ PMID: 33398153, GitHub link: https://github.com/RasmussenLab/vamb/
+
+ PMID: 36205617, GitHub link: https://github.com/XiaQiong/GMMLasso/
+
+ PMID: 36120082, GitHub link: https://github.com/TongXin-CASIA/Excepted_Affine/
+
+ PMID: 33188264, GitHub link: https://github.com/tzhu-bio/UMI-ATAC-seq/
+
+ PMID: 31902755, GitHub link: https://github.com/luoyan407/congruency/
+
+ PMID: 35312620, GitHub link: https://github.com/tuyunbin/I2Transformer/
+
+ PMID: 35652719, GitHub link: https://github.com/qinwang-ai/DSM-Distil/
+
+ PMID: 34897387, GitHub link: https://github.com/xulabs/aitom/
+
+ PMID: 36369993, GitHub link: https://github.com/thdiakon/ccaR/
+
+ PMID: 31373609, GitHub link: https://github.com/ramiromagno/gwasrapidd/
+
+ PMID: 29444233, GitHub link: https://github.com/stanislavspbgu/BetaSerpentine/
+
+ PMID: 34245246, GitHub link: https://github.com/Zhangxf-ccnu/chNet/
+
+ PMID: 32180801, GitHub link: https://github.com/CBIIT/LDlinkR/
+
+ PMID: 36000562, GitHub link: https://github.com/osita-sunday-nnyigide/Pras_Server/
+
+ PMID: 28158427, GitHub link: https://github.com/PNNL-Comp-Mass-Spec/LIQUID/
+
+ PMID: 30304492, GitHub link: https://github.com/debbiemarkslab/evcouplings/
+
+ PMID: 29028894, GitHub link: https://github.com/tparidae/AQUa/
+
+ PMID: 35441669, GitHub link: https://github.com/sheilagaynor/STAAR_workflow/
+
+ PMID: 32256520, GitHub link: https://github.com/biocorecrg/master_of_pores/
+
+ PMID: 26653327, GitHub link: https://github.com/cbielow/PTXQC/
+
+ PMID: 26819469, GitHub link: https://github.com/magnusdv/filtus/
+
+ PMID: 31819265, GitHub link: https://github.com/ruanjue/wtdbg2/
+
+ PMID: 34713468, GitHub link: https://github.com/migariane/Tutorial_Computational_Causal_Inference_Estimators/
+
+ PMID: 34249603, GitHub link: https://github.com/Murtadha44/covid-19-spread-risk/
+
+ PMID: 28837112, GitHub link: https://github.com/JerryYaoGl/BSEvaluationRemoteSceneIR/
+
+ PMID: 26381164, GitHub link: https://github.com/bbarker/FALCON/
+
+ PMID: 29036573, GitHub link: https://github.com/MICommunity/ComplexViewer/
+
+ PMID: 24890372, GitHub link: https://github.com/brunonevado/Pipeliner/
+
+ PMID: 21724594, GitHub link: https://github.com/brentp/methylcode/
+
+ PMID: 24564867, GitHub link: https://github.com/vlcc/HSA/
+
+ PMID: 36699348, GitHub link: https://github.com/SandraThieme/BiPredict/
+
+ PMID: 30052913, GitHub link: https://github.com/andrewGhazi/designMPRA/
+
+ PMID: 25788625, GitHub link: https://github.com/msproteomicstools/msproteomicstools/
+
+ PMID: 35263249, GitHub link: https://github.com/Ha0Tang/LGGAN/
+
+ PMID: 34342428, GitHub link: https://github.com/MolecularAI/aizynthfinder/
+
+ PMID: 30642251, GitHub link: https://github.com/TheJacksonLaboratory/Gopher/
+
+ PMID: 24564706, GitHub link: https://github.com/cbib/MIX/
+
+ PMID: 29340253, GitHub link: https://github.com/jzhangc/RBiomirGS/
+
+ PMID: 30859178, GitHub link: https://github.com/saorisakaue/GREP/
+
+ PMID: 35981063, GitHub link: https://github.com/AkonLau/DTRG/
+
+ PMID: 35536589, GitHub link: https://github.com/volkamerlab/kissim/
+
+ PMID: 35302164, GitHub link: https://github.com/xkmaxidian/scGDC/
+
+ PMID: 28383704, GitHub link: https://github.com/diriano/ploidyNGS/
+
+ PMID: 34143768, GitHub link: https://github.com/vincentprost/Zi-LN/
+
+ PMID: 33337144, GitHub link: https://github.com/insilichem/biometall/
+
+ PMID: 30481266, GitHub link: https://github.com/francescopappalardo/MAP3K8-Thyroid-Spheres-V-3.0/
+
+ PMID: 29040432, GitHub link: https://github.com/tsudalab/bpbi/
+
+ PMID: 31189086, GitHub link: https://github.com/SysBioInra/RBApy/
+
+ PMID: 28192537, GitHub link: https://github.com/GIST-CSBL/SELF-BLM/
+
+ PMID: 32687350, GitHub link: https://github.com/radifar/pyplif/
+
+ PMID: 34143749, GitHub link: https://github.com/wuc567/Pattern-Mining/tree/master/SCP-Miner/
+
+ PMID: 28950836, GitHub link: https://github.com/duoduoo/VCFtoTree_3.0.0/
+
+ PMID: 34647978, GitHub link: https://github.com/BIMIB-DISCo/PMCE/
+
+ PMID: 36182762, GitHub link: https://github.com/gu-yaowen/REDDA/
+
+ PMID: 28701181, GitHub link: https://github.com/dohalloran/fastQ_brew/
+
+ PMID: 30910724, GitHub link: https://github.com/MASILab/SLANTbrainSeg/
+
+ PMID: 32340964, GitHub link: https://github.com/Wangt-CN/VQG-GCN/
+
+ PMID: 33755553, GitHub link: https://github.com/SCUT-AILab/DCP/
+
+ PMID: 29891877, GitHub link: https://github.com/IMB-Computational-Genomics-Lab/eqtlOverlapper/
+
+ PMID: 35114401, GitHub link: https://github.com/Longwt123/MDL-CPI/
+
+ PMID: 30759217, GitHub link: https://github.com/scientificomputing/BRIDGE/
+
+ PMID: 26568632, GitHub link: https://github.com/baderzone/biopartsbuilder/
+
+ PMID: 32910174, GitHub link: https://github.com/lbroseus/TALC/
+
+ PMID: 35724288, GitHub link: https://github.com/lithium770/Unsupervised-Person-re-ID-with-Stochastic-Training-Strategy/
+
+ PMID: 35561159, GitHub link: https://github.com/leklab/mito_visualize/
+
+ PMID: 26568629, GitHub link: https://github.com/ypriverol/pIR/
+
+ PMID: 27888230, GitHub link: https://github.com/mgosink/ToxReporter/
+
+ PMID: 27307620, GitHub link: https://github.com/kuleshov/architect/
+
+ PMID: 36209437, GitHub link: https://github.com/zhangtian-yang/DeepLncPro/
+
+ PMID: 30247624, GitHub link: https://github.com/pmeysman/TCRclusteringPaper/
+
+ PMID: 34791067, GitHub link: https://github.com/cancerit/VaLiAnT/
+
+ PMID: 32016344, GitHub link: https://github.com/lczech/genesis/
+
+ PMID: 35025988, GitHub link: https://github.com/qianfeng2/detREC_program/
+
+ PMID: 27812418, GitHub link: https://github.com/akloetgen/PARA-suite/
+
+ PMID: 31931870, GitHub link: https://github.com/bio-ontology-research-group/ontology-extension/
+
+ PMID: 33983397, GitHub link: https://github.com/salzberg-lab/bolotie/
+
+ PMID: 32005130, GitHub link: https://github.com/tzok/eltetrado/
+
+ PMID: 36258137, GitHub link: https://github.com/rochoa85/mPARCE/
+
+ PMID: 35104320, GitHub link: https://github.com/jas-preet/SPOT-Contact-Single/
+
+ PMID: 27318202, GitHub link: https://github.com/hacone/AgIn/
+
+ PMID: 33090994, GitHub link: https://github.com/naim-panjwani/LocusFocus/
+
+ PMID: 33575620, GitHub link: https://github.com/cuiyingbeicheng/Foldseq/
+
+ PMID: 28035032, GitHub link: https://github.com/suyashss/variant_validation/
+
+ PMID: 34601580, GitHub link: https://github.com/TNTurnerLab/ACES/
+
+ PMID: 33760730, GitHub link: https://github.com/XinshaoAmosWang/Ranked-List-Loss-for-DML/
+
+ PMID: 29228186, GitHub link: https://github.com/kosticlab/aether/
+
+ PMID: 31246951, GitHub link: https://github.com/Craven-Biostat-Lab/subnetwork_inference/
+
+ PMID: 26587054, GitHub link: https://github.com/kantale/PyPedia_server/
+
+ PMID: 27153695, GitHub link: https://github.com/emblsaxs/saspy/
+
+ PMID: 30203001, GitHub link: https://github.com/LuigiAugugliaro/cglasso/
+
+ PMID: 35695777, GitHub link: https://github.com/computational-biology/metbp/
+
+ PMID: 35015814, GitHub link: https://github.com/PYangLab/SPSs/
+
+ PMID: 30898084, GitHub link: https://github.com/waltercostamb/SSS-test/
+
+ PMID: 29267851, GitHub link: https://github.com/jomayer/SMuRF/
+
+ PMID: 36417732, GitHub link: https://github.com/yuanyao366/ts-cam-extension/
+
+ PMID: 28099991, GitHub link: https://github.com/heejungshim/BayesCAT/
+
+ PMID: 35443610, GitHub link: https://github.com/biodlab/RODAN/
+
+ PMID: 35507624, GitHub link: https://github.com/shiming-chen/GNDAN/
+
+ PMID: 26732662, GitHub link: https://github.com/kbseah/genome-bin-tools/
+
+ PMID: 36088285, GitHub link: https://github.com/baranwa2/Struct2Graph/
+
+ PMID: 31418770, GitHub link: https://github.com/irilenia/baerhunter/
+
+ PMID: 34274894, GitHub link: https://github.com/v4yuezi/AGTAR/
+
+ PMID: 36435056, GitHub link: https://github.com/LiTianYu6/NerveStitcher/
+
+ PMID: 32511346, GitHub link: https://github.com/tbwxmu/2019-nCov/
+
+ PMID: 33787835, GitHub link: https://github.com/biogramming/AASRA/
+
+ PMID: 34096999, GitHub link: https://github.com/s6juncheng/BERTMHC/
+
+ PMID: 31352338, GitHub link: https://github.com/198808xc/OrganSegRSTN/
+
+ PMID: 35196230, GitHub link: https://github.com/Forest-art/LSV-LP/
+
+ PMID: 32561532, GitHub link: https://github.com/Michorlab/aceso/
+
+ PMID: 34403338, GitHub link: https://github.com/HDCVLab/Deep-Dense-Multi-scale-Network/
+
+ PMID: 31824778, GitHub link: https://github.com/karakulahg/TEffectR/
+
+ PMID: 28703583, GitHub link: https://github.com/PPKE-Bioinf/consensx.itk.ppke/Error with URL: https://api.github.com/repos/PPKE-Bioinf/consensx.itk.ppke Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 32568373, GitHub link: https://github.com/sjthursby/CandiMeth/
+
+ PMID: 34310328, GitHub link: https://github.com/wzhangwhu/NMFLRR_code/Error with URL: https://api.github.com/repos/wzhangwhu/NMFLRR_code Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 27781170, GitHub link: https://github.com/torognes/vsearch/
+
+ PMID: 32814973, GitHub link: https://github.com/edensunyidan/BiTSC/
+
+ PMID: 34118871, GitHub link: https://github.com/flosalbizziae/kataegis/
+
+ PMID: 35786716, GitHub link: https://github.com/MariaOsmala/ChromDMM/
+
+ PMID: 35504312, GitHub link: https://github.com/MPS7/ML_coag/
+
+ PMID: 30701193, GitHub link: https://github.com/biocore/calour/
+
+ PMID: 36318663, GitHub link: https://github.com/raghavagps/FluSPred/
+
+ PMID: 28566690, GitHub link: https://github.com/bioinfo-ut/GenomeTester4/
+
+ PMID: 31504175, GitHub link: https://github.com/priyamdas2/NExUS/
+
+ PMID: 37082512, GitHub link: https://github.com/JiuqingDong/PlantDiseaseDetection_Yolov5/
+
+ PMID: 34484306, GitHub link: https://github.com/Vicky123wzy/RetroScan/
+
+ PMID: 31626284, GitHub link: https://github.com/JianingXi/DriverSub/
+
+ PMID: 31686064, GitHub link: https://github.com/bryanze/NCPHLDA/
+
+ PMID: 31805043, GitHub link: https://github.com/jonaspatronjp/GWIZ-Rscript/
+
+ PMID: 34103501, GitHub link: https://github.com/comprna/METEORE/
+
+ PMID: 36376761, GitHub link: https://github.com/qd29/SCIP/
+
+ PMID: 36325073, GitHub link: https://github.com/jiang-junyao/IReNA/
+
+ PMID: 32879935, GitHub link: https://github.com/VeraLiconaResearchGroup/OCSANA-Plus_SourceCode/
+
+ PMID: 35502843, GitHub link: https://github.com/fmblab/DeepTESR/
+
+ PMID: 32797179, GitHub link: https://github.com/stamakro/GCN-for-Structure-and-Function/
+
+ PMID: 33398265, GitHub link: https://github.com/LinearFold/LinearSampling/
+
+ PMID: 33378767, GitHub link: https://github.com/yongzhuang/DeepSVFilter/
+
+ PMID: 36474089, GitHub link: https://github.com/mlyg/DicePlusPlus/
+
+ PMID: 37015437, GitHub link: https://github.com/buptantEEG/BEATS/
+
+ PMID: 32871105, GitHub link: https://github.com/PayamDiba/SERGIO/
+
+ PMID: 30258279, GitHub link: https://github.com/cpolano/phytoassembly/
+
+ PMID: 30903685, GitHub link: https://github.com/smirarab/ASTRAL/tree/MP/
+
+ PMID: 37011258, GitHub link: https://github.com/lalonderodney/INN-Inflated-Neural-Nets/
+
+ PMID: 32241303, GitHub link: https://github.com/chenlabgccri/CancerTypePrediction/
+
+ PMID: 31886476, GitHub link: https://github.com/saezlab/Omnipath_Cytoscape/
+
+ PMID: 28968723, GitHub link: https://github.com/biocryst/IF/
+
+ PMID: 29735690, GitHub link: https://github.com/Laura-Gomez/COBASI/
+
+ PMID: 27318200, GitHub link: https://github.com/Jianwei-Zhang/LIMS/
+
+ PMID: 28407137, GitHub link: https://github.com/alexviiia/dpuc2/
+
+ PMID: 22556365, GitHub link: https://github.com/BEETL/BEETL/
+
+ PMID: 32968522, GitHub link: https://github.com/nwd2918/MRS-voxel-plot/
+
+ PMID: 33107913, GitHub link: https://github.com/mkirsche/sapling/
+
+ PMID: 30010719, GitHub link: https://github.com/saralinker/brainImageR/
+
+ PMID: 29722807, GitHub link: https://github.com/sRNAworkbenchuea/UEA_sRNA_Workbench/
+
+ PMID: 33270834, GitHub link: https://github.com/yjthu/obaDIA/
+
+ PMID: 27663500, GitHub link: https://github.com/mnori/foldatlas/
+
+ PMID: 34187495, GitHub link: https://github.com/taborzbislaw/DeepBeam/
+
+ PMID: 36384050, GitHub link: https://github.com/enveda/kgem-ensembles-in-drug-discovery/
+
+ PMID: 25690798, GitHub link: https://github.com/DrTrevorBell/SmallGenomeTools/
+
+ PMID: 28968408, GitHub link: https://github.com/Shamir-Lab/DOCKS/
+
+ PMID: 30932845, GitHub link: https://github.com/xzenglab/DCF/
+
+ PMID: 31934499, GitHub link: https://github.com/SengerLab/RametrixPROToolbox/
+
+ PMID: 31225863, GitHub link: https://github.com/MetaSeek-Sequencing-Data-Discovery/metaseek/
+
+ PMID: 31229658, GitHub link: https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/meta-analysis/Ngo2019_AuthorTopic/
+
+ PMID: 32054449, GitHub link: https://github.com/gkumar09/iSeqQC/
+
+ PMID: 31688914, GitHub link: https://github.com/compbiolabucf/NetML/
+
+ PMID: 34471500, GitHub link: https://github.com/shang-qian/SCSit/
+
+ PMID: 29308454, GitHub link: https://github.com/bigdatagenomics/mango/
+
+ PMID: 33048771, GitHub link: https://github.com/sseung0703/KD_methods_with_TF/
+
+ PMID: 34920707, GitHub link: https://github.com/UCDenver-ccp/Concept-Recognition-as-Translation/
+
+ PMID: 30013048, GitHub link: https://github.com/Illumina/strelka/
+
+ PMID: 35814290, GitHub link: https://github.com/WormBase/scdefg/
+
+ PMID: 32995502, GitHub link: https://github.com/ramzan1990/ACRE/
+
+ PMID: 30202999, GitHub link: https://github.com/shiauck/CATANA/
+
+ PMID: 29322912, GitHub link: https://github.com/shenay/CellNomenclatureStudy/
+
+ PMID: 32422654, GitHub link: https://github.com/hyhRise/P-SSN/
+
+ PMID: 27587663, GitHub link: https://github.com/YakhiniGroup/MULSEA/
+
+ PMID: 29028961, GitHub link: https://github.com/csoneson/countsimQC/
+
+ PMID: 34145888, GitHub link: https://github.com/d-que/navia/
+
+ PMID: 33774659, GitHub link: https://github.com/SGDDNB/ShinyCell/
+
+ PMID: 33251081, GitHub link: https://github.com/HuidongXie/DEER/
+
+ PMID: 28968761, GitHub link: https://github.com/chhylp123/FMtree/
+
+ PMID: 34014317, GitHub link: https://github.com/ay-lab/ExTraMapper/
+
+ PMID: 32830452, GitHub link: https://github.com/FBarthels/BANDIT/
+
+ PMID: 32167528, GitHub link: https://github.com/Vini2/GraphBin/
+
+ PMID: 29950018, GitHub link: https://github.com/manuellafond/HyPPO/
+
+ PMID: 30101303, GitHub link: https://github.com/delehef/asgart/
+
+ PMID: 29410279, GitHub link: https://github.com/StructureFold2/StructureFold2/
+
+ PMID: 31347658, GitHub link: https://github.com/capslockwizard/drsip/
+
+ PMID: 34343744, GitHub link: https://github.com/fengduqianhe/ADComparative/
+
+ PMID: 31481014, GitHub link: https://github.com/philipmorrisintl/NPA/
+
+ PMID: 34398217, GitHub link: https://github.com/ailabstw/ezGeno/
+
+ PMID: 29385408, GitHub link: https://github.com/xu1912/EPSLASSO/
+
+ PMID: 25344498, GitHub link: https://github.com/danmaclean/2kplus2/
+
+ PMID: 30504886, GitHub link: https://github.com/YosefLab/scVI/
+
+ PMID: 28961782, GitHub link: https://github.com/muellan/metacache/
+
+ PMID: 25788628, GitHub link: https://github.com/prpatil/testsetbias/
+
+ PMID: 34547212, GitHub link: https://github.com/michaelcarr-stats/FUCCI/
+
+ PMID: 30799504, GitHub link: https://github.com/KirillKryukov/naf/
+
+ PMID: 34192308, GitHub link: https://github.com/BojarLab/glycowork/
+
+ PMID: 36442274, GitHub link: https://github.com/neulxlx/URAL/
+
+ PMID: 35947570, GitHub link: https://github.com/xlliu7/TadTR/
+
+ PMID: 32122302, GitHub link: https://github.com/yuifu/millefy/
+
+ PMID: 33676405, GitHub link: https://github.com/komorowskilab/R.ROSETTA/
+
+ PMID: 36425113, GitHub link: https://github.com/Janga-Lab/DR-detector/
+
+ PMID: 32131723, GitHub link: https://github.com/galaxyproject/dunovo/
+
+ PMID: 36103439, GitHub link: https://github.com/HopLee6/VSCrowd/
+
+ PMID: 26508755, GitHub link: https://github.com/boutroslab/caRpools/
+
+ PMID: 33156786, GitHub link: https://github.com/vios-s/multimodal_segmentation/
+
+ PMID: 29474529, GitHub link: https://github.com/LyonsLab/coge/
+
+ PMID: 31225861, GitHub link: https://github.com/refresh-bio/GTShark/
+
+ PMID: 34416914, GitHub link: https://github.com/biocorecrg/ExOrthist/
+
+ PMID: 33417578, GitHub link: https://github.com/jyh-learning/LAM/
+
+ PMID: 31828080, GitHub link: https://github.com/SVA-SE/AHSURED/wiki/
+
+ PMID: 28402386, GitHub link: https://github.com/seasky002002/Strandscript/
+
+ PMID: 34855126, GitHub link: https://github.com/danifranco/EM_Image_Segmentation/
+
+ PMID: 36326438, GitHub link: https://github.com/BiOmicsLab/TransImbAMP/
+
+ PMID: 33070184, GitHub link: https://github.com/AndresMCB/PTC/
+
+ PMID: 28391205, GitHub link: https://github.com/ekffar/LMMO/
+
+ PMID: 30304378, GitHub link: https://github.com/USTC-HIlab/NRL2DRP/
+
+ PMID: 33743088, GitHub link: https://github.com/wang-jin-mathbio/Jin2021/
+
+ PMID: 35780383, GitHub link: https://github.com/datngu/LmTag/
+
+ PMID: 36247573, GitHub link: https://github.com/228384274/improved-yolov5/
+
+ PMID: 30601936, GitHub link: https://github.com/USTCHIlab/DeepPhos/Error with URL: https://api.github.com/repos/USTCHIlab/DeepPhos Status code: 404 Answer: {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/reference/repos#get-a-repository'}
+
+
+ PMID: 33471061, GitHub link: https://github.com/ncbi-nlp/PhenoTagger/
+
+ PMID: 36228335, GitHub link: https://github.com/mesunhlf/DEFEAT/
+
+ PMID: 31441995, GitHub link: https://github.com/inpacdb/PepVis/
+
+ PMID: 37015641, GitHub link: https://github.com/yun-liu/MiniSeg/
+
+ PMID: 25725495, GitHub link: https://github.com/sebastianduchene/clockstarg/
+
+ PMID: 32025654, GitHub link: https://github.com/ufbmi/onefl-deduper/
+
+ PMID: 29028986, GitHub link: https://github.com/sunnyeesl/BigLD/
+
+ PMID: 36688121, GitHub link: https://github.com/hammoudiproject/SuperpixelGridMasks/
+
+ PMID: 33381828, GitHub link: https://github.com/QData/FastSK/
+
+ PMID: 33538292, GitHub link: https://github.com/BGI-Qingdao/HAST/
+
+ PMID: 34799151, GitHub link: https://github.com/DKMS/hapl-o-Mat/
+
+ PMID: 34663998, GitHub link: https://github.com/theavicaster/covid-cade-ensemble/
+
+ PMID: 25232314, GitHub link: https://github.com/inincs/pyNCS/
+
+ PMID: 30957837, GitHub link: https://github.com/nmquijada/tormes/
+
+ PMID: 34038362, GitHub link: https://github.com/BeierZhu/Sturcture-Coherency-Face-Alignment/
+
+ PMID: 33889181, GitHub link: https://github.com/mrcuizhe/svmATAC/
+
+ PMID: 33667225, GitHub link: https://github.com/cguyeux/CRISPRbuilder-TB/
+
+ PMID: 28130230, GitHub link: https://github.com/bfosso/MetaShot/
+
+ PMID: 28166716, GitHub link: https://github.com/felixfan/PyHLA/
+
+ PMID: 34563256, GitHub link: https://github.com/chemosim-lab/ProLIF/
+
+ PMID: 28334396, GitHub link: https://github.com/zerodel/Sailfish-cir/
+
+ PMID: 31511888, GitHub link: https://github.com/m4merg/EphaGen/
+
+ PMID: 33827420, GitHub link: https://github.com/kunert/permute-counts/
+
+ PMID: 36402891, GitHub link: https://github.com/malikyousef/GediNET/
+
+ PMID: 33126246, GitHub link: https://github.com/dyf0631/AAE_FOR_KG/
+
+ PMID: 33381821, GitHub link: https://github.com/biovault/SCHNELpy/
+
+ PMID: 35380614, GitHub link: https://github.com/Usos/SPCS/
+
+ PMID: 30563849, GitHub link: https://github.com/broadinstitute/ssGSEA2.0/
+
+ PMID: 33556195, GitHub link: https://github.com/ispectrongit/iSPECTRON/
+
+ PMID: 34252920, GitHub link: https://github.com/Singh-Lab/TandemDuplications/
+
+ PMID: 26597515, GitHub link: https://github.com/BartBroeckx/Mendelian/
+
+ PMID: 31329826, GitHub link: https://github.com/deprekate/PHANOTATE/
+
+ PMID: 30394573, GitHub link: https://github.com/SeiberlichLab/Abdominal_MR_Phantom/
+
+ PMID: 26855363, GitHub link: https://github.com/thomasvangurp/epiGBS/
+
+ PMID: 30032270, GitHub link: https://github.com/krumsieklab/MoDentify/
+
+ PMID: 34814627, GitHub link: https://github.com/lab319/gwas_filter/
+
+ PMID: 36481459, GitHub link: https://github.com/CMACH508/IA-FaceS/
+
+ PMID: 30358816, GitHub link: https://github.com/mrborges23/delta_statistic/
+
+ PMID: 32272889, GitHub link: https://github.com/Guannan-Wang/GOMCL/
+
+ PMID: 30940197, GitHub link: https://github.com/jlugomar/longitudinal_microbiome_analysis_public/
+
+ PMID: 33543748, GitHub link: https://github.com/sykim122/iDRW/
+
+ PMID: 31248401, GitHub link: https://github.com/BauerLab/VARSCOT/
+
+ PMID: 35758802, GitHub link: https://github.com/bio-ontology-research-group/deepgozero/
+
+ PMID: 29036674, GitHub link: https://github.com/SystemsBiologyOfJianghanUniversity/miRvial/
+
+ PMID: 32821906, GitHub link: https://github.com/solinvicta/geneTeller/
+
+ PMID: 31882996, GitHub link: https://github.com/ncbi/JUDI/
+
+ PMID: 33634313, GitHub link: https://github.com/linDing-group/Deep-loop/
+
+ PMID: 33367504, GitHub link: https://github.com/networkbiolab/atlas/
+
+ PMID: 34323970, GitHub link: https://github.com/CMRI-ProCan/CRANE/
+
+ PMID: 36373132, GitHub link: https://github.com/Ppayel/BreastLocalSearchSSD/
+
+ PMID: 35946527, GitHub link: https://github.com/wu-lab-egio/EGIO/
+
+ PMID: 35258549, GitHub link: https://github.com/HillLab/SomaticSiMu/
+
+ PMID: 35134110, GitHub link: https://github.com/DaehwanKimLab/seqwho/
+
+ PMID: 34044757, GitHub link: https://github.com/eggleader/cSupB/
+
+ PMID: 34252921, GitHub link: https://github.com/AEVO-lab/EndoRex/
+
+ PMID: 34335702, GitHub link: https://github.com/zzwch/crosslink/
+
+ PMID: 35105355, GitHub link: https://github.com/tsteelejohnson91/DEGAS/
+
+ PMID: 31443728, GitHub link: https://github.com/qzhang314/DNAm-based-age-predictor/
+
+ PMID: 25107872, GitHub link: https://github.com/lh3/ropebwt2/
+
+ PMID: 28158419, GitHub link: https://github.com/zhangjiaobxy/nssrfBinary/
+
+ PMID: 27942385, GitHub link: https://github.com/dib-lab/khmer/
+
+ PMID: 31639043, GitHub link: https://github.com/rongjiewang/DeepDNA/
+
+ PMID: 30202885, GitHub link: https://github.com/XuesiDong/TOBMI/
+
+ PMID: 25885358, GitHub link: https://github.com/ruricaru/YOC/
+
+ PMID: 30999862, GitHub link: https://github.com/YosvanyLopez/HseSUMO/
+
+ PMID: 30452539, GitHub link: https://github.com/carinerey/caars/
+
+ PMID: 34487139, GitHub link: https://github.com/Swart-lab/bleties/
+
+ PMID: 34694364, GitHub link: https://github.com/heartsh/consalifold/
+
+ PMID: 36316646, GitHub link: https://github.com/arun96/sketching/
+
+ PMID: 30903689, GitHub link: https://github.com/osenan/cliqueMS/
+
+ PMID: 32369563, GitHub link: https://github.com/ZexuanSun/DTF-Drug-Synergy/
+
+ PMID: 35552372, GitHub link: https://github.com/pangenome/odgi/
+
+ PMID: 25818563, GitHub link: https://github.com/bjpop/HiTIME/
+
+ PMID: 33693477, GitHub link: https://github.com/fhlsjs/superdelta2/
+
+ PMID: 33524009, GitHub link: https://github.com/filipspl/AnnapuRNA/
+
+ PMID: 28968634, GitHub link: https://github.com/henryxushi/SparseIso/
+
+ PMID: 35838124, GitHub link: https://github.com/JJZ-code/GSLRDA/
+
+ PMID: 24501098, GitHub link: https://github.com/Eitan177/targetSeqView/
+
+ PMID: 33048110, GitHub link: https://github.com/zty2009/GPDNN-for-Identify-ing-Disease-related-Metabolites/
+
+ PMID: 30773592, GitHub link: https://github.com/HelloYiHan/DriverML/
+
+ PMID: 32658740, GitHub link: https://github.com/Perceptron21/CovXNet/
+
+ PMID: 28961965, GitHub link: https://github.com/mdcao/japsa/
+
+ PMID: 34541588, GitHub link: https://github.com/bionlproc/text-summ-for-doc-retrieval/
+
+ PMID: 28991750, GitHub link: https://github.com/ParBLiSS/kmerind/
+
+ PMID: 32118530, GitHub link: https://github.com/katholt/Kaptive/
+
+ PMID: 31218364, GitHub link: https://github.com/BaderLab/saber/
+
+ PMID: 30824917, GitHub link: https://github.com/Kzra/VHost-Classifier/
+
+ PMID: 32407457, GitHub link: https://github.com/NaziaFatima/iSOM_GSN/
+
+ PMID: 33257863, GitHub link: https://github.com/skovaka/UNCALLED/
+
+ PMID: 31089211, GitHub link: https://github.com/cansyl/DEEPred/
+
+ PMID: 34089018, GitHub link: https://github.com/agombolay/ribose-map/
+
+ PMID: 31067238, GitHub link: https://github.com/DSIMB/ANN-Glycolysis-Flux-Prediction/
+
+ PMID: 31176619, GitHub link: https://github.com/gifford-lab/PUFFIN/
+
+ PMID: 30984370, GitHub link: https://github.com/Modulated-Subgraph-Finder/MSF/
+
+ PMID: 33554117, GitHub link: https://github.com/BioinformaticsToolsmith/Identity/
+
+ PMID: 31783894, GitHub link: https://github.com/stephaniehicks/methylCC/
+
+ PMID: 32980970, GitHub link: https://github.com/msharrock/deepbleed/
+
+ PMID: 28541403, GitHub link: https://github.com/seqan/flexbar/
+
+ PMID: 34447942, GitHub link: https://github.com/DataIntellSystLab/KARGA/
+
+ PMID: 34498685, GitHub link: https://github.com/shufangwu/DeePhage/
+
+ PMID: 34060239, GitHub link: https://github.com/TuomoKalliokoski/HASTEN/
+
+ PMID: 35484318, GitHub link: https://github.com/Tanoy004/Emotion-recognition-through-CNN/
+
+ PMID: 33978744, GitHub link: https://github.com/Rostlab/FunFamsClustering/
+
+ PMID: 29868763, GitHub link: https://github.com/simonwhelan/prequal/
+
+ PMID: 32657393, GitHub link: https://github.com/CMUSchwartzLab/RAD/
+
+ PMID: 32845284, GitHub link: https://github.com/rlmcl/rescan/
+
+ PMID: 26840125, GitHub link: https://github.com/robsyme/Parastagonospora_nodorum_SN15/
+
+ PMID: 30261018, GitHub link: https://github.com/MalteWillmes/IsoFishR/
+
+ PMID: 29800273, GitHub link: https://github.com/deWitLab/peakC/
+
+ PMID: 35758777, GitHub link: https://github.com/CMUSchwartzLab/TUSV-ext/
+
+ PMID: 29538618, GitHub link: https://github.com/erasmus-center-for-biomics/Nimbus/
+
+ PMID: 26136847, GitHub link: https://github.com/jasonsahl/wgfast/
+
+ PMID: 32657366, GitHub link: https://github.com/yufengwudcs/GTmix/
+
+ PMID: 33471121, GitHub link: https://github.com/smirarab/sepp/blob/tipp2/README.TIPP.md/
+
+ PMID: 31598637, GitHub link: https://github.com/gao-lab/ePooling/
+
+ PMID: 34252949, GitHub link: https://github.com/ablab/stringdecomposer/tree/ismb2021/
+
+ PMID: 35339665, GitHub link: https://github.com/martalovino/ChimerDriver/
+
+ PMID: 36070259, GitHub link: https://github.com/ChaoqunZheng/ESMH/
+
+ PMID: 31913435, GitHub link: https://github.com/YaluWen/Uomic/
+
+ PMID: 30475995, GitHub link: https://github.com/MattCzajkowski/GenCoF/

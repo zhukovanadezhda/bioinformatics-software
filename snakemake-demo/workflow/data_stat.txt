@@ -1,0 +1,9 @@
+Total number of articles in PubMed with 'github.com' query : 10858
+Articles after removing the ones without the publication date : 10596
+Articles after removing the ones published in 2023 : 10580
+Articles after removing the ones without GitHub link : 10549
+Articles after removing the ones with the wrong GitHub link (no repository name) : 10334
+Articles after removing the GitHub forks : 10029
+Articles after removing the ones with the repository deleted or wrong link (unable to access with GitHub API): 9851
+Not in SoftWH : 3412
+In SoftWH : 6438

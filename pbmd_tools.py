@@ -1,5 +1,6 @@
 import re
 import requests
+from tqdm import tqdm
 import xmltodict
 import dotenv
 import os
@@ -27,6 +28,26 @@ def read_tokens():
 ############################################################################################
 ####################################----PUBMED----##########################################
 ############################################################################################
+
+def get_forges_stat(queries, PMIDs):
+    db = "pubmed"
+    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    retmode = "json"
+    stats = {}
+    for query in tqdm(queries):
+        nb = 0 #number of articles for this query
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=15000&term={query}"
+        response = requests.get(queryLinkSearch)
+        pubmed_json = response.json()
+        for id in pubmed_json["esearchresult"]["idlist"]:
+            #checking if there are any dublicates in PubMed IDs (it happens because of the PubDate that can be EPubDate or normal)
+            if id not in PMIDs:
+                nb += 1
+                PMIDs.append(id)
+        #query[38:42] - it is the year of this query
+        stats[query[-33:-29]] = nb 
+    return stats
+
 
 def get_summary(PMID, access_token, log_file):
     """Obtaining information about an article published in PubMed using the PubMed API.

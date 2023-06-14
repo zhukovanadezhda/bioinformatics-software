@@ -96,4 +96,4 @@ rule make_figures:
     log:
         "fig_info.log"
     shell:
-        "jupyter nbconvert --to notebook --execute {input.notebook} | tee {log}"
+        "jupyter nbconvert --to html --execute {input.notebook} | tee {log}"

@@ -83,15 +83,19 @@ def get_abstract_from_summary(summary,  log_file):
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
-        if isinstance(abstract_raw, list):
+        if isinstance(abstract_raw, str):
+            abstract = abstract_raw
+        elif isinstance(abstract_raw, list):
             abstract = ""
             for d in abstract_raw:
                 abstract += d['#text'] + " " 
-        if isinstance(abstract_raw, dict):
-            abstract = ""
-            abstract += abstract_raw['#text'] + " "
         else:
-            abstract = article['MedlineCitation']['Article']['Abstract']['AbstractText']  
+            try: 
+                abstract = ""
+                abstract += abstract_raw['#text'] + " "
+            except:
+                for d in abstract_raw:
+                    abstract += abstract_raw[d] + " " 
 
         return abstract
     except:
@@ -306,6 +310,27 @@ def get_link_from_abstract(text):
         link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
 
     return link_with_point       
+
+def get_gitlab_link(text):
+
+    if text == None:
+        return None
+    
+    rgx = "[^\n /,\):;'\+}>•]*gitlab\.[^\n ,\):;'\+}>•]*"
+       
+    if len(re.findall(rgx, text, re.IGNORECASE)) > 1:
+        link_with_point  = re.findall(rgx, text, re.IGNORECASE)[0]
+    else:
+        link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
+
+    return link_with_point   
+
+def is_gitlabcom(link):
+    
+    if "gitlab.com" in link:
+        return 1
+    else:
+        return 0
 
 
 def clean_link(link):

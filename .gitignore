@@ -4,5 +4,9 @@
 # Byte-compiled Python files
 __pycache__/
 
+# Data files
+data/*.json
+
 # Jupyter notebook checkpoints
 .ipynb_checkpoints
+.snakemake

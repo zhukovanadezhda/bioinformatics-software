@@ -1,5 +1,6 @@
 import re
 import requests
+from tqdm import tqdm
 import xmltodict
 import dotenv
 import os
@@ -27,6 +28,26 @@ def read_tokens():
 ############################################################################################
 ####################################----PUBMED----##########################################
 ############################################################################################
+
+def get_forges_stat(queries, PMIDs):
+    db = "pubmed"
+    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    retmode = "json"
+    stats = {}
+    for query in tqdm(queries):
+        nb = 0 #number of articles for this query
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=15000&term={query}"
+        response = requests.get(queryLinkSearch)
+        pubmed_json = response.json()
+        for id in pubmed_json["esearchresult"]["idlist"]:
+            #checking if there are any dublicates in PubMed IDs (it happens because of the PubDate that can be EPubDate or normal)
+            if id not in PMIDs:
+                nb += 1
+                PMIDs.append(id)
+        #query[38:42] - it is the year of this query
+        stats[query[-33:-29]] = nb 
+    return stats
+
 
 def get_summary(PMID, access_token, log_file):
     """Obtaining information about an article published in PubMed using the PubMed API.
@@ -83,15 +104,19 @@ def get_abstract_from_summary(summary,  log_file):
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
-        if isinstance(abstract_raw, list):
+        if isinstance(abstract_raw, str):
+            abstract = abstract_raw
+        elif isinstance(abstract_raw, list):
             abstract = ""
             for d in abstract_raw:
                 abstract += d['#text'] + " " 
-        if isinstance(abstract_raw, dict):
-            abstract = ""
-            abstract += abstract_raw['#text'] + " "
         else:
-            abstract = article['MedlineCitation']['Article']['Abstract']['AbstractText']  
+            try: 
+                abstract = ""
+                abstract += abstract_raw['#text'] + " "
+            except:
+                for d in abstract_raw:
+                    abstract += abstract_raw[d] + " " 
 
         return abstract
     except:
@@ -306,6 +331,27 @@ def get_link_from_abstract(text):
         link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
 
     return link_with_point       
+
+def get_gitlab_link(text):
+
+    if text == None:
+        return None
+    
+    rgx = "[^\n /,\):;'\+}>•]*gitlab\.[^\n ,\):;'\+}>•]*"
+       
+    if len(re.findall(rgx, text, re.IGNORECASE)) > 1:
+        link_with_point  = re.findall(rgx, text, re.IGNORECASE)[0]
+    else:
+        link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
+
+    return link_with_point   
+
+def is_gitlabcom(link):
+    
+    if "gitlab.com" in link:
+        return 1
+    else:
+        return 0
 
 
 def clean_link(link):

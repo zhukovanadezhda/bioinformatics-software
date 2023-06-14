@@ -5,8 +5,16 @@
 __pycache__/
 
 # Data files
-data/*.json
+*.json
+*.png
+*.txt
+*.csv
+*.tsv
+*.pdf
+*.log
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints
+
+
 .snakemake

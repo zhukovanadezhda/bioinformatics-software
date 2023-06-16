@@ -46,7 +46,7 @@ conda deactivate
 ```
 
 
-
+# Directory structure:
 ```
 ├── binder
 │   └── environment.yml

@@ -19,7 +19,7 @@ def read_tokens():
         Tokens.
         
     """
-    dotenv.load_dotenv(".env")
+    dotenv.load_dotenv("../.env")
     if "GITHUB_TOKEN" not in os.environ:
         sys.exit("Cannot find Github token")
     if "PUBMED_TOKEN" not in os.environ:
@@ -406,6 +406,23 @@ def clean_link(link):
 ############################################################################################
 ####################################----GITHUB----##########################################
 ############################################################################################
+
+def get_last_commit_files(owner, repo, access_token):
+    headers = {'Authorization': f"Token {access_token}"}   
+    url = f'https://api.github.com/repos/{owner}/{repo}/commits'
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    if response.status_code == 200:
+        if len(data) > 0:
+            last_commit_sha = data[0]['sha']
+            files_url = f'{url}/{last_commit_sha}'
+            files_response = requests.get(files_url)
+            files_data = files_response.json()
+            if files_response.status_code == 200:
+                files_changed = [file['filename'] for file in files_data['files']]
+                return files_changed
+        
+    return None
 
 def get_owner_from_link(link):
     """

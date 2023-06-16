@@ -12,6 +12,7 @@ __pycache__/
 *.tsv
 *.pdf
 *.log
+*.xlsx
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints

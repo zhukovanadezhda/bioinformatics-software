@@ -44,3 +44,28 @@ To deactivate an active environment, use
 ```
 conda deactivate
 ```
+
+
+
+```
+├── binder
+│   └── environment.yml
+├── data
+│   ├── images
+│   └── logs
+├── notebooks
+│   ├── analysis.ipynb
+│   ├── interactive_graph.ipynb
+│   ├── other_stats.ipynb
+│   └── pubmed_api.ipynb
+├── scripts
+│   ├── create_forges_stat.py
+│   ├── get_info_gh.py
+│   ├── get_info_pm.py
+│   ├── get_info_swh.py
+│   ├── get_links.py
+│   └── pbmd_tools.py
+├── LICENSE
+├── README.md
+└── Snakefile
+```

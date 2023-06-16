@@ -11,15 +11,9 @@ import sys
 ############################################################################################
 
 def read_tokens():
-    """Read tokens from .env file.
-    
-    Returns
-    -------
-    pub, git : str
-        Tokens.
-        
+    """Read tokens from .env file.   
     """
-    dotenv.load_dotenv("../.env")
+    dotenv.load_dotenv(".env")
     if "GITHUB_TOKEN" not in os.environ:
         sys.exit("Cannot find Github token")
     if "PUBMED_TOKEN" not in os.environ:
@@ -47,6 +41,19 @@ def get_forges_stat(queries, PMIDs):
         #query[38:42] - it is the year of this query
         stats[query[-33:-29]] = nb 
     return stats
+
+def is_software(PMID, access_token, log_file):
+    tags = []
+    dict = pbmd.get_summary(PMID, access_token, log_file)['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['MeshHeadingList']['MeshHeading']
+    try:
+        tags.append(dict['DescriptorName']['#text'])
+    except:
+        for i in dict:
+            tags.append(i['DescriptorName']['#text'])
+    if 'Software' in tags:
+        return 1
+    else:
+        return 0
 
 
 def get_summary(PMID, access_token, log_file):

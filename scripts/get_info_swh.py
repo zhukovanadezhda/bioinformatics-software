@@ -1,21 +1,9 @@
-from datetime import datetime
-import json
-import re
-import time
-
-import dotenv
-import matplotlib.pyplot as plt
-import numpy as np
-import os
 import pandas as pd
 from tqdm import tqdm
-import requests
-import warnings
-import xmltodict
 
 import pbmd_tools as pbmd
 
-df = pd.read_csv('articles_ghinfo.tsv', sep='\t')
+df = pd.read_csv('data/articles_ghinfo.tsv', sep='\t')
 PMIDs = df['PMID'][df['GitHub_owner'].notna()].to_list()
 
 for PMID in tqdm(PMIDs):
@@ -33,4 +21,4 @@ for PMID in tqdm(PMIDs):
     df.loc[idx, "In_SoftWH"] = pbmd.is_in_softwh(info)
     df.loc[idx, "Archived"] = pbmd.get_date_archived(info)
     
-df.to_csv('articles_swhinfo.tsv', sep='\t', index=False)
+df.to_csv('data/articles_swhinfo.tsv', sep='\t', index=False)

@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 import pbmd_tools as pbmd
 
-pbmd.read_tokens()
+pbmd.read_tokens(".env")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 PUBMED_TOKEN = os.environ.get("PUBMED_TOKEN")
 

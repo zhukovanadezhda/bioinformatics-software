@@ -10,10 +10,10 @@ import sys
 #################################----TECHNICAL----##########################################
 ############################################################################################
 
-def read_tokens():
+def read_tokens(path):
     """Read tokens from .env file.   
     """
-    dotenv.load_dotenv(".env")
+    dotenv.load_dotenv(path)
     if "GITHUB_TOKEN" not in os.environ:
         sys.exit("Cannot find Github token")
     if "PUBMED_TOKEN" not in os.environ:
@@ -423,13 +423,14 @@ def get_last_commit_files(owner, repo, access_token):
         if len(data) > 0:
             last_commit_sha = data[0]['sha']
             files_url = f'{url}/{last_commit_sha}'
-            files_response = requests.get(files_url)
+            files_response = requests.get(files_url, headers=headers)
             files_data = files_response.json()
             if files_response.status_code == 200:
                 files_changed = [file['filename'] for file in files_data['files']]
-                return files_changed
-        
-    return None
+                return files_changed, files_response.status_code 
+            else:
+                return None, files_response.status_code
+    return None, response.status_code
 
 def get_owner_from_link(link):
     """

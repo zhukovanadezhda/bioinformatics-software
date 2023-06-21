@@ -25,6 +25,7 @@ Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and [mamba](
 conda install mamba -n base -c conda-forge
 mamba env create -f binder/environment.yml
 conda activate bioinfosoft
+```
 
 To deactivate an active environment, use:
 

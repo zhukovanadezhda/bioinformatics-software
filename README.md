@@ -13,13 +13,6 @@ Software plays a vital role in modern scientific research, making it imperative 
 
 ## Setup your conda environment
 
-Clone the repository:
-
-```bash
-git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
-cd bioinformatics-software
-```
-
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and [mamba](https://github.com/mamba-org/mamba). Create the `bioinfosoft` conda environment:
 
 ```bash
@@ -32,6 +25,13 @@ To deactivate an active environment, use:
 
 ```
 conda deactivate
+```
+
+Clone the repository:
+
+```bash
+git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
+cd bioinformatics-software
 ```
 
 ## Launch the program

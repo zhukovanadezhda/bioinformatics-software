@@ -41,7 +41,8 @@ To launch the analysis with Snakemake workflow, use:
 snakemake --cores 1 --use-conda
 ```
 
-All the results will appear in the ```data``` folder.
+All the results will appear in the ```/data``` folder.
+
 
 
 

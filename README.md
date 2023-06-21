@@ -17,6 +17,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
+cd bioinformatics-software
 ```
 
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and [mamba](https://github.com/mamba-org/mamba). Create the `bioinfosoft` conda environment:

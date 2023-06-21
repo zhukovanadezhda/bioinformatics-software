@@ -9,7 +9,9 @@ Software plays a vital role in modern scientific research, making it imperative 
 ![GitHub stars](https://img.shields.io/github/stars/zhukovanadezhda/bioinformatics-software.svg?style=social)
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/zhukovanadezhda/bioinformatics-software/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/zhukovanadezhda/bioinformatics-software)
 
-# Setup your environment
+# Launch the program
+
+## Setup your conda environment
 
 Clone the repository:
 
@@ -17,37 +19,29 @@ Clone the repository:
 git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
 ```
 
-Install [miniconda](https://docs.conda.io/en/latest/miniconda.html).
-
-Install [mamba](https://github.com/mamba-org/mamba):
+Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and [mamba](https://github.com/mamba-org/mamba). Create the `bioinfosoft` conda environment:
 
 ```bash
 conda install mamba -n base -c conda-forge
-```
-
-Create the `bioinfosoft` conda environment:
-
-```
 mamba env create -f binder/environment.yml
-```
-
-Load the `bioinfosoft` conda environment:
-
-```
 conda activate bioinfosoft
-```
 
-Note: you can also update the conda environment with:
-
-```bash
-mamba env update -f binder/environment.yml
-```
-
-To deactivate an active environment, use
+To deactivate an active environment, use:
 
 ```
 conda deactivate
 ```
+
+## Launch the program
+
+To launch the analysis with Snakemake workflow, use:
+
+```bash
+snakemake --cores 1 --use-conda
+```
+
+All the results will appear in the ```data``` folder.
+
 
 
 # Dependency tree:

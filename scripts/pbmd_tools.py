@@ -109,21 +109,31 @@ def get_abstract_from_summary(summary,  log_file):
         
     """
     try:
-        article = summary['PubmedArticleSet']['PubmedArticle']
-        abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
+        try:
+            article = summary['PubmedArticleSet']['PubmedArticle']
+            abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
+        except:
+            article = summary['PubmedArticleSet']['PubmedBookArticle']['BookDocument']
+            abstract_raw = article['Abstract']['AbstractText']
         if isinstance(abstract_raw, str):
             abstract = abstract_raw
         elif isinstance(abstract_raw, list):
             abstract = ""
             for d in abstract_raw:
-                abstract += d['#text'] + " " 
+                try:
+                    abstract += d['#text'] + " " 
+                except:
+                    continue
         else:
             try: 
                 abstract = ""
                 abstract += abstract_raw['#text'] + " "
             except:
                 for d in abstract_raw:
-                    abstract += abstract_raw[d] + " " 
+                    try:
+                        abstract += abstract_raw[d] + " " 
+                    except:
+                        continue
 
         return abstract
     except:

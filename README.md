@@ -53,7 +53,7 @@ All the results will appear in the ```/data``` folder.
 │   └── environment.yml
 ├── data
 │   ├── images
-│   └── logs
+│   └── log_files
 ├── notebooks
 │   ├── analysis.ipynb
 │   ├── interactive_graph.ipynb

@@ -3,8 +3,10 @@ import requests
 from tqdm import tqdm
 import xmltodict
 import dotenv
+import json
 import os
 import sys
+import time
 
 ############################################################################################
 #################################----TECHNICAL----##########################################
@@ -17,8 +19,9 @@ def read_tokens(path):
     if "GITHUB_TOKEN" not in os.environ:
         sys.exit("Cannot find Github token")
     if "PUBMED_TOKEN" not in os.environ:
-        sys.exit("Cannot find PubMed token")      
-        
+        sys.exit("Cannot find PubMed token")
+
+
 ############################################################################################
 ####################################----PUBMED----##########################################
 ############################################################################################
@@ -90,6 +93,47 @@ def get_summary(PMID, access_token, log_file):
     
     return summary
         
+
+def download_pubmed_abstract(pmid, token, xml_name, log_name):
+    """Download abstract from Pubmed in XML format.
+
+    The E-utilities/NCBI API has a rate limit of 10 requests per second
+    for user with an API key.
+    See: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+    Do get an API key, visit https://www.ncbi.nlm.nih.gov/account/
+
+    Parameters
+    ----------
+    pmid : int
+        The PubMed id of the article.
+    token : str
+        Pubmed API token.
+    xml_name : str
+        XML file name to store the abstract.
+    log_name : str
+        File name to store error messages.
+
+    Query example
+    -------------
+    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36540970&retmode=xml&rettype=abstract
+    """
+    db = "pubmed"
+    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    retmode = "xml"
+    sleep_time = 0.10  # 10 requests / second = 1 request / 0.1 second
+    query = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
+    response = requests.get(query)
+    if response.status_code != 200:
+        with open(log_name, "w") as error_file:
+            error_file.write(f"{response.status_code}")
+            error_file.write(json.dumps(response.headers, indent=4))
+        response.raise_for_status()
+    with open(xml_name, "w") as xml_file:
+        print(response.status_code)
+        print(response.headers)
+        xml_file.write(response.text)
+    # Wait to avoid rate limit
+    time.sleep(sleep_time)
 
 
 def get_abstract_from_summary(summary,  log_file):

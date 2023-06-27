@@ -9,14 +9,21 @@ Software plays a vital role in modern scientific research, making it imperative 
 ![GitHub stars](https://img.shields.io/github/stars/zhukovanadezhda/bioinformatics-software.svg?style=social)
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/zhukovanadezhda/bioinformatics-software/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/zhukovanadezhda/bioinformatics-software)
 
-# Launch the program
+# Run the analysis
 
+## Clone the repository
+
+Clone the repository:
+
+```bash
+git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
+cd bioinformatics-software
+```
 ## Setup your conda environment
 
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and [mamba](https://github.com/mamba-org/mamba). Create the `bioinfosoft` conda environment:
 
 ```bash
-conda install mamba -n base -c conda-forge
 mamba env create -f binder/environment.yml
 conda activate bioinfosoft
 ```
@@ -27,12 +34,6 @@ To deactivate an active environment, use:
 conda deactivate
 ```
 
-Clone the repository:
-
-```bash
-git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
-cd bioinformatics-software
-```
 
 ## Launch the program
 
@@ -42,9 +43,7 @@ To launch the analysis with Snakemake workflow, use:
 snakemake --cores 1 --use-conda
 ```
 
-All the results will appear in the ```/data``` folder.
-
-
+All the results will appear in the `data` folder.
 
 
 # Dependency tree:

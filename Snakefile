@@ -1,3 +1,14 @@
+import os
+
+from scripts import pbmd_tools as tools
+
+tools.read_tokens(".env")
+
+
+rule toto:
+    input:
+        expand("data/xml/{pmid}.xml", pmid=range(452366, 452399))
+
 rule all:
     input:
         "data/images/forges_stat.png",
@@ -35,7 +46,7 @@ rule get_info_pm:
         "data/log_files/pm_info.log"
     shell:
         "python {input.script} | tee {log}"
-        
+
 rule get_links:
     input:
         script="scripts/get_links.py",
@@ -97,3 +108,18 @@ rule make_figures:
         "data/log_files/fig_info.log"
     shell:
         "jupyter nbconvert --to html --execute {input.notebook} | tee {log}"
+
+
+rule download_pubmed_abstract:
+    output:
+        xml_name="data/xml/{pmid}.xml",
+    run:
+        tools.download_pubmed_abstract(
+            wildcards.pmid,
+            os.getenv("PUBMED_TOKEN", ""),
+            output.xml_name,
+            f"logs/{wildcards.pmid}_error.log"
+            )
+
+onsuccess:
+    print("WORKFLOW COMPLETED SUCCESSFULLY!")

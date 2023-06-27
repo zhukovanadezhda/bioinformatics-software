@@ -1,13 +1,17 @@
 import os
 
+import pandas as pd
+
 from scripts import pbmd_tools as tools
+
 
 tools.read_tokens(".env")
 
 
-rule toto:
+rule all_xml:
     input:
-        expand("data/xml/{pmid}.xml", pmid=range(452366, 452399))
+        "data/PMIDs.txt",
+        expand("data/xml/{pmid}.xml", pmid=pd.read_csv("data/PMIDs.txt", header=None)[0].tolist())
 
 rule all:
     input:
@@ -112,13 +116,18 @@ rule make_figures:
 
 rule download_pubmed_abstract:
     output:
-        xml_name="data/xml/{pmid}.xml",
+        xml_name="data/xml/{pmid}.xml"
+    retries: 3
+    resources:
+        attempt=lambda wildcards, attempt: attempt
     run:
+        print(resources.attempt)
         tools.download_pubmed_abstract(
-            wildcards.pmid,
-            os.getenv("PUBMED_TOKEN", ""),
-            output.xml_name,
-            f"logs/{wildcards.pmid}_error.log"
+            pmid=wildcards.pmid,
+            token=os.getenv("PUBMED_TOKEN", ""),
+            xml_name=output.xml_name,
+            log_name=f"logs/{wildcards.pmid}_error.log",
+            attempt=resources.attempt
             )
 
 onsuccess:

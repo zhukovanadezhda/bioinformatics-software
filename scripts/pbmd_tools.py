@@ -94,7 +94,13 @@ def get_summary(PMID, access_token, log_file):
     return summary
         
 
-def download_pubmed_abstract(pmid, token, xml_name, log_name):
+def download_pubmed_abstract(
+        pmid=36540970,
+        token="",
+        xml_name="36540970.xml",
+        log_name="36540970_error.log",
+        attempt=1
+    ):
     """Download abstract from Pubmed in XML format.
 
     The E-utilities/NCBI API has a rate limit of 10 requests per second
@@ -112,6 +118,8 @@ def download_pubmed_abstract(pmid, token, xml_name, log_name):
         XML file name to store the abstract.
     log_name : str
         File name to store error messages.
+    attempt : int
+        Attempt to download data.
 
     Query example
     -------------
@@ -120,20 +128,21 @@ def download_pubmed_abstract(pmid, token, xml_name, log_name):
     db = "pubmed"
     domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
     retmode = "xml"
-    sleep_time = 0.10  # 10 requests / second = 1 request / 0.1 second
+    wait_time = 0.10  # 10 requests / second = 1 request / 0.1 second
+    if attempt > 1:
+        wait_time = wait_time + 10 * (attempt - 1)
     query = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
     response = requests.get(query)
     if response.status_code != 200:
         with open(log_name, "w") as error_file:
-            error_file.write(f"{response.status_code}")
-            error_file.write(json.dumps(response.headers, indent=4))
+            error_file.write(f"Status code: {response.status_code}\n")
+            error_file.write(f"Header: ")
+            error_file.write(json.dumps(dict(response.headers), indent=4))
         response.raise_for_status()
     with open(xml_name, "w") as xml_file:
-        print(response.status_code)
-        print(response.headers)
         xml_file.write(response.text)
     # Wait to avoid rate limit
-    time.sleep(sleep_time)
+    time.sleep(wait_time)
 
 
 def get_abstract_from_summary(summary,  log_file):

@@ -55,7 +55,7 @@ def get_forges_stat(queries, PMIDs):
     stats = {}
     for query in tqdm(queries):
         nb = 0 #number of articles for this query
-        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=15000&api_key={token}&term={query}"
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=9999&api_key={token}&term={query}"
         response = requests.get(queryLinkSearch)
         pubmed_json = response.json()
         if response.status_code != 200:

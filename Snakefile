@@ -5,13 +5,27 @@ import pandas as pd
 from scripts import pbmd_tools as tools
 
 
+# First thing first: read PubMed and GitHub API tokens.
+# The workflow cannot go further without them.
 tools.read_tokens(".env")
 
 
+def get_xml(wildcards):
+    """
+    Get the list of xml files to download.
+    
+    It requires the file listing all PMIDs created in a previsous rule.
+    Use the 'checkpoint' instruction.
+    """
+    with checkpoints.create_forges_stats.get().output.pmids.open() as pmids_file:
+        pmids = pd.read_csv("data/PMIDs.txt", header=None)[0].tolist()
+        return expand("data/xml/{pmid}.xml", pmid=pmids)
+        
+
 rule all_xml:
     input:
-        "data/PMIDs.txt",
-        expand("data/xml/{pmid}.xml", pmid=pd.read_csv("data/PMIDs.txt", header=None)[0].tolist())
+        get_xml
+
 
 rule all:
     input:
@@ -20,24 +34,25 @@ rule all:
         "data/images/last_update.png"
 
 
-rule create_forges_stat:
+checkpoint create_forges_stats:
     input:
         script="scripts/create_forges_stat.py",
         envfile=".env",
     output:
-        "data/PMIDs.txt",
-        "data/stats_github.json",
-        "data/stats_gitlab.json",
-        "data/stats_sourceforge.json",
-        "data/stats_googlecode.json",
-        "data/stats_bitbucket.json"
+        pmids="data/PMIDs.txt",
+        github_stats="data/stats_github.json",
+        gitlab_stats="data/stats_gitlab.json",
+        sourceforge_stats="data/stats_sourceforge.json",
+        googlecode_stats="data/stats_googlecode.json",
+        bitbucket_stats="data/stats_bitbucket.json"
     conda:
         "binder/environment.yml"
     log:
         "data/log_files/forge_stats.log"
     shell:
         "python {input.script} | tee {log}"
-        
+
+
 rule get_info_pm:
     input:
         script="scripts/get_info_pm.py",
@@ -126,7 +141,7 @@ rule download_pubmed_abstract:
             pmid=wildcards.pmid,
             token=os.getenv("PUBMED_TOKEN", ""),
             xml_name=output.xml_name,
-            log_name=f"logs/{wildcards.pmid}_error.log",
+            log_name=f"logs/{wildcards.pmid}_error_{resources.attempt}.log",
             attempt=resources.attempt
             )
 

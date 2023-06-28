@@ -22,6 +22,27 @@ def read_tokens(path):
         sys.exit("Cannot find PubMed token")
 
 
+def record_api_errror(query="", attempt=1, response=None, output_name="error.log"):
+    """Record API error.
+
+    Parameters
+    ----------
+    query : str
+        Query URL to the API.
+    attempt : int
+        Attempt to query the API.
+    response: requests.Response
+        Response from the API.
+    output_name: str
+        File name to store error messages.
+    """
+    with open(output_name, "w") as error_file:
+        error_file.write(f"Attempt: {attempt}\n")
+        error_file.write(f"Query URL: {query}\n")
+        error_file.write(f"Status code: {response.status_code}\n")
+        error_file.write(f"Header: ")
+        error_file.write(json.dumps(dict(response.headers), indent=4))
+
 ############################################################################################
 ####################################----PUBMED----##########################################
 ############################################################################################
@@ -30,12 +51,19 @@ def get_forges_stat(queries, PMIDs):
     db = "pubmed"
     domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
     retmode = "json"
+    token = os.environ.get("PUBMED_TOKEN")
     stats = {}
     for query in tqdm(queries):
         nb = 0 #number of articles for this query
-        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=15000&term={query}"
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=15000&api_key={token}&term={query}"
         response = requests.get(queryLinkSearch)
         pubmed_json = response.json()
+        if response.status_code != 200:
+            record_api_errror(
+                query=queryLinkSearch,
+                response=response
+            )
+            response.raise_for_status()
         for id in pubmed_json["esearchresult"]["idlist"]:
             #checking if there are any dublicates in PubMed IDs (it happens because of the PubDate that can be EPubDate or normal)
             if id not in PMIDs:
@@ -44,6 +72,7 @@ def get_forges_stat(queries, PMIDs):
         #query[38:42] - it is the year of this query
         stats[query[-33:-29]] = nb 
     return stats
+
 
 def is_software(PMID, access_token, log_file):
     tags = []
@@ -92,7 +121,8 @@ def get_summary(PMID, access_token, log_file):
         f.write(f"\n{PMID} : ")
     
     return summary
-        
+
+
 
 def download_pubmed_abstract(
         pmid=36540970,
@@ -131,13 +161,15 @@ def download_pubmed_abstract(
     wait_time = 0.10  # 10 requests / second = 1 request / 0.1 second
     if attempt > 1:
         wait_time = wait_time + 10 * (attempt - 1)
-    query = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
-    response = requests.get(query)
+    query_url = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
+    response = requests.get(query_url)
     if response.status_code != 200:
-        with open(log_name, "w") as error_file:
-            error_file.write(f"Status code: {response.status_code}\n")
-            error_file.write(f"Header: ")
-            error_file.write(json.dumps(dict(response.headers), indent=4))
+        record_api_errror(
+            query=query_url,
+            attempt=attempt,
+            response=response,
+            output_name=log_name
+        )
         response.raise_for_status()
     with open(xml_name, "w") as xml_file:
         xml_file.write(response.text)

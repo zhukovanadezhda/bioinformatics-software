@@ -22,11 +22,45 @@ queries_bitbucket = []
 
 #creating queries for every forge and every year
 for year in range(2009, 2023):
-    queries_github.append(f'((github.com[Title/Abstract])) AND (("{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication]))')
-    queries_gitlab.append(f'((https://gitlab[Title/Abstract])) AND (("{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication]))')
-    queries_sourceforge.append(f'((sourceforge.net[Title/Abstract])) AND (("{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication]))')
-    queries_googlecode.append(f'(googlecode) AND ("{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication])')
-    queries_bitbucket.append(f'(bitbucket.org[Title/Abstract]) AND ("{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication])')
+    query_github = (
+        f'((github.com[Title/Abstract])) AND '
+        f'(("{year}/01/01"[Date - Publication] : '
+        f'"{year}/12/31"[Date - Publication]))'
+    )
+    queries_github.append(query_github)
+
+    query_gitlab = (
+        f'(((https://gitlab[Title/Abstract])) OR '
+        f'((http://gitlab[Title/Abstract])) OR '
+        f'((gitlab.[Title/Abstract]))) AND '
+        f'(("{year}/01/01"[Date - Publication] : '
+        f'"{year}/12/31"[Date - Publication]))'
+    )
+    queries_gitlab.append(query_gitlab)
+
+    query_sourceforge = (
+        f'((sourceforge.net[Title/Abstract])) AND '
+        f'(("{year}/01/01"[Date - Publication] : '
+        f'"{year}/12/31"[Date - Publication]))'
+    )
+    queries_sourceforge.append(query_sourceforge)
+
+    query_googlecode = (
+        f'((googlecode) OR '
+        f'("code.google.com")) AND '
+        f'(("{year}/01/01"[Date - Publication] : '
+        f'"{year}/12/31"[Date - Publication]))'
+    )
+    queries_googlecode.append(query_googlecode)
+
+    query_bitbucket = (
+        f'((bitbucket.org[Title/Abstract]) AND '
+        f'("{year}/01/01"[Date - Publication] : '
+        f'"{year}/12/31"[Date - Publication]))'
+    )
+    queries_bitbucket.append(query_bitbucket)
+
+
 
 
 #dictionaries for stocking the number of articles for each forge for each year

@@ -1,3 +1,4 @@
+import pandas as pd
 import re
 import requests
 from tqdm import tqdm
@@ -7,6 +8,8 @@ import json
 import os
 import sys
 import time
+from datetime import datetime, timedelta
+
 
 ############################################################################################
 #################################----TECHNICAL----##########################################
@@ -69,11 +72,57 @@ def get_forges_stat(queries, PMIDs):
             if id not in PMIDs:
                 nb += 1
                 PMIDs.append(id)
-        #query[38:42] - it is the year of this query
+        #query[-33:-29] - it is the year of this query
         stats[query[-33:-29]] = nb 
     return stats
 
+  
+def add_days(date_string, n):
+    date_object = datetime.strptime(date_string, "%Y/%m/%d")
+    new_date = date_object + timedelta(days=n)
+    new_date_string = new_date.strftime("%Y/%m/%d")
 
+    return new_date_string
+
+def get_all_pmids(queries):
+    db = "pubmed"
+    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    retmode = "json"
+    df = pd.DataFrame({'year': [], 'PMID': []})
+
+    for query in tqdm(queries):
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query}"
+        response = requests.get(queryLinkSearch)
+        if response.status_code == 200:
+            result = response.json()['esearchresult']
+            nb_ids = int(result['count'])
+            if nb_ids > 9999:
+                batch_nb = (nb_ids // 9999) + 2
+                batch_size = 365 // batch_nb
+                date_start = query[-68:-58]
+                for batch in range(batch_nb):
+                    date_end = add_days(date_start, batch_size)
+                    query = f'(("http"[Title/Abstract]) OR ("https"[Title/Abstract])) AND (("{date_start}"[Date - Publication] : "{date_end}"[Date - Publication]))'
+                    queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query}"
+                    response = requests.get(queryLinkSearch)
+                    pubmed_json = response.json()
+                    for id in pubmed_json["esearchresult"]["idlist"]:
+                        new_row = pd.DataFrame({'year': [query[-33:-29]], 'PMID': [id]})
+                        df = pd.concat([df, new_row], ignore_index=True)
+                    date_start = date_end
+            else:
+                response = requests.get(queryLinkSearch)
+                pubmed_json = response.json()
+                for id in pubmed_json["esearchresult"]["idlist"]:
+                    new_row = pd.DataFrame({'year': [query[-33:-29]], 'PMID': [id]})
+                    df = pd.concat([df, new_row], ignore_index=True)
+                    
+    df = df.drop_duplicates(subset=['PMID'])
+    df = df.reset_index(drop=True)
+    
+    return df
+
+  
 def is_software(PMID, access_token, log_file):
     tags = []
     dict = pbmd.get_summary(PMID, access_token, log_file)['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['MeshHeadingList']['MeshHeading']

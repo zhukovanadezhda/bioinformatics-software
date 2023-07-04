@@ -1,8 +1,7 @@
 rule all:
     input:
-        "data/images/forges_stat.png",
-        "data/images/swh.png",
-        "data/images/last_update.png"
+        "data/images/stat_hist.png",
+        "data/images/stat_swh.png"
 
 
 rule create_forges_stat:
@@ -86,11 +85,12 @@ rule make_figures:
         notebook="notebooks/analysis.ipynb",
     output:
         "data/data_stat.txt",
-        "data/images/forges_stat.png",
-        "data/images/swh.png",
-        "data/images/last_update.png",
-        "data/images/developpement_stat.png",
-        "data/images/developpement.png"
+        "data/images/stat_dev.png",
+        report("data/images/stat_dynam.png"),
+        report("data/images/stat_forges.png"),
+        report("data/images/stat_hist.png"),
+        report("data/images/stat_last_updt.png"),
+        report("data/images/stat_swh.png")
     conda:
         "binder/environment.yml"
     log:

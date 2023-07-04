@@ -4,8 +4,10 @@ import requests
 from tqdm import tqdm
 import xmltodict
 import dotenv
+import json
 import os
 import sys
+import time
 from datetime import datetime, timedelta
 
 
@@ -20,8 +22,30 @@ def read_tokens(path):
     if "GITHUB_TOKEN" not in os.environ:
         sys.exit("Cannot find Github token")
     if "PUBMED_TOKEN" not in os.environ:
-        sys.exit("Cannot find PubMed token")      
-        
+        sys.exit("Cannot find PubMed token")
+
+
+def record_api_errror(query="", attempt=1, response=None, output_name="error.log"):
+    """Record API error.
+
+    Parameters
+    ----------
+    query : str
+        Query URL to the API.
+    attempt : int
+        Attempt to query the API.
+    response: requests.Response
+        Response from the API.
+    output_name: str
+        File name to store error messages.
+    """
+    with open(output_name, "w") as error_file:
+        error_file.write(f"Attempt: {attempt}\n")
+        error_file.write(f"Query URL: {query}\n")
+        error_file.write(f"Status code: {response.status_code}\n")
+        error_file.write(f"Header: ")
+        error_file.write(json.dumps(dict(response.headers), indent=4))
+
 ############################################################################################
 ####################################----PUBMED----##########################################
 ############################################################################################
@@ -30,12 +54,19 @@ def get_forges_stat(queries, PMIDs):
     db = "pubmed"
     domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
     retmode = "json"
+    token = os.environ.get("PUBMED_TOKEN")
     stats = {}
     for query in tqdm(queries):
         nb = 0 #number of articles for this query
-        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=15000&term={query}"
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=9999&api_key={token}&term={query}"
         response = requests.get(queryLinkSearch)
         pubmed_json = response.json()
+        if response.status_code != 200:
+            record_api_errror(
+                query=queryLinkSearch,
+                response=response
+            )
+            response.raise_for_status()
         for id in pubmed_json["esearchresult"]["idlist"]:
             #checking if there are any dublicates in PubMed IDs (it happens because of the PubDate that can be EPubDate or normal)
             if id not in PMIDs:
@@ -45,11 +76,12 @@ def get_forges_stat(queries, PMIDs):
         stats[query[-33:-29]] = nb 
     return stats
 
+  
 def add_days(date_string, n):
     date_object = datetime.strptime(date_string, "%Y/%m/%d")
     new_date = date_object + timedelta(days=n)
     new_date_string = new_date.strftime("%Y/%m/%d")
-    
+
     return new_date_string
 
 def get_all_pmids(queries):
@@ -90,6 +122,7 @@ def get_all_pmids(queries):
     
     return df
 
+  
 def is_software(PMID, access_token, log_file):
     tags = []
     dict = pbmd.get_summary(PMID, access_token, log_file)['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['MeshHeadingList']['MeshHeading']
@@ -137,7 +170,60 @@ def get_summary(PMID, access_token, log_file):
         f.write(f"\n{PMID} : ")
     
     return summary
-        
+
+
+
+def download_pubmed_abstract(
+        pmid=36540970,
+        token="",
+        xml_name="36540970.xml",
+        log_name="36540970_error.log",
+        attempt=1
+    ):
+    """Download abstract from Pubmed in XML format.
+
+    The E-utilities/NCBI API has a rate limit of 10 requests per second
+    for user with an API key.
+    See: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+    Do get an API key, visit https://www.ncbi.nlm.nih.gov/account/
+
+    Parameters
+    ----------
+    pmid : int
+        The PubMed id of the article.
+    token : str
+        Pubmed API token.
+    xml_name : str
+        XML file name to store the abstract.
+    log_name : str
+        File name to store error messages.
+    attempt : int
+        Attempt to download data.
+
+    Query example
+    -------------
+    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36540970&retmode=xml&rettype=abstract
+    """
+    db = "pubmed"
+    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    retmode = "xml"
+    wait_time = 0.10  # 10 requests / second = 1 request / 0.1 second
+    if attempt > 1:
+        wait_time = wait_time + 10 * (attempt - 1)
+    query_url = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
+    response = requests.get(query_url)
+    if response.status_code != 200:
+        record_api_errror(
+            query=query_url,
+            attempt=attempt,
+            response=response,
+            output_name=log_name
+        )
+        response.raise_for_status()
+    with open(xml_name, "w") as xml_file:
+        xml_file.write(response.text)
+    # Wait to avoid rate limit
+    time.sleep(wait_time)
 
 
 def get_abstract_from_summary(summary,  log_file):

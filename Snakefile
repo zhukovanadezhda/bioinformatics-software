@@ -5,7 +5,7 @@ import pandas as pd
 from scripts import pbmd_tools as tools
 
 
-# First thing first: read PubMed and GitHub API tokens.
+# First things first: read PubMed and GitHub API tokens.
 # The workflow cannot go further without them.
 tools.read_tokens(".env")
 

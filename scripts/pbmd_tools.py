@@ -25,7 +25,10 @@ def read_tokens(path):
         sys.exit("Cannot find PubMed token")
 
 
-def record_api_errror(query="", attempt=1, response=None, output_name="error.log"):
+def record_api_error(query="", 
+                     attempt=1, 
+                     response=None, 
+                     output_name="error.log"):
     """Record API error.
 
     Parameters
@@ -46,9 +49,56 @@ def record_api_errror(query="", attempt=1, response=None, output_name="error.log
         error_file.write(f"Header: ")
         error_file.write(json.dumps(dict(response.headers), indent=4))
 
-############################################################################################
-####################################----PUBMED----##########################################
-############################################################################################
+##############################################################################
+####################################----PUBMED----############################
+##############################################################################
+
+def query_pubmed(query, year_start, year_end, output_name):
+    
+    db = "pubmed"
+    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    retmode = "json"
+    token = os.environ.get("PUBMED_TOKEN")
+    df = pd.DataFrame({'year': [], 'PMID': []})
+    
+    for year in range(year_start, year_end):
+        query_year = (
+            f'{query} AND "{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication]'
+        )
+        
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_year}"
+        response = requests.get(queryLinkSearch)
+        if response.status_code == 200:
+            result = response.json()['esearchresult']
+            nb_ids = int(result['count'])
+            if nb_ids > 9999:
+                batch_nb = (nb_ids // 9999) + 2
+                batch_size = 365 // batch_nb
+                date_start = f'{year}/01/01'
+                for batch in range(batch_nb):
+                    date_end = add_days(date_start, batch_size)
+                    query_batch = f'(("http"[Title/Abstract]) OR ("https"[Title/Abstract])) AND (("{date_start}"[Date - Publication] : "{date_end}"[Date - Publication]))'
+                    queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_batch}"
+                    response = requests.get(queryLinkSearch)
+                    pubmed_json = response.json()
+                    for id in pubmed_json["esearchresult"]["idlist"]:
+                        new_row = pd.DataFrame({'year': [str(year)], 'PMID': [id]})
+                        df = pd.concat([df, new_row], ignore_index=True)
+                    date_start = date_end
+            else:
+                response = requests.get(queryLinkSearch)
+                pubmed_json = response.json()
+                for id in pubmed_json["esearchresult"]["idlist"]:
+                    new_row = pd.DataFrame({'year': [str(year)], 'PMID': [id]})
+                    df = pd.concat([df, new_row], ignore_index=True)
+                    
+    df = df.drop_duplicates(subset=['PMID'])
+    df = df.reset_index(drop=True)
+    df.to_csv(f'../data/{output_name}.tsv', sep='\t', index=False)
+    
+    return df
+    
+    
 
 def get_forges_stat(queries, PMIDs):
     db = "pubmed"
@@ -62,13 +112,14 @@ def get_forges_stat(queries, PMIDs):
         response = requests.get(queryLinkSearch)
         pubmed_json = response.json()
         if response.status_code != 200:
-            record_api_errror(
+            record_api_error(
                 query=queryLinkSearch,
                 response=response
             )
             response.raise_for_status()
         for id in pubmed_json["esearchresult"]["idlist"]:
-            #checking if there are any dublicates in PubMed IDs (it happens because of the PubDate that can be EPubDate or normal)
+            #checking if there are any dublicates in PubMed IDs (it happens 
+            #because of the PubDate that can be EPubDate or normal)
             if id not in PMIDs:
                 nb += 1
                 PMIDs.append(id)
@@ -213,7 +264,7 @@ def download_pubmed_abstract(
     query_url = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
     response = requests.get(query_url)
     if response.status_code != 200:
-        record_api_errror(
+        record_api_error(
             query=query_url,
             attempt=attempt,
             response=response,

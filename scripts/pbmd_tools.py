@@ -61,7 +61,7 @@ def query_pubmed(query, year_start, year_end, output_name):
     token = os.environ.get("PUBMED_TOKEN")
     df = pd.DataFrame({'year': [], 'PMID': []})
     
-    for year in range(year_start, year_end):
+    for year in range(year_start, year_end+1):
         query_year = (
             f'{query} AND "{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication]'
         )

@@ -61,8 +61,6 @@ for year in range(2009, 2023):
     queries_bitbucket.append(query_bitbucket)
 
 
-
-
 #dictionaries for stocking the number of articles for each forge for each year
 #example: {'2009': 0, '2010': 5, '2011': 15, ... }
 

@@ -94,12 +94,11 @@ def query_pubmed(query, year_start, year_end, output_name):
                     
     df = df.drop_duplicates(subset=['PMID'])
     df = df.reset_index(drop=True)
-    df.to_csv(f'../data/{output_name}.tsv', sep='\t', index=False)
+    df.to_csv(output_name, sep='\t', index=False)
     
     return df
     
     
-
 def get_forges_stat(queries, PMIDs):
     db = "pubmed"
     domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
@@ -186,6 +185,19 @@ def is_software(PMID, access_token, log_file):
         return 1
     else:
         return 0
+
+def parse_xml(PMID, log_file):
+    
+    with open(f'data/xml/{PMID}.xml', 'r') as f:
+        summary = xmltodict.parse(f.read())
+
+    abstract = get_abstract_from_summary(summary, log_file)
+    pubdate = get_pubdate_from_summary(summary, log_file)
+    title = get_title_from_summary(summary, log_file)
+    journal = get_journal_from_summary(summary, log_file)
+    doi = get_doi_from_summary(summary, log_file) 
+    
+    return PMID, pubdate, doi, journal, title, abstract
 
 
 def get_summary(PMID, access_token, log_file):

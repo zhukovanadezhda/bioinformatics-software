@@ -27,8 +27,7 @@ def get_xml(wildcards):
 
 rule all:
     input:
-        get_xml,
-        "data/images/stat_swh.png"
+        get_xml
 
 
 checkpoint create_forges_stats:
@@ -61,10 +60,17 @@ checkpoint create_forges_stats:
                 year_start=2009, year_end=2022, 
                 output_name=query_output
             )
+           
+rule analyse_xml:
+    input:
+        get_xml
+    output:
+        "../data/links_http_stat.json"
+        
 
 rule make_forge_stat_figures:
     input:
-        notebook="analysis_forges",
+        notebook="analysis_forges.ipynb",
         github_stats="data/github.tsv",
         gitlab_stats="data/gitlab.tsv",
         sourceforge_stats="data/sourceforge.tsv",

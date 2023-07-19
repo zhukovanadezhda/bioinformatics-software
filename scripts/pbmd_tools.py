@@ -53,6 +53,39 @@ def record_api_error(query="",
 ####################################----PUBMED----############################
 ##############################################################################
 
+def fill_empty_years(years, df):
+    missing_years = [year for year in years if year not in set(df['year'])]
+    missing_years_df = pd.DataFrame({'year': missing_years, 'count': 0})
+    df = pd.concat([df, missing_years_df], ignore_index=True)
+    df.sort_values('year', inplace=True)
+    
+    return df
+
+
+def clean_links_dict(links_stat):
+
+    links_stat_lower = {}
+
+    for key in links_stat.keys():
+        if key.lower() in links_stat_lower:
+            links_stat_lower[key.lower()] += links_stat[key]
+        else:
+            links_stat_lower[key.lower()] = links_stat[key]
+
+    keys_to_modify = [key for key in links_stat_lower.keys() if key.startswith('www')]
+
+    for key in keys_to_modify:
+        if key[4:] in links_stat_lower:
+            links_stat_lower[key[4:]] += links_stat_lower[key]
+        else:
+            links_stat_lower[key[4:]] = links_stat_lower[key]
+        del links_stat_lower[key]
+    
+    sorted_links = {k: v for k, v in sorted(links_stat_lower.items(), key=lambda item: item[1], reverse=True)}
+        
+    return sorted_links
+
+
 def query_pubmed(query, year_start, year_end, output_name):
     
     db = "pubmed"

@@ -41,6 +41,11 @@ conda deactivate
 
 The workflow analysis requires API keys for PubMed, GitHub and Software Heritage.
 
+To get API keys:
+
+- For PubMed, go at the bottom of the [NCBI Account Settings](https://account.ncbi.nlm.nih.gov/settings/) page.
+- For GitHub, go on the [Personnal access tokens](https://github.com/settings/tokens) page of your account. There is not need to select specific scopes.
+
 Create the file `.env` to store API keys in the following format:
 
 ```
@@ -48,6 +53,7 @@ GITHUB_TOKEN=...
 PUBMED_TOKEN=...
 SWH_TOKEN=...
 ```
+
 
 ## Run the analysis
 

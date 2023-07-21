@@ -32,7 +32,7 @@ rule all:
     input:
         get_xml,
         "results/images/stat_http.png",
-        "results/tmp/articles_info_pubmed_github.tsv"
+        "results/data_stat.txt"
 
 
 checkpoint create_forges_stats:
@@ -101,8 +101,8 @@ rule make_forge_stat_figures:
         
 rule get_info_pubmed:
     input:
-        data="results/tmp/github.tsv",
-        get_xml
+        get_xml,
+        data="results/tmp/github.tsv"
     output:
         result="results/tmp/articles_info_pubmed.tsv"
     run:

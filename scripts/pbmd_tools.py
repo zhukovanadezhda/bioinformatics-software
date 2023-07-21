@@ -148,20 +148,23 @@ def query_pubmed(query, year_start, year_end, output_name):
         result = response.json()['esearchresult']
         nb_ids = int(result['count'])
         batch_nb = (nb_ids // 9999) + 1
-        batch_size = 365 // batch_nb
+        is_leap_year = int(year % 4 == 0)
+        batch_size = (365 + is_leap_year) // batch_nb
         date_start = f"{year}/01/01"
         for batch in range(batch_nb):
-            date_end = add_days(date_start, batch_size)
+            if batch == batch_nb-1 and batch_nb != 1:
+                date_end = add_days(date_start, batch_size-is_leap_year)
+            else:
+                date_end = add_days(date_start, batch_size-1)
             query_batch = f'(({query} AND (("{date_start}"[Date - Publication] : "{date_end}"[Date - Publication]))'
             queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_batch}&api_key={token}"
             response = requests.get(queryLinkSearch)
             pubmed_json = response.json()
-            print(query_batch)
             ids = pubmed_json["esearchresult"]["idlist"]
             df_batch = pd.DataFrame({"year": [str(year)]*len(ids), "PMID": ids})
-            print(df_batch.shape)
+            
             df = pd.concat([df, df_batch], ignore_index=True)
-            date_start = date_end
+            date_start = add_days(date_end, 1)
 
     df = df.drop_duplicates(subset=["PMID"], keep="first")
     df = df.reset_index(drop=True)

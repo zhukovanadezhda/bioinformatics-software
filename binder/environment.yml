@@ -32,4 +32,5 @@ dependencies:
     - ruff
     - pip:
         - watermark
+        - linkify-it-py
 

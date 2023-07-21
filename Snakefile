@@ -1,10 +1,12 @@
+import dotenv
 import json
 import os
-import pandas as pd
-import dotenv
-import xmltodict
+import pathlib
 import time
+
+import pandas as pd
 from tqdm import tqdm
+import xmltodict
 
 from scripts import pbmd_tools as tools
 
@@ -130,24 +132,27 @@ rule get_info_github:
         data="results/tmp/articles_info_pubmed.tsv"
     output:
         "results/tmp/articles_info_pubmed_github.tsv"
+    log:
+        name="logs/get_info_github.txt"
     run:
         GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-
+        # Remove old log file.
+        pathlib.Path("log.name").unlink(missing_ok=True)
         df = pd.read_csv(input.data, sep="\t")
         PMIDs = df["PMID"][df["GitHub_repo"].notna()].to_list()
 
-        for PMID in tqdm(PMIDs):
-
-            with open("results/tmp/log_files/log_get_info_github.txt", "a") as f:
-                f.write(f"\n\n PMID: {PMID}, GitHub link: {df[df['PMID'] == PMID]['GitHub_link_clean'].values[0]}")
-
-            info = tools.get_repo_info(df[df['PMID']==PMID]['GitHub_owner'].values[0], 
-                                      df[df['PMID']==PMID]['GitHub_repo'].values[0], 
-                                      GITHUB_TOKEN, "results/tmp/log_files/log_get_info_github.txt")
-            idx = df.index[df['PMID'] == PMID][0]
-            df.loc[idx, "Repo_created_at"] = tools.get_repo_date_created(info)
-            df.loc[idx, "Repo_updated_at"] = tools.get_repo_date_updated(info)
-            df.loc[idx, "Fork"] = tools.is_fork(info)
+        for PMID in tqdm(PMIDs):    
+            idx = df.index[df["PMID"] == PMID][0]
+            info = tools.get_repo_info(
+                pmid=PMID,
+                url=df.loc[idx, "GitHub_link_clean"],
+                token=GITHUB_TOKEN,
+                log_name=log.name
+            )
+            
+            df.loc[idx, "Repo_created_at"] = info["date_created"]
+            df.loc[idx, "Repo_updated_at"] = info["date_updated"]
+            df.loc[idx, "Fork"] = info["fork"]
             
             time.sleep(1) 
 
@@ -161,7 +166,7 @@ rule get_info_software_heritage:
         result="results/articles_info_pubmed_github_software_heritage.tsv"
     run:
         df = pd.read_csv(input.data, sep="\t")
-        PMIDs = df['PMID'][df['GitHub_owner'].notna()].to_list()
+        PMIDs = df["PMID"][df["GitHub_owner"].notna()].to_list()
 
         for PMID in tqdm(PMIDs):
 
@@ -178,7 +183,7 @@ rule get_info_software_heritage:
             df.loc[idx, "In_SoftWH"] = tools.is_in_softwh(info)
             df.loc[idx, "Archived"] = tools.get_date_archived(info)
 
-        df.to_csv(output.result, sep='\t', index=False)
+        df.to_csv(output.result, sep="\t", index=False)
     
 
 rule make_figures:
@@ -197,10 +202,7 @@ rule make_figures:
         "jupyter nbconvert --to html --execute {input.notebook}"
 
 
-"""
-# I don't know what was this used for ?
-
-rule download_pubmed_abstract:
+rule download_pubmed_xml:
     output:
         xml_name="data/xml/{pmid}.xml"
     retries: 3
@@ -215,7 +217,6 @@ rule download_pubmed_abstract:
             log_name=f"logs/{wildcards.pmid}_error_{resources.attempt}.log",
             attempt=resources.attempt
             )
-"""
 
 onsuccess:
     print("WORKFLOW COMPLETED SUCCESSFULLY!")

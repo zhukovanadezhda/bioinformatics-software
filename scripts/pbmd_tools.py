@@ -756,7 +756,7 @@ def get_repo_from_link(link):
         return None
 
 
-def get_repo_info(owner, repo, access_token,  log_file):
+def get_repo_info(pmid=0, url="", token="", log_name=""):
     """
     Get GitHub repository info.
     
@@ -764,12 +764,14 @@ def get_repo_info(owner, repo, access_token,  log_file):
     
     Parameters
     ----------
-    owner : str
-        Owner name.
-    repo : str
-        Repository name.
-    access_token : str
+    pmid : str
+        PubMed PMID.
+    url : str
+        GitHub repo url.
+    token : str
         Access token for github.
+    log_name : str
+        File name for logs.
 
     Returns
     -------
@@ -777,75 +779,23 @@ def get_repo_info(owner, repo, access_token,  log_file):
         A list with the date of creation, the date of update and if the repository is a fork.
     """
     
-    headers = {'Authorization': f"Token {access_token}"}
-    url = f"https://api.github.com/repos/{owner}/{repo}"
+    headers = {'Authorization': f"Token {token}"}
+    owner = get_owner_from_link(url)
+    repo = get_repo_from_link(url)
+    query = f"https://api.github.com/repos/{owner}/{repo}"
     
-    info = {"date_created": None, "date_updated": None, "fork": 0, "status": None}
-    response = requests.get(url, headers=headers)
+    info = {"date_created": None, "date_updated": None, "fork": None}
+    response = requests.get(query, headers=headers)
     if response.status_code == 200:
-        info["status"] = True
         repository_info = response.json()
-        if repository_info["fork"]:
-            info["fork"] = 1 
+        info["fork"] = repository_info["fork"]
         info["date_created"] = repository_info["created_at"].split("T")[0]
         info["date_updated"] = repository_info["updated_at"].split("T")[0]
     else:
-        if response.status_code == 403:
-            info["status"] = False
-        else:
-            info["status"] = True
-        with open(log_file, "a") as f:
-            f.write(f"Error with URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
+        with open(log_name, "a") as log_file:
+            log_file.write(f"Error with PMID: {pmid} URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
     return info
 
-    
-def get_repo_date_created(info):
-    """
-    Get the date of creation of the GitHub repository.
-    
-    Parameters
-    ----------
-    info : list
-        A list with the date of creation, the date of update and if the repository is a fork.
-
-    Returns
-    -------
-    date_created : str
-        A date of creation of the repository
-    """
-    return info["date_created"]
-    
-def get_repo_date_updated(info):
-    """
-    Get the date of the last update of the GitHub repository.
-    
-    Parameters
-    ----------
-    info : list
-        A list with the date of creation, the date of update and if the repository is a fork.
-
-    Returns
-    -------
-    date_updated : str
-        A date of last update of the repository
-    """
-    return info["date_updated"]
-
-def is_fork(info):
-    """
-    Get 1 if the GitHub repository is a fork and 0 otherwise.
-    
-    Parameters
-    ----------
-    info : list
-        A list with the date of creation, the date of update and if the repository is a fork.
-
-    Returns
-    -------
-    fork : int
-        1 if the GitHub repository is a fork and 0 otherwise
-    """
-    return info["fork"]
 
 ############################################################################################
 ####################################----SOFTWH----##########################################

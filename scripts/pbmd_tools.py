@@ -1,3 +1,4 @@
+from linkify_it import LinkifyIt
 import pandas as pd
 import re
 import requests
@@ -61,6 +62,44 @@ def fill_empty_years(years, df):
     
     return df
 
+def create_links_stat(files, 
+                      file_path = "data/xml/", 
+                      log = "results/tmp/log_files/log_create_links_stat(.txt"):
+    links_stat = {}
+    
+    linkify = (
+        LinkifyIt()
+        .set({"fuzzy_email": False}) 
+    )
+
+    for file in files:
+        with open(f"{file_path}{file}", "r") as f:
+            try:
+                summary = xmltodict.parse(f.read())
+                abstract = get_abstract_from_summary(summary, log)
+            except:
+                abstract = None
+
+            if abstract != None:
+
+                if linkify.test(abstract):
+                    for match in linkify.match(abstract):
+                        link = match.raw
+                        try:
+                            key = link.split('/')[2]
+                        except:
+                            try:
+                                key = link.split('/')[0]
+                            except:
+                                key = link
+                        if key in links_stat:
+                            links_stat[key] += 1
+                        else:
+                            links_stat[key] = 1
+                
+    return clean_links_dict(links_stat)
+    
+
 
 def clean_links_dict(links_stat):
 
@@ -99,36 +138,34 @@ def query_pubmed(query, year_start, year_end, output_name):
             f'{query} AND "{year}/01/01"[Date - Publication] : "{year}/12/31"[Date - Publication]'
         )
         
-        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_year}"
+        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_year}&api_key={token}"
         response = requests.get(queryLinkSearch)
-        if response.status_code == 200:
-            result = response.json()['esearchresult']
-            nb_ids = int(result['count'])
-            if nb_ids > 9999:
-                batch_nb = (nb_ids // 9999) + 2
-                batch_size = 365 // batch_nb
-                date_start = f'{year}/01/01'
-                for batch in range(batch_nb):
-                    date_end = add_days(date_start, batch_size)
-                    query_batch = f'(("http"[Title/Abstract]) OR ("https"[Title/Abstract])) AND (("{date_start}"[Date - Publication] : "{date_end}"[Date - Publication]))'
-                    queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_batch}"
-                    response = requests.get(queryLinkSearch)
-                    pubmed_json = response.json()
-                    for id in pubmed_json["esearchresult"]["idlist"]:
-                        new_row = pd.DataFrame({'year': [str(year)], 'PMID': [id]})
-                        df = pd.concat([df, new_row], ignore_index=True)
-                    date_start = date_end
-            else:
-                response = requests.get(queryLinkSearch)
-                pubmed_json = response.json()
-                for id in pubmed_json["esearchresult"]["idlist"]:
-                    new_row = pd.DataFrame({'year': [str(year)], 'PMID': [id]})
-                    df = pd.concat([df, new_row], ignore_index=True)
-                    
-    df = df.drop_duplicates(subset=['PMID'])
+        if response.status_code != 200:
+            print(f"Cannot get statistics for year {year}")
+            print("Aborting...")
+            break
+            
+        result = response.json()['esearchresult']
+        nb_ids = int(result['count'])
+        batch_nb = (nb_ids // 9999) + 1
+        batch_size = 365 // batch_nb
+        date_start = f"{year}/01/01"
+        for batch in range(batch_nb):
+            date_end = add_days(date_start, batch_size)
+            query_batch = f'(({query} AND (("{date_start}"[Date - Publication] : "{date_end}"[Date - Publication]))'
+            queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query_batch}&api_key={token}"
+            response = requests.get(queryLinkSearch)
+            pubmed_json = response.json()
+            print(query_batch)
+            ids = pubmed_json["esearchresult"]["idlist"]
+            df_batch = pd.DataFrame({"year": [str(year)]*len(ids), "PMID": ids})
+            print(df_batch.shape)
+            df = pd.concat([df, df_batch], ignore_index=True)
+            date_start = date_end
+
+    df = df.drop_duplicates(subset=["PMID"], keep="first")
     df = df.reset_index(drop=True)
     df.to_csv(output_name, sep='\t', index=False)
-    
     return df
     
     
@@ -222,6 +259,8 @@ def is_software(PMID, access_token, log_file):
 def parse_xml(PMID, log_file):
     
     with open(f'data/xml/{PMID}.xml', 'r') as f:
+        with open(log_file, "a") as f_log:
+            f_log.write(f"\n{PMID} : ")
         summary = xmltodict.parse(f.read())
 
     abstract = get_abstract_from_summary(summary, log_file)

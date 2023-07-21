@@ -27,7 +27,8 @@ def get_xml(wildcards):
 
 rule all:
     input:
-        get_xml
+        get_xml,
+        "results/images/stat_http.png"
 
 
 checkpoint create_forges_stats:
@@ -61,16 +62,24 @@ checkpoint create_forges_stats:
                 output_name=query_output
             )
            
-rule analyse_xml:
+rule analyse_xml_http:
     input:
         get_xml
     output:
-        "../data/links_http_stat.json"
+        "data/links_http_stat.json"
+    run:
+        pmids_http = pd.read_csv("data/http.tsv", sep='\t')['PMID'].to_list()
+        files = [file for file in os.listdir("data/xml/") if file.endswith('xml') and int(file.split('.')[0]) in pmids_http]
+
+        links_http_stat = tools.create_links_stat(files)
+
+        with open("data/links_http_stat.json", "w") as f:
+            json.dump(links_http_stat, f)
         
 
 rule make_forge_stat_figures:
     input:
-        notebook="analysis_forges.ipynb",
+        notebook="notebooks/analysis_forges.ipynb",
         github_stats="data/github.tsv",
         gitlab_stats="data/gitlab.tsv",
         sourceforge_stats="data/sourceforge.tsv",
@@ -78,7 +87,7 @@ rule make_forge_stat_figures:
         bitbucket_stats="data/bitbucket.tsv",
         http_stats="data/http.tsv"
     output:
-        "results/images/stat_forges.png"
+        "results/images/stat_forges.png",
         "results/images/stat_http.png"
     shell:
         "jupyter nbconvert --execute {input.notebook}"                      

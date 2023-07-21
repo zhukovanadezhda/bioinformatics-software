@@ -6,9 +6,9 @@ Software plays a vital role in modern scientific research, making it imperative 
 [![GitHub last commit](https://img.shields.io/github/last-commit/zhukovanadezhda/bioinformatics-software.svg)](https://github.com/zhukovanadezhda/bioinformatics-software)
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/zhukovanadezhda/bioinformatics-software/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/zhukovanadezhda/bioinformatics-software)
 
-# Run the analysis
+## Create the environment
 
-## Clone the repository
+### Clone the repository
 
 Clone the repository:
 
@@ -16,31 +16,48 @@ Clone the repository:
 git clone https://github.com/zhukovanadezhda/bioinformatics-software.git
 cd bioinformatics-software
 ```
-## Setup your conda environment
+### Setup the conda environment
 
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and [mamba](https://github.com/mamba-org/mamba). Create the `bioinfosoft` conda environment:
 
 ```bash
 mamba env create -f binder/environment.yml
+```
+
+### Load the environment
+
+```bash
 conda activate bioinfosoft
 ```
 
-To deactivate an active environment, use:
+Remark: to deactivate an active environment, use:
 
-```
+```bash
 conda deactivate
 ```
 
 
-## Launch the program
+## Get API keys
 
-To launch the analysis with Snakemake workflow, use:
+The workflow analysis requires API keys for PubMed, GitHub and Software Heritage.
+
+Create the file `.env` to store API keys in the following format:
+
+```
+GITHUB_TOKEN=...
+PUBMED_TOKEN=...
+SWH_TOKEN=...
+```
+
+## Run the analysis
+
+Run the analysis with the Snakemake workflow:
 
 ```bash
 snakemake --cores 1 --use-conda
 ```
 
-All the results will appear in the `data` folder.
+All the results will be stored in the `data` folder.
 
 
 # Dependency tree:

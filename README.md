@@ -3,10 +3,7 @@
 
 Software plays a vital role in modern scientific research, making it imperative to uphold both the accessibility and high quality of scientific software. Recognizing the significance of sustainable and reproducible science, Software Heritage (https://www.softwareheritage.org/) serves as a global archive for software preservation. This project focuses on examining the current trends in the development of bioinformatic software by gathering information from the abstracts of articles published on PubMed (https://pubmed.ncbi.nlm.nih.gov/). By utilizing the APIs of PubMed, GitHub, and Software Heritage, we collect diverse information regarding approximately 10,000 scientific software packages. Subsequently, our analysis aims to determine the proportion of archived software, assess the developmental dynamics, and evaluate the accessibility of software through the provided publication links. Furthermore, the workflow is implemented using Snakemake, facilitating the seamless initiation of the analysis from scratch.
 
-[![Python 3.10.9](https://img.shields.io/badge/python-%E2%89%A5_3.10.9-blue.svg)](https://www.python.org/downloads/release/python-397/)
-[![Conda 22.11.1](https://img.shields.io/badge/conda-%E2%89%A5_22.11.1-green.svg)](https://docs.conda.io/en/latest/miniconda.html)
 [![GitHub last commit](https://img.shields.io/github/last-commit/zhukovanadezhda/bioinformatics-software.svg)](https://github.com/zhukovanadezhda/bioinformatics-software)
-![GitHub stars](https://img.shields.io/github/stars/zhukovanadezhda/bioinformatics-software.svg?style=social)
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/zhukovanadezhda/bioinformatics-software/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/zhukovanadezhda/bioinformatics-software)
 
 # Run the analysis

@@ -48,7 +48,10 @@ def record_api_error(query="",
         error_file.write(f"Query URL: {query}\n")
         error_file.write(f"Status code: {response.status_code}\n")
         error_file.write(f"Header: ")
-        error_file.write(json.dumps(dict(response.headers), indent=4))
+        error_file.write(f"{json.dumps(dict(response.headers), indent=4)}\n")
+        error_file.write(f"Answer: ")
+        error_file.write(f"{json.dumps(dict(response.json()), indent=4)}\n")
+
 
 ##############################################################################
 ####################################----PUBMED----############################
@@ -125,13 +128,15 @@ def clean_links_dict(links_stat):
     return sorted_links
 
 
-def query_pubmed(query, year_start, year_end, output_name):
-    
+def query_pubmed(query="github[tiab]",
+                 token="",
+                 year_start=2018,
+                 year_end=2022,
+                 output_name="test.tsv"):
     db = "pubmed"
     domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
     retmode = "json"
-    token = os.environ.get("PUBMED_TOKEN")
-    df = pd.DataFrame({'year': [], 'PMID': []})
+    df = pd.DataFrame({"year": [], "PMID": []})
     
     for year in range(year_start, year_end+1):
         query_year = (
@@ -169,37 +174,9 @@ def query_pubmed(query, year_start, year_end, output_name):
     df = df.drop_duplicates(subset=["PMID"], keep="first")
     df = df.reset_index(drop=True)
     df.to_csv(output_name, sep='\t', index=False)
-    return df
+    print(f"Saved {output_name}")
     
-    
-def get_forges_stat(queries, PMIDs):
-    db = "pubmed"
-    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
-    retmode = "json"
-    token = os.environ.get("PUBMED_TOKEN")
-    stats = {}
-    for query in tqdm(queries):
-        nb = 0 #number of articles for this query
-        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmode={retmode}&retmax=9999&api_key={token}&term={query}"
-        response = requests.get(queryLinkSearch)
-        pubmed_json = response.json()
-        if response.status_code != 200:
-            record_api_error(
-                query=queryLinkSearch,
-                response=response
-            )
-            response.raise_for_status()
-        for id in pubmed_json["esearchresult"]["idlist"]:
-            #checking if there are any dublicates in PubMed IDs (it happens 
-            #because of the PubDate that can be EPubDate or normal)
-            if id not in PMIDs:
-                nb += 1
-                PMIDs.append(id)
-        #query[-33:-29] - it is the year of this query
-        stats[query[-33:-29]] = nb 
-    return stats
-
-  
+ 
 def add_days(date_string, n):
     date_object = datetime.strptime(date_string, "%Y/%m/%d")
     new_date = date_object + timedelta(days=n)
@@ -207,61 +184,9 @@ def add_days(date_string, n):
 
     return new_date_string
 
-def get_all_pmids(queries):
-    db = "pubmed"
-    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
-    retmode = "json"
-    df = pd.DataFrame({'year': [], 'PMID': []})
-
-    for query in tqdm(queries):
-        queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query}"
-        response = requests.get(queryLinkSearch)
-        if response.status_code == 200:
-            result = response.json()['esearchresult']
-            nb_ids = int(result['count'])
-            if nb_ids > 9999:
-                batch_nb = (nb_ids // 9999) + 2
-                batch_size = 365 // batch_nb
-                date_start = query[-68:-58]
-                for batch in range(batch_nb):
-                    date_end = add_days(date_start, batch_size)
-                    query = f'(("http"[Title/Abstract]) OR ("https"[Title/Abstract])) AND (("{date_start}"[Date - Publication] : "{date_end}"[Date - Publication]))'
-                    queryLinkSearch = f"{domain}/esearch.fcgi?db={db}&retmax=9999&retmode={retmode}&term={query}"
-                    response = requests.get(queryLinkSearch)
-                    pubmed_json = response.json()
-                    for id in pubmed_json["esearchresult"]["idlist"]:
-                        new_row = pd.DataFrame({'year': [query[-33:-29]], 'PMID': [id]})
-                        df = pd.concat([df, new_row], ignore_index=True)
-                    date_start = date_end
-            else:
-                response = requests.get(queryLinkSearch)
-                pubmed_json = response.json()
-                for id in pubmed_json["esearchresult"]["idlist"]:
-                    new_row = pd.DataFrame({'year': [query[-33:-29]], 'PMID': [id]})
-                    df = pd.concat([df, new_row], ignore_index=True)
-                    
-    df = df.drop_duplicates(subset=['PMID'])
-    df = df.reset_index(drop=True)
-    
-    return df
-
-  
-def is_software(PMID, access_token, log_file):
-    tags = []
-    dict = pbmd.get_summary(PMID, access_token, log_file)['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['MeshHeadingList']['MeshHeading']
-    try:
-        tags.append(dict['DescriptorName']['#text'])
-    except:
-        for i in dict:
-            tags.append(i['DescriptorName']['#text'])
-    if 'Software' in tags:
-        return 1
-    else:
-        return 0
 
 def parse_xml(PMID, log_file):
-    
-    with open(f'data/xml/{PMID}.xml', 'r') as f:
+    with open(f'data/pubmed/{PMID}.xml', 'r') as f:
         with open(log_file, "a") as f_log:
             f_log.write(f"\n{PMID} : ")
         summary = xmltodict.parse(f.read())
@@ -273,42 +198,6 @@ def parse_xml(PMID, log_file):
     doi = get_doi_from_summary(summary, log_file) 
     
     return PMID, pubdate, doi, journal, title, abstract
-
-
-def get_summary(PMID, access_token, log_file):
-    """Obtaining information about an article published in PubMed using the PubMed API.
-
-    Parameters
-    ----------
-    PMID : int
-        The PubMed id of the article.
-    access_token : str
-        Access token for github.
-    log_file : str
-        A file to store information about the errors provided by this function.
-
-    Returns
-    -------
-    summary : dictionary
-        A dictionary obtained from xml format provided by pubmed api entrez.
-        
-    Example of query
-    -------
-    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36540970&retmode=xml&rettype=abstract
-    
-    """
-    db = 'pubmed'
-    domain = 'https://www.ncbi.nlm.nih.gov/entrez/eutils'
-    retmode = 'xml'
-    queryLinkSearch = f'{domain}/efetch.fcgi?db={db}&id={PMID}&retmode={retmode}&rettype=abstract&api_key={access_token}'  
-    response = requests.get(queryLinkSearch)
-    summary = xmltodict.parse(response.content)
-    
-    with open(log_file, "a") as f:
-        f.write(f"\n{PMID} : ")
-    
-    return summary
-
 
 
 def download_pubmed_abstract(
@@ -343,12 +232,15 @@ def download_pubmed_abstract(
     https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36540970&retmode=xml&rettype=abstract
     """
     db = "pubmed"
-    domain = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
+    base_url = "https://www.ncbi.nlm.nih.gov/entrez/eutils"
     retmode = "xml"
     wait_time = 0.10  # 10 requests / second = 1 request / 0.1 second
     if attempt > 1:
         wait_time = wait_time + 10 * (attempt - 1)
-    query_url = f"{domain}/efetch.fcgi?db={db}&id={pmid}&retmode={retmode}&rettype=abstract&api_key={token}"
+    query_url = (
+        f"{base_url}/efetch.fcgi?db={db}&id={pmid}"
+        f"&retmode={retmode}&rettype=abstract&api_key={token}"
+    )
     response = requests.get(query_url)
     if response.status_code != 200:
         record_api_error(
@@ -454,17 +346,17 @@ def get_pubdate_from_summary(summary, log_file):
              
 
 def convert_date(date_str):
-    """Converting date to a standart format.
+    """Converting date to a standard format.
 
     Parameters
     ----------
     date_str : str
-        Date in YYYY-MM-DD format (example: 2023-Jan-01 or 2022-5-17)
+        Date in YYYY-XX-DD format (example: 2023-Jan-01 or 2022-5-17)
 
     Returns
     -------
     converted_date : str
-        Date in a standart YYYY-MM-DD format (example: 2023-01-01 or 2022-05-17).
+        Date in a standard YYYY-MM-DD format (example: 2023-01-01 or 2022-05-17).
  
     """
     months = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 
@@ -779,21 +671,27 @@ def get_repo_info(pmid=0, url="", token="", log_name=""):
         A list with the date of creation, the date of update and if the repository is a fork.
     """
     
-    headers = {'Authorization': f"Token {token}"}
+    headers = {"Authorization": f"Token {token}"}
     owner = get_owner_from_link(url)
     repo = get_repo_from_link(url)
     query = f"https://api.github.com/repos/{owner}/{repo}"
-    
+    wait_time = 0.75  # max 5000 requests / hour = 1 request / 0.72 second
     info = {"date_created": None, "date_updated": None, "fork": None}
     response = requests.get(query, headers=headers)
-    if response.status_code == 200:
+    if response.status_code != 200:
+        record_api_error(query=query,
+                         attempt=1,
+                         response=response,
+                         output_name=log_name
+                        )
+        print(f"ERROR with query: {query}")
+    else:
         repository_info = response.json()
         info["fork"] = repository_info["fork"]
         info["date_created"] = repository_info["created_at"].split("T")[0]
         info["date_updated"] = repository_info["updated_at"].split("T")[0]
-    else:
-        with open(log_name, "a") as log_file:
-            log_file.write(f"Error with PMID: {pmid} URL: {url} Status code: {response.status_code} Answer: {response.json()}\n")
+    # Wait to avoid rate limit
+    time.sleep(wait_time)
     return info
 
 

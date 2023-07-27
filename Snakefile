@@ -16,84 +16,85 @@ from scripts import pbmd_tools as tools
 tools.read_tokens(".env")
 
 
-def get_xml(wildcards):
+def get_pubmed_xml(wildcards):
     """
     Get the list of xml files to download.
     
     It requires the file listing all PMIDs created in a previous rule.
     Use the 'checkpoint' instruction.
     """
-    with checkpoints.create_forges_stats.get().output.http_stats.open() as pmids_file:
-        pmids_http = pd.read_csv("results/tmp/http.tsv", sep='\t')["PMID"].to_list()
-        pmids_github = pd.read_csv("results/tmp/github.tsv", sep='\t')["PMID"].to_list()
+    with checkpoints.query_pubmed_forges.get().output.http.open() as pmids_file:
+        pmids_http = pd.read_csv("results/pubmed/articles_with_http.tsv", sep='\t')["PMID"].to_list()
+        pmids_github = pd.read_csv("results/pubmed/articles_with_github.tsv", sep='\t')["PMID"].to_list()
         pmids = list(set(pmids_http + pmids_github))
-        return expand("data/xml/{pmid}.xml", pmid=pmids)
+        return expand("data/pubmed/{pmid}.xml", pmid=pmids)
         
 
 rule all:
     input:
-        get_xml,
+        get_pubmed_xml,
         "results/images/stat_http.png",
         "results/data_stat.txt"
 
 
-checkpoint create_forges_stats:
+checkpoint query_pubmed_forges:
     """Blabla explain why do we use gitlab and not gitlab.com
     fot googlecode - explain
     """
     output:
-        github_stats="results/tmp/github.tsv",
-        gitlab_stats="results/tmp/gitlab.tsv",
-        sourceforge_stats="results/tmp/sourceforge.tsv",
-        googlecode_stats="results/tmp/googlecode.tsv",
-        bitbucket_stats="results/tmp/bitbucket.tsv",
-        http_stats="results/tmp/http.tsv"
+        github="results/pubmed/articles_with_github.tsv",
+        gitlab="results/pubmed/articles_with_gitlab.tsv",
+        sourceforge="results/pubmed/articles_with_sourceforge.tsv",
+        googlecode="results/pubmed/articles_with_googlecode.tsv",
+        bitbucket="results/pubmed/articles_with_bitbucket.tsv",
+        http="results/pubmed/articles_with_http.tsv"
     log:
-        "results/tmp/log_files/log_create_forges_stats.log"
+        "results/pubmed/log_files/log_create_forges_stats.log"
     run:
         PUBMED_TOKEN = os.environ.get("PUBMED_TOKEN")
         queries = (
-            ('"github.com"[tiab:~0]', "results/tmp/github.tsv"),
-            ('"gitlab"[tiab]', "results/tmp/gitlab.tsv"),
-            ('"sourceforge.net"[tiab:~0]', "results/tmp/sourceforge.tsv"),
-            ('("googlecode.com"[tiab:~0] OR "code.google.com"[tiab:~0])', 
-            "results/tmp/googlecode.tsv"),
-            ('"bitbucket.org"[tiab:~0]', "results/tmp/bitbucket.tsv"),
-            ('("http"[tiab]) OR ("https"[tiab]))', "results/tmp/http.tsv"),
+            ('"github.com"[tiab:~0]', output.github),
+            ('"gitlab"[tiab]', output.gitlab),
+            ('"sourceforge.net"[tiab:~0]', output.sourceforge),
+            ('("googlecode.com"[tiab:~0] OR "code.google.com"[tiab:~0])', output.googlecode),
+            ('"bitbucket.org"[tiab:~0]', output.bitbucket),
+            ('("http"[tiab]) OR ("https"[tiab]))', output.http)
         )
-        for query_str, query_output in queries:
+        for query_str, query_output_name in queries:
             tools.query_pubmed(
                 query=query_str,
+                token=PUBMED_TOKEN,
                 year_start=2009, year_end=2022, 
-                output_name=query_output
+                output_name=query_output_name
             )
             
            
 rule analyse_xml_http:
     input:
-        get_xml
+        get_pubmed_xml,
+        http="results/pubmed/articles_with_http.tsv"
     output:
         "results/tmp/links_http_stat.json"
     run:
-        pmids_http = pd.read_csv("results/tmp/http.tsv", sep="\t")["PMID"].to_list()
-        files = [file for file in os.listdir("data/xml/") if file.endswith("xml") and int(file.split(".")[0]) in pmids_http]
+        pmids_http = pd.read_csv(input.http, sep="\t")["PMID"].to_list()
+        files = [file for file in os.listdir("data/pubmed/") if file.endswith("xml") and int(file.split(".")[0]) in pmids_http]
         
         links_http_stat = tools.create_links_stat(files)
 
-        with open("results/tmp/links_http_stat.json", "w") as f:
+        with open(output[0], "w") as f:
             json.dump(links_http_stat, f)
         
 
 rule make_forge_stat_figures:
     input:
         notebook="notebooks/analysis_forges.ipynb",
-        github_stats="results/tmp/github.tsv",
-        gitlab_stats="results/tmp/gitlab.tsv",
-        sourceforge_stats="results/tmp/sourceforge.tsv",
-        googlecode_stats="results/tmp/googlecode.tsv",
-        bitbucket_stats="results/tmp/bitbucket.tsv",
-        http_stats="results/tmp/http.tsv",
-        links_stats ="results/tmp/links_http_stat.json"
+        github="results/pubmed/articles_with_github.tsv",
+        gitlab="results/pubmed/articles_with_gitlab.tsv",
+        sourceforge="results/pubmed/articles_with_sourceforge.tsv",
+        googlecode="results/pubmed/articles_with_googlecode.tsv",
+        bitbucket="results/pubmed/articles_with_bitbucket.tsv",
+        http="results/pubmed/articles_with_http.tsv",
+        links_stats ="results/pubmed/links_http_stat.json"
     output:
         "results/images/stat_forges.png",
         "results/images/stat_http.png"
@@ -103,12 +104,12 @@ rule make_forge_stat_figures:
         
 rule get_info_pubmed:
     input:
-        get_xml,
-        data="results/tmp/github.tsv"
+        get_pubmed_xml,
+        github="results/pubmed/articles_with_github.tsv",
     output:
-        result="results/tmp/articles_info_pubmed.tsv"
+        result="results/articles_info_pubmed.tsv"
     run:
-        PMIDs = pd.read_csv(input.data, sep="\t")["PMID"].to_list()
+        PMIDs = pd.read_csv(input.github, sep="\t")["PMID"].to_list()
 
         results = []
         for PMID in PMIDs:
@@ -129,9 +130,9 @@ rule get_info_pubmed:
         
 rule get_info_github:
     input:
-        data="results/tmp/articles_info_pubmed.tsv"
+        data="results/articles_info_pubmed.tsv"
     output:
-        "results/tmp/articles_info_pubmed_github.tsv"
+        results="results/articles_info_pubmed_github.tsv"
     log:
         name="logs/get_info_github.txt"
     run:
@@ -140,7 +141,6 @@ rule get_info_github:
         pathlib.Path("log.name").unlink(missing_ok=True)
         df = pd.read_csv(input.data, sep="\t")
         PMIDs = df["PMID"][df["GitHub_repo"].notna()].to_list()
-
         for PMID in tqdm(PMIDs):    
             idx = df.index[df["PMID"] == PMID][0]
             info = tools.get_repo_info(
@@ -149,19 +149,15 @@ rule get_info_github:
                 token=GITHUB_TOKEN,
                 log_name=log.name
             )
-            
-            df.loc[idx, "Repo_created_at"] = info["date_created"]
-            df.loc[idx, "Repo_updated_at"] = info["date_updated"]
-            df.loc[idx, "Fork"] = info["fork"]
-            
-            time.sleep(1) 
-
-        df.to_csv(output.result, sep="\t", index=False)
+            df.loc[idx, "date_repo_created"] = info["date_created"]
+            df.loc[idx, "date_repo_updated"] = info["date_updated"]
+            df.loc[idx, "is_fork"] = info["fork"]
+        df.to_csv(output.results, sep="\t", index=False)
         
         
 rule get_info_software_heritage:
     input:
-        data="results/tmp/articles_info_pubmed_github.tsv"
+        data="results/articles_info_pubmed_github.tsv"
     output:
         result="results/articles_info_pubmed_github_software_heritage.tsv"
     run:
@@ -204,7 +200,7 @@ rule make_figures:
 
 rule download_pubmed_xml:
     output:
-        xml_name="data/xml/{pmid}.xml"
+        xml_name="data/pubmed/{pmid}.xml"
     retries: 3
     resources:
         attempt=lambda wildcards, attempt: attempt
@@ -217,6 +213,7 @@ rule download_pubmed_xml:
             log_name=f"logs/{wildcards.pmid}_error_{resources.attempt}.log",
             attempt=resources.attempt
             )
+
 
 onsuccess:
     print("WORKFLOW COMPLETED SUCCESSFULLY!")

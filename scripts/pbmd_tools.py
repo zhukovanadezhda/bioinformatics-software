@@ -29,7 +29,8 @@ def read_tokens(path):
 def record_api_error(query="", 
                      attempt=1, 
                      response=None, 
-                     output_name="error.log"):
+                     output_name="error.log",
+                     append_log=False):
     """Record API error.
 
     Parameters
@@ -43,14 +44,17 @@ def record_api_error(query="",
     output_name: str
         File name to store error messages.
     """
-    with open(output_name, "w") as error_file:
+    log_mode = "w"
+    if append_log:
+        log_mode = "a"
+    with open(output_name, log_mode) as error_file:
         error_file.write(f"Attempt: {attempt}\n")
         error_file.write(f"Query URL: {query}\n")
         error_file.write(f"Status code: {response.status_code}\n")
         error_file.write(f"Header: ")
         error_file.write(f"{json.dumps(dict(response.headers), indent=4)}\n")
         error_file.write(f"Answer: ")
-        error_file.write(f"{json.dumps(dict(response.json()), indent=4)}\n")
+        error_file.write(f"{json.dumps(dict(response.json()), indent=4)}\n\n")
 
 
 ##############################################################################
@@ -682,7 +686,8 @@ def get_repo_info(pmid=0, url="", token="", log_name=""):
         record_api_error(query=query,
                          attempt=1,
                          response=response,
-                         output_name=log_name
+                         output_name=log_name,
+                         append_log=True
                         )
         print(f"ERROR with query: {query}")
     else:

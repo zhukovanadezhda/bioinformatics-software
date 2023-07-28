@@ -10,7 +10,7 @@ import os
 import sys
 import time
 from datetime import datetime, timedelta
-
+from lxml import etree
 
 ############################################################################################
 #################################----TECHNICAL----##########################################
@@ -191,25 +191,26 @@ def add_days(date_string, n):
 
 def parse_pubmed_xml(pmid="", xml_name="", log_name="parse_pubmed_xml.log"):
     with open(xml_name, "r") as xml_file, open(log_name, "a") as log_file:
+        xml_content = xml_file.read()
         error_message = ""
         try:
-            xml_content = xmltodict.parse(xml_file.read())
+            xml_content_dict = xmltodict.parse(xml_content)
         except xmltodict.expat.ExpatError:
             return None, None, None, None, None, None
         # Extracting information from the xml file.
         abstract = extract_abstract_from_summary(xml_content)
         if not abstract:
             error_message += "no abstract found, "
-        pubdate = extract_pubdate_from_summary(xml_content)
+        pubdate = extract_pubdate_from_summary(xml_content_dict)
         if not pubdate:
             error_message += "no publication date found, "
-        title = extract_title_from_summary(xml_content)
+        title = extract_title_from_summary(xml_content_dict)
         if not title:
             error_message += "no title found, "
-        journal = extract_journal_from_summary(xml_content)
+        journal = extract_journal_from_summary(xml_content_dict)
         if not journal:
             error_message += "no journal found, "
-        doi = extract_doi_from_summary(xml_content)
+        doi = extract_doi_from_summary(xml_content_dict)
         if not doi:
             error_message += "no doi found"
         if error_message:
@@ -273,15 +274,13 @@ def download_pubmed_abstract(
     time.sleep(wait_time)
 
 
-def extract_abstract_from_xml_structure(xml):
-    """Extract abstract from XML structure.
-    
-    Uses a flat dictionnary approach
+def extract_abstract_from_summary(content):
+    """Extract article abstract from XML content.
 
     Parameters
     ----------
-    xml : dictionary
-        Dictionnary corresponding to the XML structure for abstract.
+    content : str
+        Content from the XML file provided by the PubMed API.
 
     Returns
     -------
@@ -289,50 +288,15 @@ def extract_abstract_from_xml_structure(xml):
         The article abstract.
     """
     abstract = ""
-    df = pd.json_normalize(xml, sep="_")
-    flat = df.to_dict(orient="records")[0]
-    for key in flat.keys():
-        if "#text" in key:
-            abstract += flat[key] + " "
+    tree = etree.fromstring(content)
+    # Abstracts are contained in AbstractText tags,
+    # AbstractText tags can have nested tags for formatting.
+    # Hence, .itertext() returns the text of the element
+    # and its subelements.
+    for element in tree.findall('.//AbstractText'):
+        for text in element.itertext():
+            abstract += text + " "
     return abstract
-
-
-def extract_abstract_from_summary(summary):
-    """Extract article abstract from XML content.
-
-    Parameters
-    ----------
-    summary : dictionary
-        A dictionary obtained from xml format provided by pubmed api entrez.
-
-    Returns
-    -------
-    str
-        The article abstract.
-    """
-    abstract_raw = None
-    # Test two stategies to extract abstract structure
-    try:
-        article = summary['PubmedArticleSet']['PubmedArticle']
-        abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
-    except KeyError:
-        pass
-    try:
-        article = summary['PubmedArticleSet']['PubmedBookArticle']['BookDocument']
-        abstract_raw = article['Abstract']['AbstractText']
-    except KeyError:
-        pass
-    if abstract_raw:
-        if isinstance(abstract_raw, str):
-            abstract = abstract_raw
-        elif isinstance(abstract_raw, list):
-            abstract = ""
-            for abstract_part in abstract_raw:
-                abstract += extract_abstract_from_xml_structure(abstract_part)
-        elif isinstance(abstract_raw, dict):
-            abstract = extract_abstract_from_xml_structure(abstract_raw)
-        return abstract
-    return None
 
 
 def extract_pubdate_from_summary(summary):

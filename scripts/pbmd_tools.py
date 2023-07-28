@@ -192,8 +192,11 @@ def add_days(date_string, n):
 def parse_pubmed_xml(pmid="", xml_name="", log_name="parse_pubmed_xml.log"):
     with open(xml_name, "r") as xml_file, open(log_name, "a") as log_file:
         error_message = ""
-        xml_content = xmltodict.parse(xml_file.read())
-        # Etracting information from the xml file.
+        try:
+            xml_content = xmltodict.parse(xml_file.read())
+        except ExpatError:
+            return None, None, None, None, None, None
+        # Extracting information from the xml file.
         abstract = extract_abstract_from_summary(xml_content)
         if not abstract:
             error_message += "no abstract found, "
@@ -270,6 +273,30 @@ def download_pubmed_abstract(
     time.sleep(wait_time)
 
 
+def extract_abstract_from_xml_structure(xml):
+    """Extract abstract from XML structure.
+    
+    Uses a flat dictionnary approach
+
+    Parameters
+    ----------
+    xml : dictionary
+        Dictionnary corresponding to the XML structure for abstract.
+
+    Returns
+    -------
+    str
+        The article abstract.
+    """
+    abstract = ""
+    df = pd.json_normalize(xml, sep="_")
+    flat = df.to_dict(orient="records")[0]
+    for key in flat.keys():
+        if "#text" in key:
+            abstract += flat[key] + " "
+    return abstract
+
+
 def extract_abstract_from_summary(summary):
     """Extract article abstract from XML content.
 
@@ -283,36 +310,29 @@ def extract_abstract_from_summary(summary):
     str
         The article abstract.
     """
+    abstract_raw = None
+    # Test two stategies to extract abstract structure
     try:
-        try:
-            article = summary['PubmedArticleSet']['PubmedArticle']
-            abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
-        except:
-            article = summary['PubmedArticleSet']['PubmedBookArticle']['BookDocument']
-            abstract_raw = article['Abstract']['AbstractText']
+        article = summary['PubmedArticleSet']['PubmedArticle']
+        abstract_raw = article['MedlineCitation']['Article']['Abstract']['AbstractText']
+    except KeyError:
+        pass
+    try:
+        article = summary['PubmedArticleSet']['PubmedBookArticle']['BookDocument']
+        abstract_raw = article['Abstract']['AbstractText']
+    except KeyError:
+        pass
+    if abstract_raw:
         if isinstance(abstract_raw, str):
             abstract = abstract_raw
         elif isinstance(abstract_raw, list):
             abstract = ""
-            for d in abstract_raw:
-                try:
-                    abstract += d['#text'] + " " 
-                except:
-                    continue
-        else:
-            try: 
-                abstract = ""
-                abstract += abstract_raw['#text'] + " "
-            except:
-                for d in abstract_raw:
-                    try:
-                        abstract += abstract_raw[d] + " " 
-                    except:
-                        continue
-
+            for abstract_part in abstract_raw:
+                abstract += extract_abstract_from_xml_structure(abstract_part)
+        elif isinstance(abstract_raw, dict):
+            abstract = extract_abstract_from_xml_structure(abstract_raw)
         return abstract
-    except:
-        return None
+    return None
 
 
 def extract_pubdate_from_summary(summary):

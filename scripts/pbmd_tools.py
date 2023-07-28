@@ -1,16 +1,18 @@
-from linkify_it import LinkifyIt
-import pandas as pd
-import re
-import requests
-from tqdm import tqdm
-import xmltodict
-import dotenv
+from datetime import datetime, timedelta
 import json
 import os
 import sys
 import time
-from datetime import datetime, timedelta
+import re
+
+import dotenv
+from linkify_it import LinkifyIt
 from lxml import etree
+import pandas as pd
+import requests
+from tqdm import tqdm
+import xmltodict
+
 
 ############################################################################################
 #################################----TECHNICAL----##########################################

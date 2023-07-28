@@ -6,7 +6,6 @@ import time
 
 import pandas as pd
 from tqdm import tqdm
-import xmltodict
 
 from scripts import pbmd_tools as tools
 

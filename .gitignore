@@ -1,8 +1,11 @@
-# credential file
+# Credential file
 .env
 
 # Byte-compiled Python files
 __pycache__/
+
+# Logs
+logs/
 
 # Data files
 *.json

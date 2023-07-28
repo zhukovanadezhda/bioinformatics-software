@@ -145,20 +145,19 @@ rule get_info_github:
         # Remove old log file.
         pathlib.Path(log.name).unlink(missing_ok=True)
         
-        df = pd.read_csv(input.data, sep="\t")
-        PMIDs = df["PMID"][df["GitHub_repo"].notna()].to_list()
-        for PMID in tqdm(PMIDs):    
-            idx = df.index[df["PMID"] == PMID][0]
+        df = pd.read_csv(input.data, sep="\t", index_col="PMID")
+        PMIDs = df[ df["GitHub_repo"].notna() ].index.to_list()
+        for pmid in tqdm(PMIDs):    
             info = tools.get_repo_info(
-                pmid=PMID,
-                url=df.loc[idx, "GitHub_link_clean"],
+                pmid=pmid,
+                url=df.loc[pmid, "GitHub_link_clean"],
                 token=GITHUB_TOKEN,
                 log_name=log.name
             )
-            df.loc[idx, "date_repo_created"] = info["date_created"]
-            df.loc[idx, "date_repo_updated"] = info["date_updated"]
-            df.loc[idx, "is_fork"] = info["fork"]
-        df.to_csv(output.results, sep="\t", index=False)
+            df.loc[pmid, "date_repo_created"] = info["date_created"]
+            df.loc[pmid, "date_repo_updated"] = info["date_updated"]
+            df.loc[pmid, "is_fork"] = info["fork"]
+        df.to_csv(output.results, sep="\t", index=True)
         
         
 rule get_info_software_heritage:

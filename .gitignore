@@ -19,5 +19,7 @@ __pycache__/
 # Jupyter notebook checkpoints
 .ipynb_checkpoints
 
+# Jupyter notebooks for development
+notebooks/dev*.ipynb
 
 .snakemake

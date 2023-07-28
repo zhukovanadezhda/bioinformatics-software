@@ -102,30 +102,35 @@ rule make_forge_stat_figures:
         "jupyter nbconvert --to html --execute {input.notebook}"      
         
         
-rule get_info_pubmed:
+rule extract_info_from_pubmed_xml:
     input:
         get_pubmed_xml,
         github="results/pubmed/articles_with_github.tsv",
     output:
-        result="results/articles_info_pubmed.tsv"
+        results="results/articles_info_pubmed.tsv"
+    log:
+        name="logs/extract_info_from_pubmed_xml.txt"
     run:
         PMIDs = pd.read_csv(input.github, sep="\t")["PMID"].to_list()
-
+        # Remove old log file.
+        pathlib.Path(log.name).unlink(missing_ok=True)
         results = []
         for PMID in PMIDs:
-            results.append(tools.parse_xml(PMID, "results/tmp/log_files/log_get_info_pubmed.txt"))
-            
+            results.append(tools.parse_pubmed_xml(
+                                pmid=PMID,
+                                xml_name=f"data/pubmed/{PMID}.xml",
+                                log_name=log.name
+                                )
+                            )
         df = pd.DataFrame.from_records(results)
-        df = df.rename(columns = {0: "PMID", 1: "PubDate", 2: "DOI", 3: "Journal", 4: "Title", 5: "Abstract"})
-        df = df.drop_duplicates(subset = "PMID")
-        df = df.reset_index(drop = True)
-        
-        df["GitHub_link_raw"] = df["Abstract"].astype(str).apply(tools.get_link_from_abstract)
+        df.columns = ["PMID", "publication_date", "DOI", 
+                      "journal", "title", "abstract"]
+        df["GitHub_link_raw"] = df["abstract"].astype(str).apply(tools.extract_link_from_abstract)
         df["GitHub_link_clean"] = df["GitHub_link_raw"].astype(str).apply(tools.clean_link)
         df["GitHub_owner"] = df["GitHub_link_clean"].apply(tools.get_owner_from_link)
         df["GitHub_repo"] = df["GitHub_link_clean"].apply(tools.get_repo_from_link)
         
-        df.to_csv(output.result, sep="\t", index=False)
+        df.to_csv(output.results, sep="\t", index=False)
         
         
 rule get_info_github:
@@ -138,7 +143,8 @@ rule get_info_github:
     run:
         GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
         # Remove old log file.
-        pathlib.Path("log.name").unlink(missing_ok=True)
+        pathlib.Path(log.name).unlink(missing_ok=True)
+        
         df = pd.read_csv(input.data, sep="\t")
         PMIDs = df["PMID"][df["GitHub_repo"].notna()].to_list()
         for PMID in tqdm(PMIDs):    
@@ -176,8 +182,8 @@ rule get_info_software_heritage:
 
             idx = df.index[df['PMID'] == PMID][0]
 
-            df.loc[idx, "In_SoftWH"] = tools.is_in_softwh(info)
-            df.loc[idx, "Archived"] = tools.get_date_archived(info)
+            df.loc[idx, "is_in_SWH"] = tools.is_in_softwh(info)
+            df.loc[idx, "is_archived"] = tools.get_date_archived(info)
 
         df.to_csv(output.result, sep="\t", index=False)
     

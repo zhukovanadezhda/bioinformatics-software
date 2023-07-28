@@ -51,9 +51,9 @@ def record_api_error(query="",
         error_file.write(f"Attempt: {attempt}\n")
         error_file.write(f"Query URL: {query}\n")
         error_file.write(f"Status code: {response.status_code}\n")
-        error_file.write(f"Header: ")
+        error_file.write("Header: ")
         error_file.write(f"{json.dumps(dict(response.headers), indent=4)}\n")
-        error_file.write(f"Answer: ")
+        error_file.write("Answer: ")
         error_file.write(f"{json.dumps(dict(response.json()), indent=4)}\n\n")
 
 
@@ -69,8 +69,9 @@ def fill_empty_years(years, df):
     
     return df
 
-def create_links_stat(files, 
-                      file_path = "data/xml/", 
+
+def create_links_stat(files,
+                      file_path = "data/xml/",
                       log = "results/tmp/log_files/log_create_links_stat(.txt"):
     links_stat = {}
     
@@ -106,7 +107,6 @@ def create_links_stat(files,
                 
     return clean_links_dict(links_stat)
     
-
 
 def clean_links_dict(links_stat):
 
@@ -189,19 +189,29 @@ def add_days(date_string, n):
     return new_date_string
 
 
-def parse_xml(PMID, log_file):
-    with open(f'data/pubmed/{PMID}.xml', 'r') as f:
-        with open(log_file, "a") as f_log:
-            f_log.write(f"\n{PMID} : ")
-        summary = xmltodict.parse(f.read())
-
-    abstract = get_abstract_from_summary(summary, log_file)
-    pubdate = get_pubdate_from_summary(summary, log_file)
-    title = get_title_from_summary(summary, log_file)
-    journal = get_journal_from_summary(summary, log_file)
-    doi = get_doi_from_summary(summary, log_file) 
-    
-    return PMID, pubdate, doi, journal, title, abstract
+def parse_pubmed_xml(pmid="", xml_name="", log_name="parse_pubmed_xml.log"):
+    with open(xml_name, "r") as xml_file, open(log_name, "a") as log_file:
+        error_message = ""
+        xml_content = xmltodict.parse(xml_file.read())
+        # Etracting information from the xml file.
+        abstract = extract_abstract_from_summary(xml_content)
+        if not abstract:
+            error_message += "no abstract found, "
+        pubdate = extract_pubdate_from_summary(xml_content)
+        if not pubdate:
+            error_message += "no publication date found, "
+        title = extract_title_from_summary(xml_content)
+        if not title:
+            error_message += "no title found, "
+        journal = extract_journal_from_summary(xml_content)
+        if not journal:
+            error_message += "no journal found, "
+        doi = extract_doi_from_summary(xml_content)
+        if not doi:
+            error_message += "no doi found"
+        if error_message:
+            log_file.write(f"{pmid}: {error_message}\n")
+    return pmid, pubdate, doi, journal, title, abstract
 
 
 def download_pubmed_abstract(
@@ -260,21 +270,18 @@ def download_pubmed_abstract(
     time.sleep(wait_time)
 
 
-def get_abstract_from_summary(summary,  log_file):
-    """Obtaining abstract from the dictionary with summary returned by PubMed API.
+def extract_abstract_from_summary(summary):
+    """Extract article abstract from XML content.
 
     Parameters
     ----------
     summary : dictionary
         A dictionary obtained from xml format provided by pubmed api entrez.
-    log_file : str
-        A file to store information about the errors provided by this function.
 
     Returns
     -------
-    abstract : str
-        The article abctact.
-        
+    str
+        The article abstract.
     """
     try:
         try:
@@ -305,52 +312,61 @@ def get_abstract_from_summary(summary,  log_file):
 
         return abstract
     except:
-        with open(log_file, "a") as f:
-            f.write(f"no abstract found, ")
         return None
 
-def get_pubdate_from_summary(summary, log_file):
-    """Obtaining pubdate from the dictionary with summary returned by PubMed API.
+
+def extract_pubdate_from_summary(summary):
+    """Extract article publication date from XML content.
+
+    Some articles do not have a complete publication date,
+    year and month are ususaly provided but day is missing.
+    Examples:
+    - https://pubmed.ncbi.nlm.nih.gov/25553811/
+    - https://pubmed.ncbi.nlm.nih.gov/31871433/
 
     Parameters
     ----------
     summary : dictionary
         A dictionary obtained from xml format provided by pubmed api entrez.
-    log_file : str
-        A file to store information about the errors provided by this function.
 
     Returns
     -------
-    pubdate : str
-        Pubdate.
-
-    Example of (weird) query
-    -------
-    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36579134&retmode=xml&rettype=abstract
-    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36930770&retmode=xml&rettype=abstract
- 
+    str
+        Publication date.
     """
     try:
-        article = summary['PubmedArticleSet']['PubmedArticle']
-        date = article['MedlineCitation']['Article']['ArticleDate']
-        pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
+        article = summary["PubmedArticleSet"]["PubmedArticle"]
+        date = article["MedlineCitation"]["Article"]["ArticleDate"]
+        pubdate = f"{date['Year']}-{date['Month']}-{date['Day']}"
+    except KeyError:
+        pass
+    else:
+        return normalize_date(pubdate)
+    try:
+        article = summary["PubmedArticleSet"]["PubmedArticle"]
+        date = article["MedlineCitation"]["Article"]["Journal"]["JournalIssue"]["PubDate"]
+        pubdate = f"{date['Year']}-{date['Month']}-{date['Day']}"
+    except KeyError:
+        pass
+    else:
+        return normalize_date(pubdate)
+    # No ArticleDate nor PubDate
+    # Example:
+    # https://pubmed.ncbi.nlm.nih.gov/25344330/
+    # https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25344330&retmode=xml&rettype=abstract
+    try:
+        article = summary["PubmedArticleSet"]["PubmedArticle"]
+        date = article["MedlineCitation"]["DateCompleted"]
+        pubdate = f"{date['Year']}-{date['Month']}-{date['Day']}"
+    except KeyError:
+        pass
+    else:
+        return normalize_date(pubdate)
+    return None
 
-        return convert_date(pubdate)
-    except:
-        try:
-            article = summary['PubmedArticleSet']['PubmedArticle']
-            date = article['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']
-            pubdate = date['Year'] + '-' + date['Month'] + '-' + date['Day']
-                
-            return convert_date(pubdate)
-        except:  
-            with open(log_file, "a") as f:
-                f.write(f"no publication date found, ")
-            return None
-             
 
-def convert_date(date_str):
-    """Converting date to a standard format.
+def normalize_date(date):
+    """Normalize date to ISO-8601 standard format.
 
     Parameters
     ----------
@@ -367,36 +383,28 @@ def convert_date(date_str):
               'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12',
               '1': '01', '2': '02', '3': '03', '4': '04', '5': '05', '6': '06', 
               '7': '07', '8': '08', '9': '09', '10': '10', '11': '11', '12': '12'}
-    parts = date_str.split('-')
-    year = parts[0]
-    month = months.get(parts[1], parts[1])
-    day = parts[2]
-    converted_date = f"{year}-{month}-{day}"
-        
-    return converted_date
+    year, month, day = date.split('-')
+    month = months.get(month, month)
+    date_new = f"{year}-{month}-{day}"
+    return date_new
 
 
-def get_title_from_summary(summary,  log_file):
-    """Obtaining title from the dictionary with summary returned by PubMed API.
+def extract_title_from_summary(summary):
+    """Extract article title from XML content.
+
+    Title with weird characters cannot be extracted.
+    For example: https://pubmed.ncbi.nlm.nih.gov/35846129/
 
     Parameters
     ----------
     summary : dictionary
         A dictionary obtained from xml format provided by pubmed api entrez.
-    log_file : str
-        A file to store information about the errors provided by this function.
 
     Returns
     -------
-    title : str
-        The article abctact.
-    
-    Example of a (weird) query
-    -------
-    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32983048&retmode=xml&rettype=abstract
- 
+    str
+        The article title.
     """
-    
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         title_raw = article['MedlineCitation']['Article']['ArticleTitle']
@@ -415,64 +423,54 @@ def get_title_from_summary(summary,  log_file):
         else:
             title = title_raw
 
-        return title  
+        return title
     except:
-        with open(log_file, "a") as f:
-            f.write(f"no title found, ")
         return None
         
 
-def get_journal_from_summary(summary,  log_file):
-    """Obtaining journal name from the dictionary with summary returned by PubMed API.
+def extract_journal_from_summary(summary):
+    """Extract article journal name from XML content.
 
     Parameters
     ----------
     summary : dictionary
         A dictionary obtained from xml format provided by pubmed api entrez.
-    log_file : str
-        A file to store information about the errors provided by this function.
 
     Returns
     -------
-    journal : str
-        The article abctact.
-        
+    str
+        The article journal.
     """ 
     try:
         article = summary['PubmedArticleSet']['PubmedArticle']
         journal = article['MedlineCitation']['Article']['Journal']['Title']
         return journal
     except:
-        with open(log_file, "a") as f:
-            f.write(f"no jouranl found, ")
         return None
 
 
-def get_doi_from_summary(summary,  log_file):
-    """Obtaining doi from the dictionary with summary returned by PubMed API.
+def extract_doi_from_summary(summary):
+    """Extract article DOI from XML content.
+
+    Some articles do not have a DOI.
+    Examples:
+    - https://pubmed.ncbi.nlm.nih.gov/26262258/
+    - https://pubmed.ncbi.nlm.nih.gov/32508484/
 
     Parameters
     ----------
     summary : dictionary
         A dictionary obtained from xml format provided by pubmed api entrez.
-    log_file : str
-        A file to store information about the errors provided by this function.
 
     Returns
     -------
-    doi : str
-        The article abctact.
-        
-    Example of (weird) query
-    -------
-    https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36579134&retmode=xml&rettype=abstract
-  
+    str
+        The article DOI.  
     """  
     try:
         try:
             article = summary['PubmedArticleSet']['PubmedArticle']
             ELocationID_list = article['PubmedData']['ArticleIdList']['ArticleId']
-            
         except:
             article = summary['PubmedArticleSet']['PubmedArticle']
             ELocationID_list = article['MedlineCitation']['Article']['ELocationID']
@@ -486,36 +484,32 @@ def get_doi_from_summary(summary,  log_file):
                     doi = dictionary["#text"]
         return doi
     except:
-        with open(log_file, "a") as f:
-            f.write(f"no doi found \n")
-        return None            
+        return None  
 
 
-def get_link_from_abstract(text):
+def extract_link_from_abstract(text):
     """
-    Get a Github link from an abstract.
+    Extract a Github link from an article abstract.
     
     Parameters
     ----------
     text : str
-        An abstract with a link.
+        An article abstract.
 
     Returns
     -------
-    link_with_point : str
-        Link to a github repository extracted from an abstract.
+    str
+        GitHub.com link.
     """
-    if text == None:
+    if text is None:
         return None
-    
-    rgx = "github.com[^\n ,):;'+}>•]*"
-       
-    if len(re.findall(rgx, text, re.IGNORECASE)) > 1:
-        link_with_point  = re.findall(rgx, text, re.IGNORECASE)[0]
-    else:
-        link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
+    regex = "github.com[^\n ,):;'+}>•]*"
+    hits = re.findall(regex, text, re.IGNORECASE)
+    if not hits:
+        return None
+    # If multiple GitHub links are found, return the first link only.
+    return hits[0]
 
-    return link_with_point       
 
 def get_gitlab_link(text):
 
@@ -530,6 +524,7 @@ def get_gitlab_link(text):
         link_with_point  = str(re.findall(rgx, text, re.IGNORECASE))[2:-2]
 
     return link_with_point   
+
 
 def is_gitlabcom(link):
     

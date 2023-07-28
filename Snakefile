@@ -115,7 +115,7 @@ rule extract_info_from_pubmed_xml:
         # Remove old log file.
         pathlib.Path(log.name).unlink(missing_ok=True)
         results = []
-        for PMID in PMIDs:
+        for PMID in tqdm(PMIDs):
             results.append(tools.parse_pubmed_xml(
                                 pmid=PMID,
                                 xml_name=f"data/pubmed/{PMID}.xml",

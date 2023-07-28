@@ -194,7 +194,7 @@ def parse_pubmed_xml(pmid="", xml_name="", log_name="parse_pubmed_xml.log"):
         error_message = ""
         try:
             xml_content = xmltodict.parse(xml_file.read())
-        except ExpatError:
+        except xmltodict.expat.ExpatError:
             return None, None, None, None, None, None
         # Extracting information from the xml file.
         abstract = extract_abstract_from_summary(xml_content)
@@ -565,43 +565,38 @@ def clean_link(link):
 
     Returns
     -------
-    link : str
+    str
         Link to a github repository ready to use.
     """
-    
-    if link != "":
-        if link.count('.') > 1:
-            link = re.sub(r"\.[a-z][^.]*$", "", link)    
-        if link[-5:] == 'https':
-            link = link[:-5]
-        if link[-13:] == 'Supplementary':
-            link = link[:-13]
-        if link[-12:] == 'Communicated':
-            link = link[:-12]
-        if link[-7:] == 'Contact':
-            link = link[:-7]
-        #if link[-8:] == 'Database':
-        #    link = link[:-8]
-        if not link.startswith("https://"):
-            link = "https://" + link
-        if '//' in link[8:]:
-            link = link[:8] + link[8:].replace('//', '/')
-        if "\\" in link:
-            link = link.replace("\\", '')      
-        if "\\\\" in link:
-            link = link.replace("\\\\", '')          
-        if link[-2] == ")" or link[-2] == "/" or link[-2] == "]" or link[-2] == '"':
-            link = link[:-2]
-        if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
-            link = link[:-1]
-        if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
-            link = link[:-1]
-        if link[-4:] == '.git':
-            link = link[:-4]
-        if link[-1] != "/":
-            link += "/" 
-                
-    return link 
+    if not link:
+        return link
+    # Remove everything after the last dot in the link.
+    if link.count('.') > 1:
+        link = re.sub(r"\.[a-z][^.]*$", "", link)
+    # Remove words that could stick at the end of urls.
+    # Sometimes 2 urls are sticked together.
+    for word in ["https", "Supplementary", "Communicated", "Contact"]:
+        if link.endswith(word):
+            link = link[:-len(word)]
+    if not link.startswith("https://"):
+        link = "https://" + link
+    if '//' in link[8:]:
+        link = link[:8] + link[8:].replace('//', '/')
+    if "\\" in link:
+        link = link.replace("\\", "")
+    if "\\\\" in link:
+        link = link.replace("\\\\", "")
+    if link[-2] == ")" or link[-2] == "/" or link[-2] == "]" or link[-2] == '"':
+        link = link[:-2]
+    if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
+        link = link[:-1]
+    if link[-1] == "." or link[-1] == ']' or link[-1] == '"' or link[-1] == "/":
+        link = link[:-1]
+    if link[-4:] == '.git':
+        link = link[:-4]
+    if link[-1] != "/":
+        link += "/"
+    return link
 
 ############################################################################################
 ####################################----GITHUB----##########################################

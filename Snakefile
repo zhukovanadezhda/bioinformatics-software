@@ -4,6 +4,7 @@ import os
 import pathlib
 import time
 
+import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
@@ -163,11 +164,11 @@ rule get_info_github:
         # Remove old log file.
         pathlib.Path(log.name).unlink(missing_ok=True)
         # Query GitHub API.
-        df = pd.read_csv(input.data, sep="\t", index_col="PMID")
+        df = pd.read_csv(input.data, sep="\t", index_col="PMID", keep_default_na=False)
         for pmid in tqdm(df.index):
             info = {"date_repo_created": None, "date_repo_updated": None, "is_fork": False}
             # Query GitHub API only when repo owner and repo name are defined.
-            if df.at[pmid, "GitHub_repo_name"]: 
+            if df.at[pmid, "GitHub_repo_name"]:
                 info = tools.get_repo_info(
                     pmid=pmid,
                     url=df.at[pmid, "GitHub_link_clean"],
@@ -186,7 +187,7 @@ rule get_info_software_heritage:
     output:
         results="results/articles_info_pubmed_github_software_heritage.tsv"
     run:
-        df = pd.read_csv(input.data, sep="\t", index_col="PMID")
+        df = pd.read_csv(input.data, sep="\t", index_col="PMID", keep_default_na=False)
         for pmid in tqdm(df.index):
             info = {"is_archived": False, "date_archived": None}
             if df.at[pmid, "GitHub_repo_name"]:

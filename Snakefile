@@ -99,8 +99,25 @@ rule make_forge_stat_figures:
         "results/images/stat_http.png"
     shell:
         "jupyter nbconvert --to html --execute {input.notebook}"      
-        
-        
+
+
+rule download_pubmed_xml:
+    output:
+        xml_name="data/pubmed/{pmid}.xml"
+    retries: 3
+    resources:
+        attempt=lambda wildcards, attempt: attempt
+    run:
+        print(resources.attempt)
+        tools.download_pubmed_abstract(
+            pmid=wildcards.pmid,
+            token=os.getenv("PUBMED_TOKEN", ""),
+            xml_name=output.xml_name,
+            log_name=f"logs/{wildcards.pmid}_error_{resources.attempt}.log",
+            attempt=resources.attempt
+            )
+
+
 rule extract_info_from_pubmed_xml:
     input:
         get_pubmed_xml,
@@ -145,19 +162,21 @@ rule get_info_github:
         GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
         # Remove old log file.
         pathlib.Path(log.name).unlink(missing_ok=True)
-        
+        # Query GitHub API.
         df = pd.read_csv(input.data, sep="\t", index_col="PMID")
-        PMIDs = df[ df["GitHub_repo_name"].notna() ].index.to_list()
-        for pmid in tqdm(PMIDs):    
-            info = tools.get_repo_info(
-                pmid=pmid,
-                url=df.loc[pmid, "GitHub_link_clean"],
-                token=GITHUB_TOKEN,
-                log_name=log.name
-            )
-            df.loc[pmid, "date_repo_created"] = info["date_created"]
-            df.loc[pmid, "date_repo_updated"] = info["date_updated"]
-            df.loc[pmid, "is_fork"] = info["fork"]
+        for pmid in tqdm(df.index):
+            info = {"date_repo_created": None, "date_repo_updated": None, "is_fork": False}
+            # Query GitHub API only when repo owner and repo name are defined.
+            if df.at[pmid, "GitHub_repo_name"]: 
+                info = tools.get_repo_info(
+                    pmid=pmid,
+                    url=df.at[pmid, "GitHub_link_clean"],
+                    token=GITHUB_TOKEN,
+                    log_name=log.name
+                )
+            df.at[pmid, "date_repo_created"] = info["date_repo_created"]
+            df.at[pmid, "date_repo_updated"] = info["date_repo_updated"]
+            df.at[pmid, "is_fork"] = info["is_fork"]
         df.to_csv(output.results, sep="\t", index=True)
         
         
@@ -170,7 +189,7 @@ rule get_info_software_heritage:
         df = pd.read_csv(input.data, sep="\t", index_col="PMID")
         for pmid in tqdm(df.index):
             info = {"is_archived": False, "date_archived": None}
-            if df.loc[pmid, "GitHub_repo_name"]:
+            if df.at[pmid, "GitHub_repo_name"]:
                 info = tools.check_repository_is_archived_in_swh(
                     df.at[pmid, "GitHub_link_clean"]
                 )
@@ -193,23 +212,6 @@ rule make_figures:
         report("results/images/stat_swh.png")
     shell:
         "jupyter nbconvert --to html --execute {input.notebook}"
-
-
-rule download_pubmed_xml:
-    output:
-        xml_name="data/pubmed/{pmid}.xml"
-    retries: 3
-    resources:
-        attempt=lambda wildcards, attempt: attempt
-    run:
-        print(resources.attempt)
-        tools.download_pubmed_abstract(
-            pmid=wildcards.pmid,
-            token=os.getenv("PUBMED_TOKEN", ""),
-            xml_name=output.xml_name,
-            log_name=f"logs/{wildcards.pmid}_error_{resources.attempt}.log",
-            attempt=resources.attempt
-            )
 
 
 onsuccess:

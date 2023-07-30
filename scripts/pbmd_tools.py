@@ -639,8 +639,7 @@ def get_repo_info(pmid=0, url="", token="", log_name=""):
     """
     
     headers = {"Authorization": f"Token {token}"}
-    owner = get_owner_from_link(url)
-    repo = get_repo_from_link(url)
+    owner, repo = extract_github_repo_owner_name_from_link(url)
     query = f"https://api.github.com/repos/{owner}/{repo}"
     wait_time = 0.75  # max 5000 requests / hour = 1 request / 0.72 second
     info = {"date_repo_created": None, "date_repo_updated": None, "is_fork": None}

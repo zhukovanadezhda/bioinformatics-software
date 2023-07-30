@@ -33,7 +33,7 @@ rule all:
     input:
         get_pubmed_xml,
         "results/images/stat_http.png",
-        "results/data_stat.txt"
+        "results/data_collection_summary.txt"
 
 
 checkpoint query_pubmed_forges:
@@ -110,26 +110,28 @@ rule extract_info_from_pubmed_xml:
     log:
         name="logs/extract_info_from_pubmed_xml.txt"
     run:
-        PMIDs = pd.read_csv(input.github, sep="\t")["PMID"].to_list()
         # Remove old log file.
         pathlib.Path(log.name).unlink(missing_ok=True)
-        results = []
-        for PMID in tqdm(PMIDs):
-            results.append(tools.parse_pubmed_xml(
-                                pmid=PMID,
-                                xml_name=f"data/pubmed/{PMID}.xml",
+        # List all PMIDs to parse.
+        PMIDs = pd.read_csv(input.github, sep="\t")["PMID"].to_list()
+        df = pd.DataFrame(
+            columns=["publication_date", "DOI", "journal", "title", "abstract",
+            "GitHub_link_raw", "GitHub_link_clean", "GitHub_repo_owner", "GitHub_repo_name"])
+        df.index.name = "PMID"
+        for pmid in tqdm(PMIDs):
+            # Parse the xml file.
+            info = tools.parse_pubmed_xml(
+                                pmid=pmid,
+                                xml_name=f"data/pubmed/{pmid}.xml",
                                 log_name=log.name
                                 )
-                            )
-        df = pd.DataFrame.from_records(results)
-        df.columns = ["PMID", "publication_date", "DOI", 
-                      "journal", "title", "abstract"]
-        df["GitHub_link_raw"] = df["abstract"].astype(str).apply(tools.extract_link_from_abstract)
-        df["GitHub_link_clean"] = df["GitHub_link_raw"].astype(str).apply(tools.clean_link)
-        df["GitHub_owner"] = df["GitHub_link_clean"].apply(tools.get_owner_from_link)
-        df["GitHub_repo"] = df["GitHub_link_clean"].apply(tools.get_repo_from_link)
-        
-        df.to_csv(output.results, sep="\t", index=False)
+            # Handle GitHub link.
+            info["GitHub_link_raw"] = tools.extract_link_from_abstract(info["abstract"])
+            info["GitHub_link_clean"] = tools.clean_link(info["GitHub_link_raw"])
+            info["GitHub_repo_owner"], info["GitHub_repo_name"] = tools.extract_github_repo_owner_name_from_link(info["GitHub_link_clean"])
+            for column in df.columns:
+                df.at[pmid, column] = info[column]
+        df.to_csv(output.results, sep="\t", index=True)
         
         
 rule get_info_github:
@@ -145,7 +147,7 @@ rule get_info_github:
         pathlib.Path(log.name).unlink(missing_ok=True)
         
         df = pd.read_csv(input.data, sep="\t", index_col="PMID")
-        PMIDs = df[ df["GitHub_repo"].notna() ].index.to_list()
+        PMIDs = df[ df["GitHub_repo_name"].notna() ].index.to_list()
         for pmid in tqdm(PMIDs):    
             info = tools.get_repo_info(
                 pmid=pmid,
@@ -163,27 +165,18 @@ rule get_info_software_heritage:
     input:
         data="results/articles_info_pubmed_github.tsv"
     output:
-        result="results/articles_info_pubmed_github_software_heritage.tsv"
+        results="results/articles_info_pubmed_github_software_heritage.tsv"
     run:
-        df = pd.read_csv(input.data, sep="\t")
-        PMIDs = df["PMID"][df["GitHub_owner"].notna()].to_list()
-
-        for PMID in tqdm(PMIDs):
-
-            try:
-                info = tools.check_is_in_softwh(df[df['PMID']==PMID]["GitHub_link_clean"].values[0])
-            except:
-                try:
-                    info = tools.check_is_in_softwh(df[df['PMID']==PMID]["GitHub_link_clean"].values[0])
-                except:
-                    continue
-
-            idx = df.index[df['PMID'] == PMID][0]
-
-            df.loc[idx, "is_in_SWH"] = tools.is_in_softwh(info)
-            df.loc[idx, "is_archived"] = tools.get_date_archived(info)
-
-        df.to_csv(output.result, sep="\t", index=False)
+        df = pd.read_csv(input.data, sep="\t", index_col="PMID")
+        for pmid in tqdm(df.index):
+            info = {"is_archived": False, "date_archived": None}
+            if df.loc[pmid, "GitHub_repo_name"]:
+                info = tools.check_repository_is_archived_in_swh(
+                    df.at[pmid, "GitHub_link_clean"]
+                )
+            df.at[pmid, "is_archived"] = info["is_archived"]
+            df.at[pmid, "date_archived"] = info["date_archived"]
+        df.to_csv(outputs.result, sep="\t", index=True)
     
 
 rule make_figures:
@@ -191,7 +184,7 @@ rule make_figures:
         data="results/articles_info_pubmed_github_software_heritage.tsv",
         notebook="notebooks/analysis.ipynb"
     output:
-        "results/data_stat.txt",
+        "results/data_collection_summary.txt",
         "results/images/stat_dev.png",
         report("results/images/stat_dynam.png"),
         report("results/images/stat_forges.png"),

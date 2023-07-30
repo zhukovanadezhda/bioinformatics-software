@@ -192,32 +192,34 @@ def add_days(date_string, n):
 
 
 def parse_pubmed_xml(pmid="", xml_name="", log_name="parse_pubmed_xml.log"):
+    info = {"PMID": pmid, "publication_date": "", "DOI": "",
+            "journal": "", "title": "", "abstract": ""}
     with open(xml_name, "r") as xml_file, open(log_name, "a") as log_file:
         xml_content = xml_file.read()
         error_message = ""
         try:
             xml_content_dict = xmltodict.parse(xml_content)
         except xmltodict.expat.ExpatError:
-            return None, None, None, None, None, None
+            return info
         # Extracting information from the xml file.
-        abstract = extract_abstract_from_summary(xml_content)
-        if not abstract:
+        info["abstract"] = extract_abstract_from_summary(xml_content)
+        if not info["abstract"]:
             error_message += "no abstract found, "
-        pubdate = extract_pubdate_from_summary(xml_content_dict)
-        if not pubdate:
+        info["publication_date"] = extract_pubdate_from_summary(xml_content_dict)
+        if not info["publication_date"]:
             error_message += "no publication date found, "
-        title = extract_title_from_summary(xml_content_dict)
-        if not title:
+        info["title"] = extract_title_from_summary(xml_content_dict)
+        if not info["title"]:
             error_message += "no title found, "
-        journal = extract_journal_from_summary(xml_content_dict)
-        if not journal:
+        info["journal"] = extract_journal_from_summary(xml_content_dict)
+        if not info["journal"]:
             error_message += "no journal found, "
-        doi = extract_doi_from_summary(xml_content_dict)
-        if not doi:
+        info["DOI"] = extract_doi_from_summary(xml_content_dict)
+        if not info["DOI"]:
             error_message += "no doi found"
         if error_message:
             log_file.write(f"{pmid}: {error_message}\n")
-    return pmid, pubdate, doi, journal, title, abstract
+    return info
 
 
 def download_pubmed_abstract(
@@ -336,7 +338,7 @@ def extract_pubdate_from_summary(summary):
         pass
     else:
         return normalize_date(pubdate)
-    # No ArticleDate nor PubDate
+    # No ArticleDate neither PubDate
     # Example:
     # https://pubmed.ncbi.nlm.nih.gov/25344330/
     # https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25344330&retmode=xml&rettype=abstract
@@ -348,7 +350,7 @@ def extract_pubdate_from_summary(summary):
         pass
     else:
         return normalize_date(pubdate)
-    return None
+    return ""
 
 
 def normalize_date(date):
@@ -411,7 +413,7 @@ def extract_title_from_summary(summary):
 
         return title
     except:
-        return None
+        return ""
         
 
 def extract_journal_from_summary(summary):
@@ -432,7 +434,7 @@ def extract_journal_from_summary(summary):
         journal = article['MedlineCitation']['Article']['Journal']['Title']
         return journal
     except:
-        return None
+        return ""
 
 
 def extract_doi_from_summary(summary):
@@ -470,7 +472,7 @@ def extract_doi_from_summary(summary):
                     doi = dictionary["#text"]
         return doi
     except:
-        return None  
+        return ""  
 
 
 def extract_link_from_abstract(text):
@@ -487,20 +489,20 @@ def extract_link_from_abstract(text):
     str
         GitHub.com link.
     """
-    if text is None:
-        return None
+    if not text:
+        return ""
     regex = "github.com[^\n ,):;'+}>•]*"
     hits = re.findall(regex, text, re.IGNORECASE)
     if not hits:
-        return None
+        return ""
     # If multiple GitHub links are found, return the first link only.
     return hits[0]
 
 
 def get_gitlab_link(text):
 
-    if text == None:
-        return None
+    if not text:
+        return ""
     
     rgx = "[^\n /,\):;'\+}>•]*gitlab\.[^\n ,\):;'\+}>•]*"
        
@@ -569,14 +571,14 @@ def clean_link(link):
 ############################################################################################
 
 def get_last_commit_files(owner, repo, access_token):
-    headers = {'Authorization': f"Token {access_token}"}   
-    url = f'https://api.github.com/repos/{owner}/{repo}/commits'
-    response = requests.get(url, headers=headers)
+    headers = {"Authorization": f"Token {access_token}"}   
+    query = f"https://api.github.com/repos/{owner}/{repo}/commits"
+    response = requests.get(query, headers=headers)
     data = response.json()
     if response.status_code == 200:
         if len(data) > 0:
             last_commit_sha = data[0]['sha']
-            files_url = f'{url}/{last_commit_sha}'
+            files_url = f'{query}/{last_commit_sha}'
             files_response = requests.get(files_url, headers=headers)
             files_data = files_response.json()
             if files_response.status_code == 200:
@@ -586,46 +588,31 @@ def get_last_commit_files(owner, repo, access_token):
                 return None, files_response.status_code
     return None, response.status_code
 
-def get_owner_from_link(link):
+
+def extract_github_repo_owner_name_from_link(url):
     """
     Get Github repository owner name and the name of the repository.
     
     Parameters
     ----------
-    link : str
-        Link to a github repository.
+    url : str
+        URL of a GitHub repository.
 
     Returns
     -------
-    owner : str
-        Owner name.
+    tuple
+        Tuple with GitHub repository owner and name.
     """
-    if link != "":
-        owner = str(link).split('/')[3]
-        return owner.strip()
-    else:
-        return None
-
-    
-def get_repo_from_link(link):
-    """
-    Get Github repository owner name and the name of the repository.
-    
-    Parameters
-    ----------
-    link : str
-        Link to a github repository.
-
-    Returns
-    -------
-    repo : str
-        Repository name.
-    """
-    if link != "" and len(str(link).split('/')) > 5:
-        repo = str(link).split('/')[4]
-        return repo.strip()
-    else:
-        return None
+    repo_owner, repo_name = "", ""
+    # Verify the link start with http:// or https://
+    # to extract the right columns later.
+    if url.startswith("http://") or url.startswith("https://"):
+        url_fields = str(url).split("/")
+        if len(url_fields) >= 4:
+            repo_owner = url_fields[3]
+        if len(url_fields) >= 5:
+            repo_name = url_fields[4].strip()
+    return repo_owner, repo_name
 
 
 def get_repo_info(pmid=0, url="", token="", log_name=""):
@@ -656,7 +643,7 @@ def get_repo_info(pmid=0, url="", token="", log_name=""):
     repo = get_repo_from_link(url)
     query = f"https://api.github.com/repos/{owner}/{repo}"
     wait_time = 0.75  # max 5000 requests / hour = 1 request / 0.72 second
-    info = {"date_created": None, "date_updated": None, "fork": None}
+    info = {"date_repo_created": None, "date_repo_updated": None, "is_fork": None}
     response = requests.get(query, headers=headers)
     if response.status_code != 200:
         record_api_error(query=query,
@@ -668,9 +655,9 @@ def get_repo_info(pmid=0, url="", token="", log_name=""):
         print(f"ERROR with query: {query}")
     else:
         repository_info = response.json()
-        info["fork"] = repository_info["fork"]
-        info["date_created"] = repository_info["created_at"].split("T")[0]
-        info["date_updated"] = repository_info["updated_at"].split("T")[0]
+        info["is_fork"] = repository_info["fork"]
+        info["date_repo_created"] = repository_info["created_at"].split("T")[0]
+        info["date_repo_updated"] = repository_info["updated_at"].split("T")[0]
     # Wait to avoid rate limit
     time.sleep(wait_time)
     return info
@@ -680,62 +667,32 @@ def get_repo_info(pmid=0, url="", token="", log_name=""):
 ####################################----SOFTWH----##########################################
 ############################################################################################
 
-def check_is_in_softwh(url):
+def check_repository_is_archived_in_swh(url):
     """
     Get Software Heritage repository info.
     
-    Example: https://archive.softwareheritage.org/api/1/origin/https://github.com/jupyterlite/jupyterlite/visit/latest/
+    Example of GitHub repository archived in Software Heritage:
+    - url: https://github.com/jupyterlite/jupyterlite/
+    - API: https://archive.softwareheritage.org/api/1/origin/https://github.com/jupyterlite/jupyterlite/visit/latest/
     
+    Example of GitHub repository not archived in Software Heritage:
+    - url: https://github.com/pierrepo/blabla/
+    - API: https://archive.softwareheritage.org/api/1/origin/https://github.com/pierrepo/blabla/visit/latest/
+
     Parameters
     ----------
     url : str
-        Repository GitHub link.
+        URL of the GitHub repository.
 
     Returns
     -------
-    info : list
-        A list with if the repositary is archived in SWH and if so the date of archiving.
+    dict
+        Dictionnary with archive status and date of last archive.
     """
-    info = {"is_in": None, "date_archived": None}
-    queryLinkSearch = f'https://archive.softwareheritage.org/api/1/origin/{url}visit/latest/'  
-    response = requests.get(queryLinkSearch)
-    if 'exception' not in response.json():
-        info["is_in"] = 1
-        info["date_archived"] = response.json()['date'].split('T')[0]
-    else:
-        info["is_in"] = 0
+    info = {"is_archived": False, "date_archived": None}
+    query = f"https://archive.softwareheritage.org/api/1/origin/{url}visit/latest/"
+    response = requests.get(query)
+    if response.status_code == 200:
+        info["is_archived"] = True
+        info["date_archived"] = response.json()["date"].split("T")[0]
     return info
-
-
-def is_in_softwh(info):
-    """
-    Get 1 if the GitHub repository is in SWH and 0 otherwise.
-    
-    Parameters
-    ----------
-    info : list
-        A list with if the repositary is archived in SWH and if so the date of archiving.
-
-    Returns
-    -------
-    is_in : int
-        1 if the GitHub repository is in SWH and 0 otherwise
-    """
-    return info["is_in"]
-
-
-def get_date_archived(info):
-    """
-    Get the date of archiving of the GitHub repository.
-    
-    Parameters
-    ----------
-    info : list
-        A list with if the repositary is archived in SWH and if so the date of archiving.
-
-    Returns
-    -------
-    date_archived : str
-        The date of archiving of the GitHub repository
-    """
-    return info["date_archived"]

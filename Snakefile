@@ -196,7 +196,7 @@ rule get_info_software_heritage:
                 )
             df.at[pmid, "is_archived"] = info["is_archived"]
             df.at[pmid, "date_archived"] = info["date_archived"]
-        df.to_csv(outputs.result, sep="\t", index=True)
+        df.to_csv(output.results, sep="\t", index=True)
     
 
 rule make_figures:

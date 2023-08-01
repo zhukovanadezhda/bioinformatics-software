@@ -96,8 +96,8 @@ rule make_forge_stat_figures:
         http="results/pubmed/articles_with_http.tsv",
         links_stats ="results/pubmed/links_http_stat.json"
     output:
-        "results/images/stat_forges.png",
-        "results/images/stat_http.png"
+        "results/stat_forges.png",
+        "results/stat_http.png"
     shell:
         "jupyter nbconvert --to html --execute {input.notebook}"      
 
@@ -205,12 +205,11 @@ rule make_figures:
         notebook="notebooks/analysis.ipynb"
     output:
         "results/data_collection_summary.txt",
-        "results/images/stat_dev.png",
-        report("results/images/stat_dynam.png"),
-        report("results/images/stat_forges.png"),
-        report("results/images/stat_hist.png"),
-        report("results/images/stat_last_updt.png"),
-        report("results/images/stat_swh.png")
+        report("results/stats_swh.png"),
+        report("results/development_dynamic.png"),
+        report("results/development_hist.png"),
+        report("results/development_time.png"),
+        report("results/stat_last_update.png")
     shell:
         "jupyter nbconvert --to html --execute {input.notebook}"
 

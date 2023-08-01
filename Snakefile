@@ -96,8 +96,8 @@ rule make_forge_stat_figures:
         http="results/pubmed/articles_with_http.tsv",
         links_stats ="results/pubmed/links_http_stat.json"
     output:
-        "results/stat_forges.png",
-        "results/stat_http.png"
+        "results/stats_forges.png",
+        "results/stats_http.png"
     shell:
         "jupyter nbconvert --to html --execute {input.notebook}"      
 
